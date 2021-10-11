@@ -1,0 +1,82 @@
+클라이언트 View Page
+1. header - 상단 기본헤드 페이지
+2. headerList - 상단 리스트헤드 전용 페이지
+
+3. footer - 하단풋터 페이지
+4. company - 회사소개
+5. perInfo - 개인정보방침
+6. useAgree - 이용약관
+7. tripAgree - 여행약관
+8. adminLogin - 관리자로그인   @★
+
+9. home - 메인페이지
+
+10. search - 리스트 페이지
+11. searchThema - 테마 더보기 리스트 페이지
+
+12. login - 로그인페이지
+13. loginRes - 예약정보 로그인 @★
+14. resDetNoMemLog -비회원예약조회페이지  @★
+15. findId - 아이디찾기 페이지
+16. findIdSucc - 아이디찾기 성공 페이지
+17. findPw - 비밀번호 찾기 페이지
+18. - 임시비밀번호 발송된 이메일 디자인
+
+19. join - 회원가입페이지
+20. joinSucc - 회원가입완료페이지 @★
+
+21. myPageInfo - 개인정보페이지
+22. modifyInfoPass - 비밀번호입력페이지(회원정보변경페이지 전 단계) @★ 받은레이아웃
+23. modifyInfo - 회원정보변경페이지 @
+24. deleteInfo - 회원탈퇴페이지 
+25. privateQue - 1대1문의 리스트 페이지 @
+26. priQueInput - 1대1문의 입력 페이지 @
+26-1.priQueModify - 1대1문의 수정 페이지
+27. contactUs - 상담전화번호 안내 및 오시는길 @★받은레이아웃
+28. wishList - 찜리스트페이지 @
+29. resList - 예약리스트페이지 - 리뷰입력페이지(ajax로 제작) @
+30. resDetail - 예약리스트디테일페이지 @
+31. resDetNoMem - 비회원예약조회디테일페이지 @
+
+32. csNotice - 고객센터공지사항페이지
+33. csQue - 고객센터자주하는질문페이지 
+     -1대1문의는 로그인시 privateQue 로 넘어가고 아니면 login 요 페이지로 넘어감
+
+34. pdDetail - 상품디테일페이지
+35. memberRes - 회원예약페이지
+36. memResSucc - 회원예약완료페이지
+37. noMemRes - 비회원예약페이지 @★
+38. noMemResSucc - 비회원예약완료페이지
+
+39. newPdList - 최근본상품 페이지 @
+
+ 
+관리자 View Page
+(관리자 로그인페이지에서 로그인 후 - 클라이언트 페이지 8번)
+
+40. adminMain - 모든 정보 전체 리스트
+41. adminMem - 회원정보관리 리스트
+42. adminMemModi
+43. adminMemInput
+44. adminPd - 상품정보관리 리스트
+45. adminPdModi
+46. adminPdInput
+47. adminRes - 예약정보관리 리스트
+48. adminResModi
+49. adminResInput
+50. adminWish - 찜정보관리 리스트
+51. adminWishModi
+52. adminWishInput
+53. adminRev - 리뷰정보관리 리스트 - 댓글(수정,입력,삭제 ajax처리)
+54. adminRevModi
+55. adminRevInput
+56. adminPriQue - 1대1정보관리 리스트 - 댓글(수정,입력,삭제 ajax처리)
+57. adminPriQueModi
+58. adminPriQueInput
+59. adminCS - 공지사항/자주하는질문 리스트
+60. adminCSModi
+61. adminCSInput
+62. adminList - 관리자정보리스트
+63. adminListModi
+64. adminListInput
+65. adminLOG - 관리자로그기록
