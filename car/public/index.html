@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.9.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.9.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-storage.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <script src="jquery.js"></script>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+
+/*-----모달창------------------------------------------*/
+#modal_body {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 95%;
+	height: 95%;
+	display: none;
+	margin: 0 auto;
+	transform: translateX(3%) translateY(3%);
+}
+
+#modal_body>img {
+	margin: 0 auto;
+	max-height: 100%;
+	max-width: 100%;
+	border-radius: 10px;
+	cursor: pointer;
+	display:none;
+
+}
+/*-----모달창------------------------------------------*/
+
+#tab1{
+  border : 1px solid black;
+  width: 500px;
+  display: none;
+}
+#tab2{
+  border : 1px solid black;
+  width: 500px;
+  display: none;
+}
+#tab1>tbody>tr>td,
+#tab2>tbody>tr>td{
+  border: 1px solid black;
+  width : 100%;
+
+}
+#img10{
+  width: 500px;
+}
+
+
+    </style>
+  </head>
+  
+  <body>
+    
+    <div>
+      <h1>범준샘 코딩교실</h1>
+      <fieldset>
+        제품번호 : <input type="text" id="num" value=""><br>
+        제품명: <input type="text" id="name" value="KOSMO"><br>
+        가격: <input type="text" id="price" value="20000"><br>
+        메이커: <input type="text" id="company" value="KOREA"><br>
+        연식: <input type="text" id="year" value="2011"><br>
+        사진: <input type="file" class="image">
+        <hr>
+        <button id="saveBtn">저장</button>
+        <button id="modifyBtn0">수정완료</button>
+
+      </fieldset>
+      <table id="load" border="1" width="99%"></table>
+    </div>
+    <!---------------모달창------------------------------------->
+    <div id="modal_body">
+      <img class="imgBig2" src="" alt="" >
+    </div>
+
+    <hr>
+    <!---------------모달창------------------------------------->
+    <!---------------상세보기------------------------------------->
+    <h1>상세보기</h1>
+      <table id="tab1">
+        <tr>
+          <td><img id="img10" src="" alt=""></td>
+        </tr>
+      </table>
+      <table id="tab2">
+        <tr>
+          <td>제품번호</td>
+          <td id="pnum"></td>
+        </tr>
+        <tr>
+          <td>제품명</td>
+          <td id="pname"></td>
+        </tr>
+        <tr>
+          <td>가격</td>
+          <td id="price1"></td>
+        </tr>
+        <tr>
+          <td>메이커</td>
+          <td id="make1"></td>
+        </tr>
+        <tr>
+          <td>연식</td>
+          <td id="year1"></td>
+        </tr>
+        <tr>
+          <td colspan="2"> <button id="detailClose">닫기</button></td>
+        </tr>
+      </table>
+
+    <!---------------상세보기------------------------------------->
+
+    <script>
+      function loadData(db) {
+        db.collection("car").get().then((querySnapshot) => {
+          $('#load').html(`<tr>
+            <th>사진</th>
+            <th>제품번호</th>
+            <th>제품명</th>
+            <th>가격</th>
+            <th>메이커</th>
+            <th>연식</th>
+            <th>삭제</th>
+          </tr>`);
+          querySnapshot.forEach((doc) => {
+              $('#load').append(`<tr>
+                <td><img class="imgBig" src="${doc.data().downLoadUrl}" height="100"></td>
+                <td class="detail1" >${doc.id}</td>
+                <td class="detail1" >${doc.data().name}</td>
+                <td class="detail1" >${doc.data().price}</td>
+                <td class="detail1" >${doc.data().company}</td>
+                <td class="detail1" >${doc.data().year}</td>
+                <td><input data-id="${doc.id}" type="button" class="delBtn" value="삭제">
+                  <input data-id="${doc.id}" type="button" class="modifyBtn" value="수정">
+                  </td>
+              </tr>`);
+          });
+          // 삭제 버튼 기능
+          $('input.delBtn').click(function(event) {
+            //console.log(this.getAttribute("data-id"));
+            var dataId = $(this).attr("data-id");
+            //console.log("dataId >>> ", dataId);
+            db.collection("car").doc(dataId).delete().then(() => {
+              loadData(db); // 삭제 성공 후 재귀호출.
+              console.log("Document successfully deleted!");
+            }).catch((error) => {
+              console.error("Error removing document: ", error);
+            });
+          });
+          // 삭제 버튼 기능 끝
+          //-----------------------모달창-------------------------------
+          $(".imgBig").click(function(event){
+            var imgUrl = $(this).attr('src');
+            //console.log(imgUrl)
+            $("#modal_body").css("display", "block");
+            $(".imgBig2").css("display", "block").attr('src', imgUrl);
+          });
+
+          $(".imgBig2").click(function(event){
+            $("#modal_body").css("display", "none");
+            $(".imgBig2").css("display", "none");
+          });
+          //------------------------모달창-----------------------------
+
+          //--------------------상세보기-----------------------------
+          $(".detail1").click(function(){
+            $("#tab1").css("display", "block")
+            $("#tab2").css("display", "block")
+            var a = $(this).parent().children().children()[0].src;
+            //console.log(a)
+            $("#img10").attr('src', a);
+            $("#pnum").html($(this).parent().find("td:eq(1)").html());
+            $("#pname").html($(this).parent().find("td:eq(2)").html());
+            $("#price1").html($(this).parent().find("td:eq(3)").html());
+            $("#make1").html($(this).parent().find("td:eq(4)").html());
+            $("#year1").html($(this).parent().find("td:eq(5)").html());
+          });
+          $("#detailClose").click(function(){
+            $("#tab1").css("display", "none")
+            $("#tab2").css("display", "none")
+          });
+          //--------------------상세보기-----------------------------
+          //--------------------수정--------------------------------
+          $(".modifyBtn").click(function(){
+            $("#num").val($(this).parent().parent().find("td:eq(1)").html());
+            $("#name").val($(this).parent().parent().find("td:eq(2)").html());
+            $("#price").val($(this).parent().parent().find("td:eq(3)").html());
+            $("#company").val($(this).parent().parent().find("td:eq(4)").html());
+            $("#year").val($(this).parent().parent().find("td:eq(5)").html());
+          });
+
+          //--------------------수정--------------------------------
+        });
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        console.dir(firebase);
+        var db = firebase.firestore();
+        var storage = firebase.storage();
+
+        // 목록 불러오기
+        loadData(db);
+
+        $("#saveBtn").click(function(event) {
+          // 사진 저장 기능
+          var fileData = $(".image")[0].files[0];
+          //console.log(fileData.name);
+          // 저장 경로
+          var uplaodRef = storage.ref();
+          var fileSavePath = uplaodRef.child('photo/' + fileData.name);
+          var result = fileSavePath.put(fileData);
+          console.log('fileSavePath>>> ', fileSavePath);
+          
+          // 먼저 사진을 저장 하고
+          result.snapshot.ref.getDownloadURL().then(function(downLoadUrl) {
+            // 사진 저장이 완료 되면 firestore에 정보 기록
+            var saveData = {
+
+              name : $('#name').val(),
+              price : $('#price').val(),
+              company : $('#company').val(),
+              year : $('#year').val(),
+              image: fileData.name,
+              downLoadUrl : downLoadUrl
+            }
+            // firestore에 데이터 저장
+            //console.log(saveDat
+// Add a new document with a generated id.
+            db.collection("car").add(saveData).then((docRef) => {
+               console.log("Document written with ID: ", docRef.id);
+  // 저장 성공 후에 목록을 다시 로드 한다.
+              loadData(db);
+            }).catch((error) => {
+                console.error("Error adding document: ", error);
+            });
+
+          });
+          }); // 사진 저장 버튼 기능 끝
+//--------------------------수정------------------------------------
+          $("#modifyBtn0").click(function(){
+                      // 사진 저장 기능
+            var dataId = $(this).parent().children().val();
+            var modifyData = {
+                name : $('#name').val(),
+                price : $('#price').val(),
+                company : $('#company').val(),
+                year : $('#year').val(),
+
+                }
+            db.collection("car").doc(dataId).set(modifyData).then(() => {
+                  console.log("Document successfully written!");
+                  loadData(db);
+              })
+              .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+          });
+//--------------------------수정------------------------------------
+
+//   const loadEl = document.querySelector('#load');
+//   try {
+//     let app = firebase.app();
+//     let features = [
+//       'auth', 
+//       'firestore',
+//       'storage',  
+//     ].filter(feature => typeof app[feature] === 'function');
+//     loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+//   } catch (e) {
+//     console.error(e);
+//     loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+//   }
+});
+</script>
+</body>
+</html>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBZGdXWoGmQRCFEvZ5-SUWr5bIAcxXiilI",
+    authDomain: "practice-001-f06e7.firebaseapp.com",
+    databaseURL: "https://practice-001-f06e7-default-rtdb.firebaseio.com",
+    projectId: "practice-001-f06e7",
+    storageBucket: "practice-001-f06e7.appspot.com",
+    messagingSenderId: "1035340874740",
+    appId: "1:1035340874740:web:a0ffa4bd9b4f0a2b47efa1"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>

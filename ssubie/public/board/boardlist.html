@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.9.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.9.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-performance.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<style>/*-----boardlist-------------------------------------------------------------------------------------------------------*/
+@media screen and (max-width:600px) {#galTabParent {margin-top:-150px; transition: 0.5s;}}
+*{text-decoration-line : none;}
+#bottom{clear:both;}
+.section{max-width: 1000px;margin: 0 auto;}
+.insection>div>table{float:left;height : 120px;}
+.table1{width:50px;}
+.table5{width:50px;}
+.table2{width:120px;}
+.table3{max-width:730px;width:100%;}
+.table4{height:120px;width:100px;text-align:center;}
+
+.table3>tbody>tr:nth-child(1)>td:nth-child(1),
+.table3>tbody>tr:nth-child(2)>td:nth-child(1),
+.table3>tbody>tr:nth-child(3)>td:nth-child(1),
+.table4>tbody>tr:nth-child(1)>td,
+.table1>tbody>tr:nth-child(1)>td,
+.table1>tbody>tr:nth-child(2)>td,
+.table5>tbody>tr:nth-child(1)>td,
+.table5>tbody>tr:nth-child(2)>td,
+.table2>tbody>tr>td{background-color: rgb(150,150,150);color : white;text-align:center;}
+
+.table3>tbody>tr>td:nth-child(1){width: 100px;}
+
+.table3>tbody>tr:nth-child(1)>td:nth-child(2),
+.table3>tbody>tr:nth-child(2)>td:nth-child(2),
+.table3>tbody>tr:nth-child(3)>td:nth-child(2),
+.table4>tbody>tr:nth-child(2)>td,
+.table4>tbody>tr:nth-child(3)>td{background-color: rgb(220,220,220);font-size: 100%;font-weight: bold;}
+
+.table3>tbody>tr:nth-child(3)>td:nth-child(2){border-bottom: 3px solid black;}
+
+.table3>tbody>tr>td>a{color:black;}
+.table3>tbody>tr>td>a:hover{color:red;}
+#aline{display: inline-block; white-space: nowrap;max-width:300px;overflow: hidden; text-overflow: ellipsis;}
+.table2{cursor: pointer;}
+.table2:hover{background-color: black;}
+
+/*-----우측 스크롤 버튼------------------------------------------*/
+#galIn, #galOut {	width: 50px;	height: 50px;	text-align: center;	background-color: gray;	color: white;	border-radius: 5px;	cursor: pointer;opacity: 0.8;}
+#galIn:hover, #galOut:hover {	background-color: black;}
+#galTabParent {	width: 98%;	max-width: 1056px;	position: fixed;	top:168px;	clear: both; transition: 0.5s;}
+#galTab {	position: absolute;	right: 0px;}
+P{margin:0;}
+/*-----우측 스크롤 버튼------------------------------------------*/
+</style><!-----boardlist------------------------------------------------------------------------------------------------------->
+
+<style>/*-----detail-------------------------------------------------------------------------------------------------------*/
+	#div10{max-width:1000px;margin: 0 auto;}
+	#detailImg{width:100%;max-width:1000px;max-height:1000px;background-color:gray;color:white;text-align:center;}
+	#table10{float:left;width:100%;max-width:1000px;}
+	
+	#table10>tbody>tr:nth-child(1)>td:nth-child(1),
+	#table10>tbody>tr:nth-child(2)>td:nth-child(1),
+	#table10>tbody>tr:nth-child(4)>td:nth-child(1),
+	#table10>tbody>tr:nth-child(5)>td:nth-child(1){height:40px;width:100px;text-align:center;background-color: rgb(150,150,150);color : white;}
+	
+	#table10>tbody>tr:nth-child(3)>td:nth-child(1){height:100%;height:100px;text-align:center;background-color: rgb(150,150,150);color : white;}
+	
+	#table10>tbody>tr:nth-child(1)>td:nth-child(2),
+	#table10>tbody>tr:nth-child(2)>td:nth-child(2),
+	#table10>tbody>tr:nth-child(4)>td:nth-child(2),
+	#table10>tbody>tr:nth-child(5)>td:nth-child(2){background-color: rgb(220,220,220);font-size: 130%;}
+	
+	#table10>tbody>tr:nth-child(3)>td:nth-child(2){background-color: rgb(220,220,220);font-size: 130%;}
+	
+	#bottom{clear:both;}
+	.indiv10{display: none;}
+	/*-----하단 버튼------------------------------------------*/
+	#galTab2 {float:left;}
+	#galIn2, #galOut2, #galHome2 {	width: 150px;	height: 40px;	text-align: center;	background-color: gray;	color: white;	border-radius: 5px;	cursor: pointer;	opacity: 0.8;}
+	#galIn2:hover, #galOut2:hover, #galHome2:hover {	background-color: black;}
+	/*-----하단 버튼------------------------------------------*/
+</style><!-----detail------------------------------------------------------------------------------------------------------->
+
+
+<style>/*-----inpout-------------------------------------------------------------------------------------------------------*/
+	#inDiv{max-width:1000px;margin: 0 auto; display: none;}
+	#detailImg3{width:100%;height:400px;max-width:1000px;max-height:1000px;background-color:gray;color:white;text-align:center;}
+	#inTab{width:100%;max-width:1000px;margin: 0 auto;}
+	
+	#inTab>tbody>tr:nth-child(1)>td:nth-child(1),
+	#inTab>tbody>tr:nth-child(3)>td:nth-child(1){width:100px;height:40px;text-align:center;background-color: rgb(150,150,150);color : white;}
+	
+	#inTab>tbody>tr:nth-child(2)>td:nth-child(1){width:100px;height:400px;text-align:center;background-color: rgb(150,150,150);color : white;}
+	
+	#inTi{height: 40px;width:90%;font-size: 150%;}
+	#inCo{height:400px;width:90%;font-size: 150%;}
+	
+	a{text-decoration-line : none;color:white;}
+	/*-----하단 배너2------------------------------------------*/
+	
+	#galIn3, #galOut3{	width: 150px;	height: 40px;	text-align: center;	background-color: gray;	color: white;	border-radius: 5px;	cursor: pointer;	opacity: 0.8;}
+	#galIn3:hover, #galOut3:hover{	background-color: black;}
+	
+	/*-----하단 배너2------------------------------------------*/
+	</style><!-----input------------------------------------------------------------------------------------------------------->
+
+<script src="../jquery.js"></script>
+<script>
+$(document).ready(function(){
+	$("#header").load("../inc/header.html");
+	$("#bottom").load("../inc/bottom.html");
+	
+});
+</script>
+</head>
+<body>
+
+<div id="header"></div>
+<div class="section">
+		<div class="insection"></div><!--boardlist-->
+
+		<div class="indiv10"><!--detail-->
+			<table id="detailImg"><tr><td> <img style="width: 100%;" id="detailImg2" src="" alt=""></td></tr></table>
+			<table id="table10">
+				<tr>
+					<td>제목</td>
+					<td id="detailTitle"></td>
+				</tr>
+				<tr>
+					<td>날짜</td>
+					<td id="detailDate"></td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td id="detailCon"></td>
+				</tr>
+				<tr>
+					<td>번호</td>
+					<td id="detailI"></td>
+				</tr>
+				<tr>
+					<td>조회수</td>
+					<td id="detailCnt"></td>
+				</tr>
+			</table>
+			<!-- 하단 버튼 ------------------------------->
+			<table id="galTab2">
+				<tr>
+					<td id="galIn2">수정</td>
+					<td id="galOut2">삭제</td> 
+					<td id="galHome2">닫기</td>
+				</tr>
+			</table>
+			<!-- 하단 버튼 ------------------------------->		
+		</div><!--detail-->
+		
+
+		<div id="inDiv"><!--input-->
+		<table id="detailImg3"><tr><td>이미지</td></tr></table>
+				<table id="inTab">
+					<form action="">
+					<tr>
+						<td>제목 :</td>
+						<td><input id="inTi" type="text" name="title" value=""/></td>
+					</tr>
+					<tr>
+						<td>내용 :</td>
+						<td><textarea id="inCo" name="contents" value=""></textarea></td>
+					</tr>
+					<tr>
+						<td>이미지 :</td>
+						<td><input type="file" /></td>
+					</tr>
+				</form>
+				</table>
+				<!-- 하단 등록,삭제 배너2 ------------------------------->
+				<table id="galTab3">
+					<tr>
+						<td id="galIn3">저장</td>
+						<td id="galOut3">취소</td>
+					</tr>
+				</table>
+			<!-- 하단 등록,삭제 배너2 ------------------------------->
+		</div><!--input-->
+
+
+		<!-- 우측 등록,삭제 버튼 ------------------------------->
+		<div id="galTabParent">
+			<table id="galTab">
+				<tr>
+					<td id="galIn">등록</td>
+				</tr>
+				<tr>
+					<td id="galOut">삭제</td>
+				</tr>
+			</table>
+		</div>
+		<!-- 우측 등록,삭제 버튼 ------------------------------->
+	</div>
+	<div id="bottom"></div>
+	<script>
+		var db = null;
+		var storage = null;
+		var listArr = [];
+		
+		function showList(){
+				db.collection("ssubistory").orderBy("wrdate", "desc").get().then((querySnapshot) => {
+					querySnapshot.docs.forEach((doc, i) => {
+						var timestamp = doc.data().wrdate.seconds;
+						var myDate = new Date(timestamp*1000);
+						var koreaTime = myDate.toLocaleString();
+						$(".insection").append(`
+							<div class="tabDiv1">
+							<table class="table1">
+								<tr>
+									<td>수정</td>
+								</tr>
+								<tr>
+									<td>삭제</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" /></td>
+								</tr>
+							</table>
+							<table class="table4">
+								<tr>
+									<td>번호/조회수</td>
+								</tr>
+								<tr>
+									<td>${i + 1}</td>
+								</tr>
+								<tr>
+									<td>${doc.data().cnt}</td>
+								</tr>	
+							</table>
+							<table class="table2" data-doc-id="${doc.id}">
+								<tr>
+									<td ><img style="max-width: 110px; max-height: 110px;" class="boardImg" src="${doc.data().imgurl}"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="tabDiv2">
+						<table class="table3">
+							<tr>
+								<td>제목</td>
+								<td class="click01" >&nbsp;&nbsp;${doc.data().title}</td>
+							</tr>
+							<tr>
+								<td>날짜</td>
+								<td class="click02" >&nbsp;&nbsp;${koreaTime}</td>
+							</tr>
+							<tr>
+								<td>내용</td>
+								<td class="click03" ><p id="aline" href="">&nbsp;&nbsp;${doc.data().contents}</p></td>
+							</tr>
+						</table>
+						</div>			
+						`);
+						detailShow();
+					});
+				});
+
+			}/*----------------------------showList() 끝--------------------------------------------------------------------------------*/
+
+
+
+
+			function detailShow(){
+
+				$(".table2").click(function(){
+					$(".insection").css("display", "none");
+					$(".indiv10").css("display", "block");
+					$("#galTabParent").css("display", "none");
+					var obj = $(this).attr('data-doc-id');
+					
+					db.collection("ssubistory").doc(obj).get().then((querySnapshot)=>{
+						var timestamp = querySnapshot.data().wrdate.seconds;
+						var myDate = new Date(timestamp*1000);
+						var koreaTime = myDate.toLocaleString();
+						console.log(querySnapshot.data())
+						$("#detailTitle").html(querySnapshot.data().title);
+						$("#detailDate").html(koreaTime);
+						$("#detailCon").html(querySnapshot.data().contents);
+						$("#detailI").html($(this).parent().find("td:eq(4)").html());
+						$("#detailCnt").html($(this).parent().find("td:eq(5)").html());
+						$("#detailImg2").attr("src", querySnapshot.data().imgurl);
+					});
+				});
+
+				$("#galHome2").click(function(){
+					$(".insection").css("display", "block");
+					$(".indiv10").css("display", "none");
+					$("#galTabParent").css("display", "block");
+				});
+
+			}/*----------------------------detailshow() 끝--------------------------------------------------------------------------------*/
+
+
+
+
+			function boardInput(){
+                   
+				$("#galIn").click(function(){
+					$(".insection").css("display", "none");
+					$("#inDiv").css("display", "block");
+					$("#galTabParent").css("display", "none");
+
+				});
+				$("#galIn3").click(function(){
+					db.collection("ssubistory").add({
+						cnt: 99,
+						contents: $("#inCo").val(),
+						imgurl: "",
+						title: $("#inTi").val(),
+						wrdate: new Date()
+					})
+					.then((docRef) => {
+						console.log("Document written with ID: ", docRef.id);
+						$(".insection").css("display", "block");
+						$("#inDiv").css("display", "none");
+						$("#galTabParent").css("display", "block");
+						return;
+						showList();
+						
+					})
+					.catch((error) => {
+						console.error("Error adding document: ", error);
+					});
+				});
+
+				$("#galOut3").click(function(){
+					$(".insection").css("display", "block");
+					$("#inDiv").css("display", "none");
+					$("#galTabParent").css("display", "block");
+				});
+
+
+			}/*----------------------------boardInput() 끝--------------------------------------------------------------------------------*/
+
+
+
+		document.addEventListener('DOMContentLoaded', function() {
+			const loadEl = document.querySelector('#load');
+			// firebase.auth().onAuthStateChanged(user => { });
+			// firebase.firestore().doc('/foo/bar').get().then(() => { });
+			// firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+
+			db = firebase.firestore();
+			storage = firebase.storage();
+
+			showList();
+
+			detailShow();
+
+			boardInput();
+
+
+			try {
+			let app = firebase.app();
+			let features = [
+				'auth',  
+				'firestore',
+				'storage', 
+			].filter(feature => typeof app[feature] === 'function');
+			loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+			} catch (e) {
+			}
+		});
+
+	</script>
+</body>
+</html>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAIC0KUFZX4JJgxIUqfdBPstGq8lS9chH8",
+    authDomain: "ssubie-31810.firebaseapp.com",
+    projectId: "ssubie-31810",
+    storageBucket: "ssubie-31810.appspot.com",
+    messagingSenderId: "446369962387",
+    appId: "1:446369962387:web:937c9b00723ab5c22bf066",
+    measurementId: "G-2LKZ2XNV36"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+</style>
+<script src="../underscore-umd-min.js"></script>
+<script src="../jquery.js"></script>
+<script>
+$(document).ready(function(){
+	$("#header").load("../inc/header.html");
+	$("#bottom").load("../inc/bottom.html");
+	
+});
+</script>
+</head>
+<body>
+<div id="header"></div>
+<center><h1>회원 리스트 페이지</h1></center>
+<select id="option">
+    <option value="id">id</option>
+    <option value="email">email</option>
+</select>
+<input type="search" id="search"><button id="searchBtn">검색</button>
+<hr>
+<div id="userArea"></div>
+<script>
+
+
+
+
+//-------------------------------------------------------------------------
+
+myAjaxGet("/userlist.do", reloadCallback);// 입력 하고 겟함수로 리스트 출력
+
+
+
+//-Ajax 불러올때 GET 함수------------------------------------------------------------------------
+function myAjaxGet(url, callback) {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(this.status==200 & this.readyState==4) {
+			callback(this.responseText.trim(), this);
+		}
+	}
+	xhr.open("GET", url, true);
+	xhr.send(null);
+}
+//-------------------------------------------------------------------------
+
+//-리스트를 출력할때 쓰는 함수(GET)------------------------------------------------------------------------
+var reloadCallback = function(data, xhr) {
+	user = JSON.parse(data)['user'];
+	
+    var compiled = _.template(userTemp);
+    var html = compiled({"user":user});
+    document.getElementById('userArea').innerHTML = html;
+}
+
+
+
+
+//-리스트 템플릿------------------------------------------------------------------------
+var user = [];
+var userTemp = `
+    <table class="table" border="1" width="600">
+        <tr><th>idx</th><th>id</th><th>pw</th><th>email</th><th>비고</th></tr>
+	<%
+        for(var i=0; i<user.length; i++) {
+    %>
+            <tr>
+                <td><%=user[i].idx%></td>
+                <td><%=user[i].id%></td>
+                <td><%=user[i].pw%></td>
+                <td><%=user[i].email%></td>              
+                <td><button class="deleteBtn">삭제</button></td>
+            </tr>
+    <% 
+        }
+    %>
+    
+    </table>
+`;
+//-------------------------------------------------------------------------
+
+
+</script>
+
+<div id="bottom"></div>
+</body>
+</html>

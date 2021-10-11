@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+@media screen and (min-width: 1000px) {
+#div1{width:1000px;}
+}
+@media screen and (min-width: 1000px) {
+#div2{width:1000px;}
+}
+
+#div1{
+margin: 0 auto;
+}
+
+img{
+max-width:100%;
+height: auto;
+border-radius: 10px;
+}
+
+td>img{
+width:245px;
+cursor:pointer;
+}
+
+#tabPro1>td{
+width:250px;
+}
+
+#div2{
+margin: 0 auto;
+}
+
+
+
+</style>
+<script src="../jquery.js"></script>
+<script>
+$(document).ready(function(){
+	$("#header").load("../inc/header.html");
+	$("#bottom").load("../inc/bottom.html");
+	
+	$("#img1").mouseover(function(){
+		$(this).attr("src", "../img/ssubipro_3.jpg");
+		$("#mainImg").attr("src", "../img/ssubipro.jpg");
+	});
+	$("#img1").mouseout(function(){
+		$(this).attr("src", "../img/ssubipro_2.jpg");
+	});
+	$("#img2").mouseover(function(){
+		$(this).attr("src", "../img/ssubipro2_3.jpg");
+		$("#mainImg").attr("src", "../img/ssubipro2.jpg");
+	});
+	$("#img2").mouseout(function(){
+		$(this).attr("src", "../img/ssubipro2_2.jpg");
+	});
+	$("#img3").mouseover(function(){
+		$(this).attr("src", "../img/ssubipro3_3.jpg");
+		$("#mainImg").attr("src", "../img/ssubipro3.jpg");
+	});
+	$("#img3").mouseout(function(){
+		$(this).attr("src", "../img/ssubipro3_2.jpg");
+	});
+	$("#img4").mouseover(function(){
+		$(this).attr("src", "../img/ssubipro4_3.jpg");
+		$("#mainImg").attr("src", "../img/ssubipro4.jpg");
+	});
+	$("#img4").mouseout(function(){
+		$(this).attr("src", "../img/ssubipro4_2.jpg");
+	});
+	$("#img5").mouseover(function(){
+		$(this).attr("src", "../img/ssubipro5_3.jpg");
+		$("#mainImg").attr("src", "../img/ssubipro5.jpg");
+	});
+	$("#img5").mouseout(function(){
+		$(this).attr("src", "../img/ssubipro5_2.jpg");
+	});
+});
+</script>
+</head>
+<div id="header"></div>
+
+<div id="div1"> 
+<img id ="mainImg" src="../img/ssubipro.jpg" />
+<table id="tabPro1">
+<td><img id="img1" src="../img/ssubipro_2.jpg" /></td>
+<td><img id="img2" src="../img/ssubipro2_2.jpg" /></td>
+<td><img id="img3" src="../img/ssubipro3_2.jpg" /></td>
+<td><img id="img4" src="../img/ssubipro4_2.jpg" /></td>
+<td><img id="img5" src="../img/ssubipro5_2.jpg" /></td>
+</table>
+</div>
+<div id="div2">
+	<td>
+	<h2>이름 : 써비</h2>
+	<h3>나이 : 2012년 4월 1일</h1>
+	<h3>취미 : 잠자기</h1>
+	<h3>특징1 : 호기심 많음</h1>
+	<h3>특징2 : Don't touch me!</h1>
+	<h3>특징3 : 집사에게 기대기</h1>
+	<h3>특징4 : 먹는거 환장</h1>
+	<h3>특징5 : 적당히 먹음</h1>
+	<h3>특징6 : 냥~</h1>
+	</td>
+</div>
+<div id="bottom"></div>
+</body>
+</html>

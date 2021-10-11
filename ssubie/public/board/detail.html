@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.9.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.9.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-performance.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<script src="../jquery.js"></script>
+<script>
+$(document).ready(function(){
+	$("#header").load("../inc/header.html");
+	$("#bottom").load("../inc/bottom.html");
+	
+});
+</script>
+<style>
+#div10{max-width:1000px;margin: 0 auto;}
+#detailImg{width:100%;height:400px;max-width:1000px;max-height:1000px;background-color:gray;color:white;text-align:center;}
+#table10{float:left;width:100%;max-width:1000px;}
+
+#table10>tbody>tr:nth-child(1)>td:nth-child(1),
+#table10>tbody>tr:nth-child(2)>td:nth-child(1),
+#table10>tbody>tr:nth-child(4)>td:nth-child(1),
+#table10>tbody>tr:nth-child(5)>td:nth-child(1){height:40px;width:100px;text-align:center;background-color: rgb(150,150,150);color : white;}
+
+#table10>tbody>tr:nth-child(3)>td:nth-child(1){height:100%;height:100px;text-align:center;background-color: rgb(150,150,150);color : white;}
+
+#table10>tbody>tr:nth-child(1)>td:nth-child(2),
+#table10>tbody>tr:nth-child(2)>td:nth-child(2),
+#table10>tbody>tr:nth-child(4)>td:nth-child(2),
+#table10>tbody>tr:nth-child(5)>td:nth-child(2){background-color: rgb(220,220,220);font-size: 130%;}
+
+#table10>tbody>tr:nth-child(3)>td:nth-child(2){background-color: rgb(220,220,220);font-size: 130%;}
+
+#bottom{clear:both;}
+a{text-decoration-line : none;color:white;}
+
+/*-----우측 스크롤 배너2------------------------------------------*/
+#galTab2 {
+	float:left;
+}
+
+#galIn2, #galOut2, #galHome2 {
+	width: 150px;
+	height: 40px;
+	text-align: center;
+	background-color: gray;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+#galIn2:hover, #galOut2:hover, #galHome2:hover {
+	background-color: black;
+}
+
+/*-----우측 스크롤 배너2------------------------------------------*/
+
+</style>
+</head>
+<!-- <script>
+$(function(){
+	$("#table1").width();
+	if(($("#table1").width())<(900)){
+		$("#galTab2").css("display", "block");
+		$("#galTab").css("display", "none");
+	}else{
+		$("#galTab2").css("display", "none");
+		$("#galTab").css("display", "block");
+	}
+});
+	
+
+</script> -->
+<body>
+<div id="header"></div>
+	<div id="div10">
+		<div id="indiv10"></div>
+		<!-- 우측 등록,삭제 배너2 ------------------------------->
+		<table id="galTab2">
+			<tr>
+				<td id="galIn2"><a href="modify.html">수정</a></td>
+				<td id="galOut2"><a href="">삭제</a></td> 
+				<td id="galHome2"><a href="boardlist.html">홈</a></td>
+			</tr>
+		</table>
+		<!-- 우측 등록,삭제 배너2 ------------------------------->
+	</div>
+		<div id="bottom"></div>
+		<script>
+
+			function showdetail(){
+					db.collection("ssubistory").get().then((querySnapshot) => {
+						querySnapshot.docs.forEach((doc, i) => {
+							var timestamp = doc.data().wrdate.seconds;
+							var myDate = new Date(timestamp*1000);
+							var koreaTime = myDate.toLocaleString();
+							$("#indiv10").html(`
+							<table id="detailImg"><tr><td>이미지</td></tr></table>
+							<table id="table10">
+								<tr>
+									<td>제목</td>
+									<td>&nbsp;&nbsp;${doc.data().title}</td>
+								</tr>
+								<tr>
+									<td>날짜</td>
+									<td>&nbsp;&nbsp;${koreaTime}</td>
+								</tr>
+								<tr>
+									<td>내용</td>
+									<td>&nbsp;&nbsp;${doc.data().contents}</td>
+								</tr>
+								<tr>
+									<td>번호</td>
+									<td>&nbsp;&nbsp;${i}</td>
+								</tr>
+								<tr>
+									<td>조회수</td>
+									<td>&nbsp;&nbsp;${doc.data().cnt}</td>
+								</tr>
+							</table>
+							`);
+						
+					});
+				});
+			}/*----------------------------showList() 끝--------------------------------------------------------------------------------*/
+	
+	
+			document.addEventListener('DOMContentLoaded', function() {
+				const loadEl = document.querySelector('#load');
+				// firebase.auth().onAuthStateChanged(user => { });
+				// firebase.firestore().doc('/foo/bar').get().then(() => { });
+				// firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+	
+				db = firebase.firestore();
+				storage = firebase.storage();
+	
+				showdetail();
+	
+				try {
+				let app = firebase.app();
+				let features = [
+					'auth',  
+					'firestore',
+					'storage', 
+				].filter(feature => typeof app[feature] === 'function');
+				loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+				} catch (e) {
+				}
+			});
+	
+		</script>
+</body>
+</html>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAIC0KUFZX4JJgxIUqfdBPstGq8lS9chH8",
+    authDomain: "ssubie-31810.firebaseapp.com",
+    projectId: "ssubie-31810",
+    storageBucket: "ssubie-31810.appspot.com",
+    messagingSenderId: "446369962387",
+    appId: "1:446369962387:web:937c9b00723ab5c22bf066",
+    measurementId: "G-2LKZ2XNV36"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>

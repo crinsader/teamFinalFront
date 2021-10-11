@@ -1,0 +1,74 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+*{margin:0px;padding:0px;text-decoration:none;}
+#div001_in01_in01>a, #div001_in01_in02>a{color: white; }
+#div001_in01_in01>a:hover, #div001_in01_in02>a:hover{color: red;cursor: pointer;} 
+#div001{background-color: black; box-shadow: 0px 0px 10px; z-index:2; position: relative;}
+#div001_in01{margin:auto;width: 1082px; height: 60px; line-height: 60px;}
+#div001_in01_in01{float: left;}
+#div001_in01_in02{float: right;}
+</style>
+<body>
+
+<div id="div001">
+    <div id="div001_in01">
+        <div id="div001_in01_in01">
+            <a href="<%=request.getContextPath() %>/board/mainPage.do">홈&nbsp;</a>
+            
+				<!-- <%
+		            String u_id = (String) session.getAttribute("u_id");
+		            // 미로그인 시,
+		            if(u_id == null){%> -->
+		            <a href="<%=request.getContextPath()%>/user/login.do">로그인&nbsp;</a>
+		            <a href="<%=request.getContextPath()%>/user/myPage.do?u_id=${member.u_id}">회원정보&nbsp;</a>
+					<a href="<%=request.getContextPath()%>/user/cs.do">고객센터&nbsp;</a> 
+					<a href="<%=request.getContextPath()%>/user/wishlist.do">찜&nbsp;</a> 
+					<a href="<%=request.getContextPath()%>/user/reserveCheck.do">예약조회&nbsp;</a> 
+
+		            <!-- <%}
+		            // 로그인 성공 시,
+		            else{%> 
+		              <a href="/" id="btnLogout">로그아웃&nbsp;</a>
+		            <a href="<%=request.getContextPath() %>/user/myPage.do?u_id=${member.u_id}">회원정보&nbsp;</a>
+					<a href="<%=request.getContextPath()%>/user/cs.do">고객센터&nbsp;</a> 
+					<a href="<%=request.getContextPath()%>/user/wishlist.do">찜&nbsp;</a> 
+					<a href="<%=request.getContextPath()%>/user/reserveCheck.do">예약조회&nbsp;</a> 
+         	   <%}%> -->
+       
+        </div>
+            <div id="div001_in01_in02">
+                <a href="<%=request.getContextPath()%>/board/search.do">여행지둘러보기</a>
+			</div>
+		</div>
+	</div>
+	<script>
+	
+	$(document).ready(function(){
+		$("#div001_in01_in02").on("click", function(){
+			location.href="<%=request.getContextPath() %>/board/search.do";
+		})
+	})
+	
+			$("#btnLogout").on("click", function(){
+		if(confirm("정말 로그아웃 하시겠습니까?")){
+		location.href = "<%=request.getContextPath()%>/user/logout.do";
+		alert("로그아웃되었습니다");
+		}
+	});
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../jquery.js"></script>
+<style>
+@media screen and (min-width: 2000px) {
+	#table1 {
+		width: 2000px;
+	}
+}
+
+@media screen and (max-width: 950px) {
+.imgArr>div>img {
+	width:170px;
+}
+
+.imgArr {
+	width: 170px;
+    border:0px;
+}
+
+}
+
+.imgArr>div>img {
+	max-width:350px;
+	border-radius: 10px;
+}
+
+.imgArr {
+	border: 5px solid transparent;
+	max-width: 350px;
+	float: left;
+	cursor: pointer;
+}
+
+#bottom {
+	clear: both;
+}
+
+#table1 {
+	margin: 0 auto;
+}
+/*-----우측 스크롤 배너------------------------------------------*/
+#table2 {
+	position: fixed;
+	overflow: hidden;
+	right: 10px;
+	top: 20px;
+}
+
+#galIn, #galOut {
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	background-color: gray;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	opacity: 0.6;
+}
+
+#galIn:hover, #galOut:hover {
+	background-color: black;
+}
+/*-----우측 스크롤 배너------------------------------------------*/
+
+/*-----체크박스------------------------------------------*/
+.checdiv {
+	position: relative;
+}
+
+.checkbox {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+/*-----체크박스------------------------------------------*/
+
+/*-----모달창------------------------------------------*/
+#modal_body {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 95%;
+	height: 95%;
+	display: none;
+	margin: 0 auto;
+	transform: translateX(3%) translateY(3%);
+}
+
+#modal_body>img {
+	margin: 0 auto;
+	max-height: 100%;
+	max-width: 100%;
+	border-radius: 10px;
+	cursor: pointer;
+	display:none;
+
+}
+
+/*-----모달창------------------------------------------*/
+</style>
+<script>
+$(document).ready(function(){
+	$("#header").load("../inc/header.html");
+	$("#bottom").load("../inc/bottom.html");
+	
+});
+
+</script>
+</head>	
+<body>
+<div id="header"></div>
+
+	<table id="table1">
+		<tr>
+			<td class="imgArr">
+					<div class="checdiv">
+					<img class="img1" src="../img/g1.jpg" />
+					<input type="checkbox" class="checkbox"/></div>
+					<div class="checdiv">
+					<img class="img2" src="../img/g2.jpg" />
+					<input type="checkbox" class="checkbox"/></div>
+					<div class="checdiv">
+					<img class="img3" src="../img/g3.jpg" /> 
+					<input type="checkbox" class="checkbox"/></div>
+			</td>
+			<td class="imgArr">
+					<div class="checdiv">
+					<img class="img6" src="../img/g6.jpg" />
+					<input type="checkbox" class="checkbox"/></div>
+					<div class="checdiv"> 
+					<img class="img7" src="../img/g7.jpg" />
+					<input type="checkbox" class="checkbox"/></div>
+					<div class="checdiv"> 
+					<img class="img8" src="../img/g8.jpg" />
+					<input type="checkbox" class="checkbox"/></div>
+					<div class="checdiv"> 
+					<img class="img9" src="../img/g9.jpg" /> 
+					<input type="checkbox" class="checkbox"/></div>
+			</td>
+			<td class="imgArr">
+					<div class="checdiv">
+					<img class="img10" src="../img/g10.jpg" />
+					<input type="checkbox" class="checkbox"/></div>
+					<div class="checdiv"> 
+					<img class="img11" src="../img/g11.jpg" />
+					<input type="checkbox" class="checkbox"/></div>
+					<div class="checdiv"> 
+					<img class="img12" src="../img/g12.jpg" /> 
+					<input type="checkbox" class="checkbox"/></div>
+
+			</td>
+			<td class="imgArr">
+					<div class="checdiv">
+					<img class="img14" src="../img/g14.jpg" />
+					<input type="checkbox" class="checkbox"/></div>
+					<div class="checdiv"> 
+					<img class="img13" src="../img/g13.jpg" />
+					<input type="checkbox" class="checkbox"/></div>
+					<div class="checdiv"> 
+					<img class="img5" src="../img/g5.jpg" /> 
+					<input type="checkbox" class="checkbox"/></div>
+			</td>
+		</tr>
+	</table>
+<!-- 우측 등록,삭제 배너 -------------------------------
+	<table id="table2">
+		<tr>
+			<td id="galIn">등록</td>
+		</tr>
+		<tr>
+			<td id="galOut">삭제</td>
+		</tr>
+	</table>
+우측 등록,삭제 배너 ------------------------------->
+<div id="modal_body">
+<img class="img1_2" src="../img/g1_2.jpg" />
+<img class="img2_2" src="../img/g2_2.jpg" />
+<img class="img3_2" src="../img/g3_2.jpg" />
+<img class="img6_2" src="../img/g6_2.jpg" />
+<img class="img5_2" src="../img/g5_2.jpg" />
+<img class="img7_2" src="../img/g7_2.jpg" />
+<img class="img8_2" src="../img/g8_2.jpg" />
+<img class="img9_2" src="../img/g9_2.jpg" />
+<img class="img10_2" src="../img/g10_2.jpg" />
+<img class="img11_2" src="../img/g11_2.jpg" />
+<img class="img12_2" src="../img/g12_2.jpg" />
+<img class="img13_2" src="../img/g13_2.jpg" />
+<img class="img14_2" src="../img/g14_2.jpg" />
+</div>
+<script>
+$(function(){
+	$(".img1").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img1_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img1_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img1_2").css("display", "none");
+	});
+	$(".img2").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img2_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img2_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img2_2").css("display", "none");
+	});
+	$(".img3").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img3_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img3_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img3_2").css("display", "none");
+	});
+	$(".img5").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img5_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img5_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img5_2").css("display", "none");
+	});
+	$(".img6").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img6_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img6_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img6_2").css("display", "none");
+	});
+	$(".img7").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img7_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img7_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img7_2").css("display", "none");
+	});
+	$(".img8").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img8_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img8_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img8_2").css("display", "none");
+	});
+	$(".img9").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img9_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img9_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img9_2").css("display", "none");
+	});
+	$(".img10").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img10_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img10_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img10_2").css("display", "none");
+	});
+	$(".img11").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img11_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img11_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img11_2").css("display", "none");
+	});
+	$(".img12").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img12_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img12_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img12_2").css("display", "none");
+	});
+	$(".img13").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img13_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img13_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img13_2").css("display", "none");
+	});
+	$(".img14").click(function(){
+		$("#modal_body").css("display", "block");
+		$(".img14_2").css("display", "block");
+		//$("body").css("overflow", "hidden");
+	});
+	$(".img14_2").click(function(){
+		$("#modal_body").css("display", "none");
+		$(".img14_2").css("display", "none");
+	});
+	
+	$("img").mouseover(function(){
+		$(this).css("box-shadow", "0 0 10px 5px rgba(0, 0, 0, 0.2)")
+	});
+	$("img").mouseout(function(){
+		$(this).css("box-shadow", "none")
+	});
+	
+});
+</script>
+	<div id="bottom"></div>
+</body>
+</html>

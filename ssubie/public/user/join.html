@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../jquery.js"></script>
+<style>
+#joinDiv{
+max-width:1000px;
+width:100%;
+height:600px;
+margin:0 auto;
+}
+#joinTab{
+margin: 0 auto;
+}
+
+#joinTab>tbody>tr>td{
+height:40px;
+}
+
+#joinTab>tbody>tr:nth-child(11)>td:nth-child(1),
+#joinTab>tbody>tr:nth-child(2)>td:nth-child(2),
+#joinTab>tbody>tr:nth-child(2)>td:nth-child(3){
+width:200px;
+background-color: rgb(150,150,150);
+text-align:center;
+color:white;
+}
+#joinTab>tbody>tr:nth-child(1)>td:nth-child(1),
+#joinTab>tbody>tr:nth-child(4)>td:nth-child(1),
+#joinTab>tbody>tr:nth-child(7)>td:nth-child(1){
+font-size:120%;
+font-weight: bold;
+}
+#joinTab>tbody>tr:nth-child(3)>td:nth-child(1),
+#joinTab>tbody>tr:nth-child(6)>td:nth-child(1),
+#joinTab>tbody>tr:nth-child(9)>td:nth-child(1){
+vertical-align : top;
+font-size:80%;
+}
+
+
+#joinTab>tbody>tr:nth-child(5)>td>input,
+#joinTab>tbody>tr:nth-child(8)>td>input,
+#joinTab>tbody>tr:nth-child(2)>td>input{
+width: 348px;
+height:40px;
+font-size:120%;
+}
+
+#joinTab>tbody>tr:nth-child(10)>td:nth-child(1){
+height:20px;
+}
+
+#form1{
+margin-top:100px;
+}
+
+#chkIdResult, #chkPwResult, #chkEmResult{
+color:rgb(150,150,150);
+}
+
+/*-----하단 배너2------------------------------------------*/
+
+#joinGo{
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#joinTab>tbody>tr:nth-child(11)>td:hover{
+	background-color: black;
+}
+
+/*-----하단 배너2------------------------------------------*/
+
+</style>
+<script>
+$(document).ready(function(){
+	$("#header").load("../inc/header.html");
+	$("#bottom").load("../inc/bottom.html");
+	
+});
+
+</script>
+</head>
+<body>
+<div id="header"></div>
+<div id="joinDiv">
+		<form id="form1" action="join.do" method="POST">
+			<table id="joinTab">
+				<tr>
+					<td>아이디</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input id="inId" type="text" name="id" placeholder="ex)abcdefg" autofocus/></td>
+				</tr>
+				<tr>
+					<td colspan="2" id="chkIdResult">대소문자 구분없이 6자리 이상 12자리 이하 영문만 입력해 주세요.</td>
+				</tr>
+				<tr>
+					<td>비밀번호</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input id="inPw" type="text" name="pw" placeholder="ex)123456"/></td>
+				</tr>
+				<tr>
+					<td colspan="2" id="chkPwResult">숫자만 4자리 이상 12자리 이하로 입력해 주세요.</td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input id="inEm" type="email" name="email"
+						placeholder="ex)abcd@gmail.com"/></td>
+				</tr>
+				<tr>
+					<td colspan="2" id="chkEmResult">'@', '.'를 반드시 포함, 끝 자리는 1~3자리를 꼭 충족 시켜야 합니다.</td>
+				</tr>
+				<tr>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td id="joinGo" colspan="2"  >작성완료</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+		<script>
+		$("#inId").keyup(function(e){if(e.keyCode == 13)$("#joinGo").click();});
+		$("#inPw").keyup(function(e){if(e.keyCode == 13)$("#joinGo").click();});
+		$("#inEm").keyup(function(e){if(e.keyCode == 13)$("#joinGo").click();});
+		</script>
+	<script>
+	$(function(){
+		var form = $("form")[0];
+		$("#inId").keyup(function(){
+			var instr = $("#inId").val();
+			var inuni = /^[a-zA-Z]{6,12}$/;
+			
+			$.ajax({
+				url:"<%=request.getContextPath()%>/ROOT/user/chkid.do?id=" + instr,
+				type:"POST",
+				data:{"id": instr},
+ 				success:function(data){
+ 					console.log(data);
+					if(data.trim() != ""){
+						$("#chkIdResult").html("해당 아이디는 이미 사용중입니다. 다른 아이디를 입력해 주세요");
+						$("#chkIdResult").css("color", "rgb(150,150,150)");
+					}else if(form.inId.value == ""){
+						$("#chkIdResult").html("대소문자 구분없이 6자리 이상 12자리 이하 영문만 입력해 주세요.");
+						$("#chkIdResult").css("color", "rgb(150,150,150)");
+					}else if(!inuni.test(instr)){
+						$("#chkIdResult").html("아이디 형식이 옳바르지 않습니다");
+						$("#chkIdResult").css("color", "rgb(150,150,150)");
+					}else{
+						$("#chkIdResult").html("사용가능한 아이디 입니다.");
+						$("#chkIdResult").css("color", "red");
+					}
+				}
+			});
+		});
+		
+		$("#inPw").keyup(function(){
+			var instr2 = $("#inPw").val();
+			var inuni2 = /^[0-9]{4,12}$/;
+		if(form.inPw.value == ""){
+			$("#chkPwResult").html("숫자만 4자리 이상 12자리 이하로 입력해 주세요.");
+			$("#chkPwResult").css("color", "rgb(150,150,150)");			
+		}else if(!inuni2.test(instr2)){
+			$("#chkPwResult").html("비밀번호 형식이 옳바르지 않습니다.");
+			$("#chkPwResult").css("color", "rgb(150,150,150)");			
+		}else{
+			$("#chkPwResult").html("사용가능한 비밀번호 입니다.");
+			$("#chkPwResult").css("color", "red");
+		}
+		});
+		
+		$("#inEm").keyup(function(){
+			var instr3 = $("#inEm").val();
+			var inuni3 = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+		if(form.inEm.value ==""){
+			$("#chkEmResult").html("'@', '.'를 반드시 포함, 끝 자리는 1~3자리를 꼭 충족 시켜야 합니다.");
+			$("#chkEmResult").css("color", "rgb(150,150,150)");			
+		}else if(!inuni3.test(instr3)){
+			$("#chkEmResult").html("전자메일 형식이 옳바르지 않습니다.");
+			$("#chkEmResult").css("color", "rgb(150,150,150)");			
+		}else{
+			$("#chkEmResult").html("사용가능한 이메일 입니다.");
+			$("#chkEmResult").css("color", "red");
+		}
+		});
+		
+	});
+	</script>
+		<script>
+	$(function(){
+		var form = $("form")[0];
+		$("#joinGo").click(function(){
+			var instr = $("#inId").val();
+			var inuni = /^[a-zA-Z]{6,12}$/;
+			var instr2 = $("#inPw").val();
+			var inuni2 = /^[0-9]{4,12}$/;	
+			var instr3 = $("#inEm").val();
+			var inuni3 = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+			$.ajax({
+				url:"<%=request.getContextPath()%>/ROOT/user/chkid.do?id=" + instr,
+				type:"POST",
+				data:{"id": instr},
+ 				success:function(data){
+ 					console.log(data);
+					if(data.trim() != ""){
+						alert("해당 아이디는 이미 사용중입니다. 다른 아이디를 입력해 주세요");
+						form.inId.value="";
+						form.inId.focus();
+						return;
+					}else if(form.inId.value == ""){
+						alert("아이디를 입력해 주세요");
+						form.inId.focus();
+						return;
+					}else if(!inuni.test(instr)){
+						alert("아이디 형식이 옳바르지 않습니다. 아이디는 영문으로만 6자리 이상 12자리 이하로 입력해 주셔야 합니다.");
+						form.inId.value="";
+						form.inId.focus();
+						return;
+					}else if(form.inPw.value == ""){
+						alert("비밀번호를 입력해 주세요")
+						form.inPw.focus();
+						return;
+					}else if(!inuni2.test(instr2)){
+						alert("비밀번호 형식이 옳바르지 않습니다. 비밀번호는 숫자로만 4자리 이상 12자리 이하로 입력해 주셔야 합니다.");
+						form.inPw.value="";
+						form.inPw.focus();
+						return;
+					}else if(form.inEm.value ==""){
+						alert("전자메일을 입력해 주세요")
+						form.inEm.focus();
+						return;				
+					}else if(!inuni3.test(instr3)){
+						alert("전자메일 형식이 옳바르지 않습니다. 전자메일은 '@','.' 를 반드시 포함해야 하며, 마지막 자리는 꼭 1~3자리를 충족 시켜야 합니다.");
+						form.inEm.value="";
+						form.inEm.focus();
+						return;
+					}
+					alert("회원가입을 완료 하였습니다:)");
+					form.submit();
+				}
+			});
+		});
+	});
+	</script>
+<div id="bottom"></div>
+</body>
+</html>

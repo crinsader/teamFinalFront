@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+#bottom{
+clear:both;
+}
+#logDiv{
+max-width:1000px;
+width:100%;
+height:500px;
+margin:0 auto;
+}
+#logTab, #logTab2{
+margin: 0 auto;
+width: 370px;
+}
+
+#logoutId{
+width:410px;
+height:80px;
+background-color: rgb(220,220,220);
+text-align : center;
+}
+
+#loginId1, #loginId2{
+height: 40px;
+width: 100px;
+background-color: rgb(150,150,150);
+color : white;
+text-align: center;
+}
+#logTab>tbody>tr>td:nth-child(2)>input{
+max-width: 300px;
+height:40px;
+font-size: 130%;
+}
+#logTab2>tbody>tr>td{
+width:204px;
+height:40px;
+background-color: rgb(150,150,150);
+text-align : center;
+color : white;
+}
+form{
+margin-top:200px;
+
+}
+a{
+text-decoration-line : none;
+color:white;
+}
+#chkResult, #chkResult2{
+color:red;
+font-size: 80%;
+}
+
+/*-----하단 배너2------------------------------------------*/
+
+#login1, #login2, #login3{
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#login1:hover, #login2:hover, #login3:hover{
+	background-color: black;
+}
+
+/*-----하단 배너2------------------------------------------*/
+
+
+</style>
+<script src="../jquery.js"></script>
+<script>
+$(document).ready(function(){
+	$("#header").load("../inc/header.html");
+	$("#bottom").load("../inc/bottom.html");
+	
+});
+
+</script>
+</head>
+<body>
+	<div id="header"></div>
+	<div id="logDiv">
+	<!-- <%
+	if(session.getAttribute("id") == null){
+	%> -->
+		<form action="login.do" method="POST">
+			<table id="logTab">
+				<tr>
+					<td id="loginId1">아이디</td>
+					<td><input id="inId" type="text" name="id" value="" autofocus/></td>
+				</tr>
+				<tr>
+					<td id="chkResult" colspan="2" style="text-align:right"></td>
+				</tr>
+				<tr>
+					<td id="loginId2">비밀번호</td>
+					<td><input id="inPw" type="text" name="pw" value=""/></td>
+				</tr>
+				<tr>
+					<td id="chkResult2" colspan="2" style="text-align:right"></td>
+				</tr>
+			</table>
+			<table id="logTab2">
+				<tr>
+					<td id="login1">로그인</td>
+					<td id="login2"><a href="join.html">회원가입</a></td>
+				</tr>
+			</table>
+		</form>
+		<script>
+		$("#inId").keyup(function(e){if(e.keyCode == 13)$("#login1").click();});
+		$("#inPw").keyup(function(e){if(e.keyCode == 13)$("#login1").click();});
+		</script>
+		<!-- <%
+	}else if( "crinsader".equals(session.getAttribute("id"))){
+		%>
+		<form id="form1" action="logout.do" method="GET">
+			<table id="logTab">
+				<tr>
+					<td id="logoutId">아이디 ${id } <span style="color:red; font-weight:bold">(관리자)</span>님 <br />써비 커뮤니티에 오신것을 환영합니다:)</td>
+				</tr>
+			</table>
+			<table id="logTab2">
+				<tr>
+					<td id="login3">로그아웃</td>
+					<td id="login2"><a href="../index.html">홈으로</a></td>
+				</tr>
+			</table>
+		</form>
+		<%
+		}else{
+		%>
+				<form id="form1" action="logout.do" method="GET">
+			<table id="logTab">
+				<tr>
+					<td id="logoutId">아이디 ${id } 님 <br />써비 커뮤니티에 오신것을 환영합니다:)</td>
+				</tr>
+			</table>
+			<table id="logTab2">
+				<tr>
+					<td id="login3">로그아웃</td>
+					<td id="login2"><a href="../index.html">홈으로</a></td>
+				</tr>
+			</table>
+		</form>
+		<%
+		}
+		%> -->
+	</div>
+	<script>	
+ 		$(function() {
+			var form = $("form")[0];
+			$("#inId").keyup(function() {
+			var instr = $("#inId").val();
+			var instr2 = $("#inPw").val();
+				$.ajax({
+					url:"<%=request.getContextPath()%>/ROOT/user/chkid.do?id=" + instr,
+					type:"POST",
+					data:{"id": instr},
+	 				success:function(data){
+						if(data.trim() != ""){
+							$("#chkResult").html("아이디를 찾았습니다.");
+						}else if(form.inId.value == ""){
+							$("#chkResult").html("");
+						}else{
+							$("#chkResult").html("아이디가 옳바르지 않습니다.");
+						}
+					}
+				});
+			});
+
+		});
+ 		$(function() {
+			var form = $("form")[0];
+			$("#inPw").keyup(function() {
+			var instr = $("#inId").val();
+			var instr2 = $("#inPw").val();
+				$.ajax({
+					url:"<%=request.getContextPath()%>/ROOT/user/chkpw.do?",
+					type:"POST",
+					data:{"id": instr, "pw":instr2},
+	 				success:function(data){
+	 					console.log(data)
+						if(data.trim() == ""){
+							$("#chkResult2").html("비밀번호가 일치 하지 않습니다.");
+						}else{
+							$("#chkResult2").html("비밀번호가 일치 합니다.");
+						}
+					}
+				});
+			});
+
+		});
+ 		
+ 		$(function() {
+			var form = $("form")[0];
+			$("#login1").click(function() {
+			var instr = $("#inId").val();
+			var instr2 = $("#inPw").val();
+				$.ajax({
+					url:"<%=request.getContextPath()%>/ROOT/user/chkid.do?id=" + instr,
+					type:"POST",
+					data:{"id": instr},
+	 				success:function(data){
+						if(data.trim() != "" && form.inPw.value == ""){
+							alert("비밀번호를 입력해주세요")
+							form.inPw.focus();
+							return;
+						}else if(form.inId.value == ""){
+							alert("아이디를 입력해 주세요.")
+							form.inId.focus();
+							return;
+						}else if(data.trim() == ""){
+							alert("아이디가 옳바르지 않습니다.")
+							form.inId.value = "";
+							form.inId.focus();
+							return;
+						}else{
+
+						}
+	 					form.submit();
+					}
+				});
+			});
+
+		});
+ 		$(function() {
+			var form = $("form")[0];
+			$("#login1").click(function() {
+			var instr = $("#inId").val();
+			var instr2 = $("#inPw").val();
+				$.ajax({
+					url:"<%=request.getContextPath()%>/ROOT/user/chkpw.do?",
+					type:"POST",
+					data:{"id": instr, "pw":instr2},
+	 				success:function(data){
+	 					console.log(data)
+						if(data.trim() == "" && form.inPw.value != "" && form.inId.value != ""){
+							alert("비밀번호가 일치 하지 않습니다.")
+							form.inPw.focus();
+							return;
+						}else{
+							
+						}
+
+					}
+				});
+			});
+
+		});
+		
+  		$(function() {
+			$("#login3").click(function() {
+				$("#form1").submit();
+			});
+
+		});  
+ 	</script>
+	<div id="bottom"></div>
+
+</body>
+</html>

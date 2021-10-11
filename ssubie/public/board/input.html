@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../jquery.js"></script>
+<script>
+$(document).ready(function(){
+	$("#header").load("../inc/header.html");
+	$("#bottom").load("../inc/bottom.html");
+	
+});
+</script>
+<style>
+
+#inDiv{max-width:1000px;margin: 0 auto;}
+#detailImg3{width:100%;height:400px;max-width:1000px;max-height:1000px;background-color:gray;color:white;text-align:center;}
+#inTab{width:100%;max-width:1000px;margin: 0 auto;}
+
+#inTab>tbody>tr:nth-child(1)>td:nth-child(1),
+#inTab>tbody>tr:nth-child(3)>td:nth-child(1){width:100px;height:40px;text-align:center;background-color: rgb(150,150,150);color : white;}
+
+#inTab>tbody>tr:nth-child(2)>td:nth-child(1){width:100px;height:400px;text-align:center;background-color: rgb(150,150,150);color : white;}
+
+#inTi{height: 40px;width:90%;font-size: 150%;}
+#inCo{height:400px;width:90%;font-size: 150%;}
+
+a{text-decoration-line : none;color:white;}
+/*-----하단 배너2------------------------------------------*/
+
+#galIn2, #galOut2{	width: 150px;	height: 40px;	text-align: center;	background-color: gray;	color: white;	border-radius: 5px;	cursor: pointer;	opacity: 0.8;}
+#galIn2:hover, #galOut2:hover{	background-color: black;}
+
+/*-----하단 배너2------------------------------------------*/
+</style>
+</head>
+<body>
+<div id="header"></div>
+	<div id="inDiv">
+	<table id="detailImg3"><tr><td>이미지</td></tr></table>
+		<form method="POST" action="input.do">
+			<table id="inTab">
+				<tr>
+					<td>제목 :</td>
+					<td><input id="inTi" type="text" name="title" /></td>
+				</tr>
+				<tr>
+					<td>내용 :</td>
+					<td><textarea id="inCo" name="contents"></textarea></td>
+				</tr>
+				<tr>
+					<td>이미지 :</td>
+					<td><input type="file" /></td>
+				</tr>
+			</table>
+			<!-- 하단 등록,삭제 배너2 ------------------------------->
+			<table id="galTab3">
+				<tr>
+					<td id="galIn3">저장</td>
+					<td id="galOut3"><a href="boardlist.html">취소</a></td>
+				</tr>
+			</table>
+		<!-- 하단 등록,삭제 배너2 ------------------------------->
+		</form>
+	</div>
+	<script>
+	$(function(){
+		$("#galIn3").click(function(){
+			
+			var form = $("form")[0];
+			if(form.inTi.value == "") {
+				alert("제목을 입력 해주세요")
+				form.inTi.focus();
+				return;
+			}else if(form.inCo.value == ""){
+				alert("내용을 입력 해주세요")
+				form.inCo.focus();
+				return;
+			}
+			
+			form.submit();
+		});
+	});	
+	</script>
+	<div id="bottom"></div>
+</body>
+</html>

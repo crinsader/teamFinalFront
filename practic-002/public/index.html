@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+    <script src="jquery.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="bootstrap.min.css">
+
+<!-- Popper JS -->
+<script src="popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="bootstrap.min.js"></script>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.9.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.9.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-functions.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.9.1/firebase-performance.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message">
+      <h1>Comstudy21</h1>
+      <h2>사람정보 관리 프로그램</h2>
+    </div>
+    <hr>
+    <div class="container" >
+  <table class="table table-bordered table-sm">
+    <tr>
+      <tr>
+        <th>문번</th><td><input type="text" id="doc_id" value=""></td>
+      </tr>
+      <th>아이디</th><td><input type="text" id="user_id" value="aa"></td><td rowspan="5"><img id="imgView" src="noim.png" height="200" width="300"></td>
+    </tr>
+    <tr>
+      <th>성명</th><td><input type="text" id="user_name" value="bb"></td>
+    </tr>
+    <tr>
+      <th>이메일</th><td><input type="text" id="email" value="cc.naver.com"></td>
+    </tr>
+    <tr>
+      <th>사진</th><td><input type="file" id="photo"></td>
+    </tr>
+    <tr>
+      <th colspan="2">
+        <button id="saveBtn">저장해유~</button>
+        <button id="updateBtn">수정해유~</button>
+      </th>
+    </tr>
+  </table>
+<table id="list" class="table table-hover">
+  <tr>
+    <th>번호</th>
+    <th>사진</th>
+    <th>아이디</th>
+    <th>성명</th>
+    <th>이메일</th>
+    <th>삭제  </th>
+  </tr>
+</table>
+</div>
+<hr>
+
+<script>
+  var db = null;
+  var storage = null;
+
+  function changePhoto() {
+    $('#photo').on('change', function(evt){
+      var tmpImg = $(this)[0].files[0].name;
+      //1. 파일이 선택되면
+      //2. 일단 서버에 임시로 올린다.
+      //3. 서버의 downloadURL을 이용해서 보여준다.
+      var storageRef = storage.ref();
+      storageRef.child('temp/'+tmpImg).put($(this)[0].files[0]).then((snapshot)=>{
+        snapshot.ref.getDownloadURL().then((downloadURL)=>{
+          $('#imgView').attr('src', downloadURL);
+        });
+      }).catch(function(e) {
+        console.log('파일 이미지 임시저장 에러!'. e);
+      });
+    });
+  }
+
+  function detailView() {
+    $(".detail").on('click', function(){
+      var objId = $(this).attr('data-doc-id');
+
+      db.collection('saram').doc(objId).get().then((sm)=>{
+        var item = sm.data();
+        var image = item.image;
+
+        $('#doc_id').val(objId);
+        $('#user_id').val(item.user_id);
+        $('#user_name').val(item.user_name);
+        $('#email').val(item.email);
+        $('#imgView').attr('src', item.fileURL);
+        console.log($('#imgView'))
+      });
+    });
+  }
+
+  function saveItem() {
+    // saveBtn 누르면 저장 된 데이터 가져오기
+    $('#saveBtn').on('click', (evt)=>{
+      //1. 이미지 저장
+      //2. 저장된 이미지 경로를 데이터에 저장
+      var saveFile = $('#photo')[0].files[0];
+      var orginFileName = saveFile.name;
+      var storageRef = storage.ref();
+      // 파일이름이 같은 파일이 업로드 되면 기존 파일이 사라진다.
+      // 업로드 되는 파일명이 중복 되지 않도록 새 파일명을 만든다.
+      // 가장 쉬운 방법은 timestamp를 파일명으로 이용한다.
+      // 확장자가 있다면 확장자를 분리해서  timestamp와 결합하기
+      // abcd.jpg  --> timestamp.jpg
+      // 확장자가 없다면 그냥 timestamp 사용.
+      // timestamp
+      var timestamp = new Date().getTime();
+      var fileName = timestamp;
+      if(orginFileName.lastIndexOf(".") != -1) {
+        fileName += orginFileName.substr(orginFileName.lastIndexOf("."));
+      }
+      var uploadTask = storageRef.child('images/'+fileName).put(saveFile).then((snapshot)=>{
+        // 서버에 저장된 경로 알아내기
+        snapshot.ref.getDownloadURL().then((downloadURL)=>{
+          // 입력된 정보와 함께 Firestore db에 저장하기
+          var saveData = {
+            user_id : $('#user_id').val(),
+            user_name : $('#user_name').val(),
+            email : $('#email').val(),
+            image : fileName,
+            orginFileName: orginFileName,
+            fileURL : downloadURL,
+            update_date : new Date()
+          }
+          db.collection('saram').add(saveData).then((docRef)=>{
+            // 목록 갱신
+            showList();
+          }).catch((err)=>{
+            console.log('DB에 데이터 저장 오류!', err);
+          });
+        });
+        
+      }).catch((err)=>{
+        console.log('파일 업로드 오류!', err);
+      });
+    });
+  }
+
+  function deleteItem() {
+    // 삭제버튼 이벤트 핸들러 구현
+      // TDD : 테스트 주도개발
+      $('button.delBtn').on('click', function(evt){
+        // 주의: 이벤트 핸들러 함수로 화살표 함수를 사용하면 this는 window이다.
+        //console.log($(this).attr('data-img-url'));
+        //console.log($(this).attr('data-doc-id'))
+        var imgURL = $(this).attr('data-img-url');
+        var docID = $(this).attr('data-doc-id')
+        var THIS = this;
+        // 생성된 순서의 역순으로 삭제한다 (doc삭제 -> file삭제)
+        db.collection('saram').doc(docID).delete().then(()=>{
+          var storageRef = storage.ref();
+          var delImgRef = storageRef.child('images/'+$(THIS).attr('data-img'));
+          delImgRef.delete().then(()=>{
+            // 삭제 완료 후 목록 갱신
+            showList();
+          }).catch((deleteFileErr)=>{
+            console.log('삭제 실패!', deleteFileErr);
+          });
+        });
+      });
+  }
+
+  function updateItem() {
+    $("#updateBtn").click(function(){
+      var objId = $('#doc_id').val();
+      var updateData = {
+            user_id : $('#user_id').val(),
+            user_name : $('#user_name').val(),
+            email : $('#email').val(),
+            fileURL : $('#imgView')[0].currentSrc,
+            update_date : new Date()
+          }
+      db.collection("saram").doc(objId).set(updateData).then((docRef)=>{
+        console.log("수정 잘 됬어!!")
+        showList();
+      }).catch((updateErr)=>{
+        console.log("수정 실패", updateErr)
+      });
+    });
+  }
+
+  function showList() {
+    db.collection('saram').get().then((nm, i)=>{
+      $('#list').html(`<tr>
+        <th>번호</th>
+        <th>사진</th>
+        <th>아이디</th>
+        <th>성명</th>
+        <th>이메일</th>
+        <th>삭제</th>
+      </tr>`);
+      nm.docs.forEach((doc, no)=>{
+        var saram= {
+          docId: doc.id, 
+          no: no, 
+          image: doc.data().image,
+          id: doc.data().user_id,
+          name: doc.data().user_name,
+          email: doc.data().email,
+          fileURL: doc.data().fileURL,
+          updateDate: doc.data().update_date,
+        };
+
+        $('#list').append(`<tr>
+          <td>${saram.no}</td>
+          <td><img data-doc-id="${saram.docId}" data-img="${saram.image}" class="detail" src="${saram.fileURL}" height="80" width="100" title="${saram.orginFileName}"></td>
+          <td>${saram.id}</td>
+          <td>${saram.name}</td>
+          <td>${saram.email}</td>
+          <td><button data-img="${saram.image}" data-img-url="${saram.fileURL}" data-doc-id="${saram.docId}" class="delBtn">삭제</button></td>
+        </tr>`);
+      }); // end of forEach ...
+
+      // 삭제 버튼 기능 호출 ...
+      deleteItem();
+      // 상세보기 기능
+      detailView();
+
+    }).catch((error)=>{
+      console.log(error);
+    });
+  }
+
+
+
+
+
+  ///// --------------------------------------------------------------
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const loadEl = document.querySelector('#load');
+    // firebase.auth().onAuthStateChanged(user => { });
+    // firebase.firestore().doc('/foo/bar').get().then(() => { });
+    // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+
+    db = firebase.firestore();
+    storage = firebase.storage();
+
+    showList();
+    // 정보 저장 기능
+    saveItem();
+    // 사진 파일 추가
+    changePhoto();
+
+    updateItem();
+
+
+    //// --------------------
+    try {
+      let app = firebase.app();
+      let features = [
+        'auth',  
+        'firestore',
+        'storage', 
+      ].filter(feature => typeof app[feature] === 'function');
+      loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+    } catch (e) {
+    }
+  });
+</script>
+
+
+  </body>
+</html>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBgYIkC-hNRA3xI6WbKv_N-xKVX2RcO9bI",
+    authDomain: "practic-002.firebaseapp.com",
+    projectId: "practic-002",
+    storageBucket: "practic-002.appspot.com",
+    messagingSenderId: "1077962367795",
+    appId: "1:1077962367795:web:6f4f9914bea977b8681446",
+    measurementId: "G-ZNST6NR3BD"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
