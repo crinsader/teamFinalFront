@@ -54,16 +54,16 @@
 관리자 View Page
 (관리자 로그인페이지에서 로그인 후 - 클라이언트 페이지 8번)
 
-40. adminMain - 모든 정보 전체 리스트
+40. adminMain - 모든 정보 전체 리스트1
 41. adminMem - 회원정보관리 리스트
 42. adminMemModi
 43. adminMemInput
 44. adminPd - 상품정보관리 리스트
 45. adminPdModi
 46. adminPdInput
-47. adminRes - 예약정보관리 리스트
-48. adminResModi
-49. adminResInput
+47. adminRes - 예약정보관리 리스트1
+48. adminResModi1
+49. adminResInput1
 50. adminWish - 찜정보관리 리스트
 51. adminWishModi
 52. adminWishInput

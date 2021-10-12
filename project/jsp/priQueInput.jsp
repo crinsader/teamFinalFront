@@ -5,7 +5,7 @@
 
         <head>
             <meta charset="UTF-8">
-            <title>1대1문의 수정</title>
+            <title>1대1문의 등록</title>
             <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -66,7 +66,7 @@
                                     style="margin-top:40px; height: 50px; line-height: 40px;">
                                     <a class="navbar-brand" style="font-size: 100%; margin-left: 20px;"
                                         href="#">1대1문의</a><span class="navbar-brand" style="font-size: 100%;">/</span><a
-                                        class="navbar-brand" style="font-size: 100%;" href="#">수정</a>
+                                        class="navbar-brand" style="font-size: 100%;" href="#">문의등록</a>
                                 </nav>
                             </div>
                             <table id="priQueTab1"
@@ -96,7 +96,7 @@
                                 <tr>
                                     <th>제목</th>
                                     <td>
-                                        <input type="text" class="form-control" value="${문의제목}"
+                                        <input type="text" class="form-control" placeholder="제목을 입력하세요"
                                             style="border: 0; height: 60px;">
                                     </td>
                                 </tr>
@@ -104,16 +104,14 @@
                                     <th>내용</th>
                                     <td>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-                                            style="border: 0;">${문의내용}</textarea>
+                                            style="border: 0;" placeholder="내용을 입력하세요"></textarea>
                                     </td>
                                 </tr>
                             </table>
                             <div style="text-align: right;">
                                 <a class="btn btn-secondary" href="#" role="button"
                                     style="margin-top:10px; height: 40px;">취소</a>
-                                <a class="btn btn-secondary" href="#" role="button"
-                                    style="margin-top:10px; height: 40px;">삭제</a>
-                                <input class="btn btn-secondary" type="button" value="수정완료"
+                                <input class="btn btn-secondary" type="button" value="등록완료"
                                     style="margin-top:10px; height: 40px;">
                             </div>
                         </div>
