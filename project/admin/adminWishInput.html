@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>비회원 예약 수정 페이지</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    <title>찜 입력 페이지</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
         crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
     <style>
         * {
@@ -82,16 +83,12 @@
             <div
                 style="margin-top: 40px; margin-bottom: 40px; width: 1000px; height: auto; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
                 <div class="adminMainDiv1">
-                    <p>비회원 예약 수정</p>
+                    <p>찜 입력</p>
                 </div>
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th>RES_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="RES_SEQ"></td>
-                    </tr>
-                    <tr>
-                        <th>RES_PWD</th>
-                        <td><input type="text" class="form-control" placeholder="RES_PWD"></td>
+                        <th>W_SEQ</th>
+                        <td><input type="text" class="form-control" placeholder="W_SEQ"></td>
                     </tr>
                     <tr>
                         <th>PD_SEQ</th>
@@ -110,53 +107,16 @@
                         <td><input type="text" class="form-control" placeholder="PD_ENDDATE"></td>
                     </tr>
                     <tr>
-                        <th>ADULT_NUM</th>
-                        <td><input type="text" class="form-control" placeholder="ADULT_NUM"></td>
+                        <th>PD_PRICE</th>
+                        <td><input type="text" class="form-control" placeholder="PD_PRICE"></td>
                     </tr>
                     <tr>
-                        <th>TEENAGER_NUM</th>
-                        <td><input type="text" class="form-control" placeholder="TEENAGER_NUM"></td>
+                        <th>PD_IMAGE</th>
+                        <td><input type="text" class="form-control" placeholder="PD_IMAGE"></td>
                     </tr>
                     <tr>
-                        <th>PET_NUM</th>
-                        <td><input type="text" class="form-control" placeholder="PET_NUM"></td>
-                    </tr>
-                    <tr>
-                        <th>ADULT_PRICE</th>
-                        <td><input type="text" class="form-control" placeholder="ADULT_PRICE"></td>
-                    </tr>
-                    <tr>
-                        <th>TEENAGER_PRICE</th>
-                        <td><input type="text" class="form-control" placeholder="TEENAGER_PRICE"></td>
-                    </tr>
-                    <tr>
-                        <th>PET_PRICE</th>
-                        <td><input type="text" class="form-control" placeholder="PET_PRICE"></td>
-                    </tr>
-                    <tr>
-                        <th>RES_PRICE</th>
-                        <td><input type="text" class="form-control" placeholder="RES_PRICE"></td>
-                    </tr>
-                    <tr>
-                        <th>RES_PEOPLE</th>
-                        <td><input type="text" class="form-control" placeholder="RES_PEOPLE"></td>
-                    </tr>
-                    <tr>
-                        <th>RES_NAME</th>
-                        <td><input type="text" class="form-control" placeholder="RES_NAME"></td>
-                    </tr>
-                    <tr>
-                        <th>RES_BIRTH</th>
-                        <td><input type="text" class="form-control" placeholder="RES_BIRTH"></td>
-                    </tr>
-                    <tr>
-                        <th>RES_EMAIL</th>
-                        <td><input type="text" class="form-control" placeholder="RES_EMAIL"></td>
-                    </tr>
-                    <tr>
-                        <th>RES_COMMENT</th>
-                        <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
-                                placeholder="RES_COMMENT" style="border:0; resize: none;"></textarea></td>
+                        <th>U_ID</th>
+                        <td><input type="text" class="form-control" placeholder="U_ID"></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">

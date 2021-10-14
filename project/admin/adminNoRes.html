@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상품 리스트 페이지</title>
-    <script src="jquery.js"></script>
+    <title>비회원 예약관리 리스트 페이지</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -61,10 +60,6 @@
             border-bottom: 1px solid #ededed;
             padding-left: 20px;
         }
-
-        #adminMemtable1 img {
-            width: 100%;
-        }
     </style>
 </head>
 
@@ -96,44 +91,35 @@
             <div
                 style="margin-top: 40px; width: 1500px; height: 90%; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
                 <div class="adminMainDiv1">
-                    <p>상품 리스트</p>
+                    <p>비회원 예약관리 리스트</p>
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">순번</th>
+                                <th scope="col">RES_SEQ</th>
+                                <th scope="col">RES_PWD</th>
                                 <th scope="col">PD_SEQ</th>
                                 <th scope="col">PD_NAME</th>
-                                <th scope="col">PD_PRICE</th>
-                                <th scope="col">PD_KEYWORD</th>
                                 <th scope="col">PD_STARTDATE</th>
                                 <th scope="col">PD_ENDDATE</th>
-                                <th scope="col">PD_CTN</th>
-                                <th scope="col">PD_THEME</th>
-                                <th scope="col">PD_PEOPLE</th>
-                                <th scope="col">PD_LOCATION</th>
                                 <th scope="col">ADULT_NUM</th>
                                 <th scope="col">TEENAGER_NUM</th>
                                 <th scope="col">PET_NUM</th>
                                 <th scope="col">ADULT_PRICE</th>
                                 <th scope="col">TEENAGER_PRICE</th>
                                 <th scope="col">PET_PRICE</th>
-                                <!--<th scope="col">PD_IMAGE</th>
-                                 <th scope="col">PD_CONTENT1</th>
-                                <th scope="col">PD_CONTENT2</th>
-                                <th scope="col">PD_CONTENT3</th>
-                                <th scope="col">PD_CONTENT4</th>
-                                <th scope="col">PD_CONTENT5</th>
-                                <th scope="col">PD_CONTENTIMAGE1</th>
-                                <th scope="col">PD_CONTENTIMAGE2</th>
-                                <th scope="col">PD_CONTENTIMAGE3</th>
-                                <th scope="col">PD_CONTENTIMAGE4</th>
-                                <th scope="col">PD_CONTENTIMAGE5</th> -->
+                                <th scope="col">RES_PRICE</th>
+                                <th scope="col">RES_PEOPLE</th>
+                                <th scope="col">RES_NAME</th>
+                                <th scope="col">RES_BIRTH</th>
+                                <th scope="col">RES_EMAIL</th>
+                                <th scope="col">RES_COMMENT</th>
                                 <th scope="col">수정/삭제</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- forEach 문 시작--------------------------------------------------------------------------------------------------------------------------------------->
-                            <tr style="cursor: pointer;">
+                            <tr style="cursor: pointer;" onclick="">
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">1</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">Mark</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">Mark</td>
@@ -151,17 +137,9 @@
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">Mark</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">Mark</td>
                                 <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">Mark</td>
-                                <!-- <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-toggle="modal" data-target=".bd-example-modal-lg" onclick="">@mdo</td> -->
+                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">Mark</td>
+                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">Mark</td>
+
                                 <td>
                                     <a class="btn btn-secondary btn001" href="#" role="button"
                                         style="padding: 5px;">수정</a>
@@ -220,13 +198,21 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">상품 상세 보기</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">비회원 예약내역 상세보기</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
                         <th>순번</th>
                         <td>1 [db에서 가져오는것이 아닌 뷰페이지에서 자동으로 순번 설정되게]</td>
+                    </tr>
+                    <tr>
+                        <th>RES_SEQ</th>
+                        <td>RES_SEQ</td>
+                    </tr>
+                    <tr>
+                        <th>RES_PWD</th>
+                        <td>RES_PWD</td>
                     </tr>
                     <tr>
                         <th>PD_SEQ</th>
@@ -237,36 +223,12 @@
                         <td>PD_NAME</td>
                     </tr>
                     <tr>
-                        <th>PD_PRICE</th>
-                        <td>PD_PRICE</td>
-                    </tr>
-                    <tr>
-                        <th>PD_KEYWORD</th>
-                        <td>PD_KEYWORD</td>
-                    </tr>
-                    <tr>
                         <th>PD_STARTDATE</th>
                         <td>PD_STARTDATE</td>
                     </tr>
                     <tr>
                         <th>PD_ENDDATE</th>
                         <td>PD_ENDDATE</td>
-                    </tr>
-                    <tr>
-                        <th>PD_CTN</th>
-                        <td>PD_CTN</td>
-                    </tr>
-                    <tr>
-                        <th>PD_THEME</th>
-                        <td>PD_THEME</td>
-                    </tr>
-                    <tr>
-                        <th>PD_PEOPLE</th>
-                        <td>PD_PEOPLE</td>
-                    </tr>
-                    <tr>
-                        <th>PD_LOCATION</th>
-                        <td>PD_LOCATION</td>
                     </tr>
                     <tr>
                         <th>ADULT_NUM</th>
@@ -293,82 +255,28 @@
                         <td>PET_PRICE</td>
                     </tr>
                     <tr>
-                        <th>PD_IMAGE</th>
-                        <td>https://ifh.cc/g/dSBquS.jpg</td>
+                        <th>RES_PRICE</th>
+                        <td>RES_PRICE</td>
                     </tr>
                     <tr>
-                        <th>PD_IMAGE</th>
-                        <td style="padding-left: 0;"><img src="https://ifh.cc/g/dSBquS.jpg" alt="PD_IMAGE"></td>
+                        <th>RES_PEOPLE</th>
+                        <td>RES_PEOPLE</td>
                     </tr>
                     <tr>
-                        <th>PD_CONTENT1</th>
-                        <td style="padding: 0;"><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="PD_CONTENT1" style="border:0; resize: none; background-color: white;"
-                                readonly></textarea></td>
+                        <th>RES_NAME</th>
+                        <td>RES_NAME</td>
                     </tr>
                     <tr>
-                        <th>PD_CONTENTIMAGE1</th>
-                        <td>https://ifh.cc/g/dSBquS.jpg</td>
+                        <th>RES_BIRTH</th>
+                        <td>RES_BIRTH</td>
                     </tr>
                     <tr>
-                        <th>PD_CONTENTIMAGE1</th>
-                        <td style="padding-left: 0;"><img src="https://ifh.cc/g/dSBquS.jpg" alt="PD_CONTENTIMAGE1"></td>
+                        <th>RES_EMAIL</th>
+                        <td>RES_EMAIL</td>
                     </tr>
                     <tr>
-                        <th>PD_CONTENT2</th>
-                        <td style="padding: 0;"><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="PD_CONTENT2" style="border:0; resize: none; background-color: white;"
-                                readonly></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENTIMAGE2</th>
-                        <td>https://ifh.cc/g/dSBquS.jpg</td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENTIMAGE2</th>
-                        <td style="padding-left: 0;"><img src="https://ifh.cc/g/dSBquS.jpg" alt="PD_CONTENTIMAGE2"></td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENT3</th>
-                        <td style="padding: 0;"><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="PD_CONTENT3" style="border:0; resize: none; background-color: white;"
-                                readonly></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENTIMAGE3</th>
-                        <td>https://ifh.cc/g/dSBquS.jpg</td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENTIMAGE3</th>
-                        <td style="padding-left: 0;"><img src="https://ifh.cc/g/dSBquS.jpg" alt="PD_CONTENTIMAGE3"></td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENT4</th>
-                        <td style="padding: 0;"><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="PD_CONTENT4" style="border:0; resize: none; background-color: white;"
-                                readonly></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENTIMAGE4</th>
-                        <td>https://ifh.cc/g/dSBquS.jpg</td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENTIMAGE4</th>
-                        <td style="padding-left: 0;"><img src="https://ifh.cc/g/dSBquS.jpg" alt="PD_CONTENTIMAGE4"></td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENT5</th>
-                        <td style="padding: 0;"><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="PD_CONTENT5" style="border:0; resize: none; background-color: white;"
-                                readonly></textarea></td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENTIMAGE5</th>
-                        <td>https://ifh.cc/g/dSBquS.jpg</td>
-                    </tr>
-                    <tr>
-                        <th>PD_CONTENTIMAGE5</th>
-                        <td style="padding-left: 0;"><img src="https://ifh.cc/g/dSBquS.jpg" alt="PD_CONTENTIMAGE5"></td>
+                        <th>RES_COMMENT</th>
+                        <td>RES_COMMENT</td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
@@ -381,6 +289,7 @@
         </div>
     </div>
     <!--Modal 끝----------------------------------------------------------------------------------------------------------------->
+    </div>
 </body>
 
 </html>
