@@ -1,0 +1,201 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta hloginp-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    *{margin: 0;padding: 0; text-decoration: none;}
+    body{
+      position: relative;
+    }
+    #resdiv01{
+        width: 100%;
+        height: 95vh;
+    }
+    #resdiv02{
+     margin-top:0;
+     width: 1000px;
+     margin-left:25%;
+   
+    }
+    .p01{
+margin-left:30px;
+text-align: left;
+font-size: 80%;
+}
+.li01{
+    margin-left: 50px;
+    margin-top: 5px;
+    text-align: left;
+    font-size: 80%;
+}
+
+.resDiv01{margin-top:30px;margin-left: 25%;}
+.resDiv01>h2{margin-bottom:10px; margin-left:15px;}
+#resTab01 p{margin:10px;}
+#resTab01 td, #resTab02 td, #resTab03 td{height: 30px;}
+.resDiv01 button{height: 40px; width:332px; background-color: black; color: white; border:0;border-right: 2px solid white; border-radius: 5px; font-size: 110%;}
+.resDiv01 button:hover{color: red; cursor: pointer;	}
+#resTab02 td:nth-child(1), #resTab02 td:nth-child(3){width: 15%; height: 40px; background-color:#ededed}
+#resTab02 td:nth-child(2), #resTab02 td:nth-child(4){width: 35%; height: 40px;}
+#resTab02 div{margin-left:15px;}
+#resTab02 td{border-bottom:1px solid #dedede; width:100%;}
+#resTab02 tr:nth-child(1) td{border-top:2px solid black;}
+#resTab02 tr:nth-child(5){ width: 1000px;}
+#resTab03 td:nth-child(1){width:15%; background-color: #ededed; height: 40px;}
+#resTab03 td:nth-child(2){width: 70%;  height: 40px;}
+#resTab03 div{margin-left:15px;}
+#resTab03 input[type=text]{height: 40px; width: 90%; border:0}
+#resTab03 td{border-bottom:1px solid #dedede;}
+#resTab03 tr:nth-child(1) td{border-top:2px solid black;}
+#resTab03 td:nth-child(2):hover{background-color: #f8f8fa;}
+#resTab03 input:hover{background-color:#f8f8fa;}
+.repay th:nth-child(1) td{border-top:2px solid black;}
+.repay th{ background-color: #ededed;width: 15%; font-weight: 500; margin-left: 35px;}
+.repay td{border: solid #ededed 0.5px;}
+.payul{ margin-left: 100px; list-style: none; font-size: 120%;}
+.payli{margin-top: 20px;}
+.RSV_check{background-color:#ffc107;height: 40px;width: 200px; border: 0;margin-left: 290px;margin-top: 100px; margin-bottom:200px;}
+.search_back{ height: 40px;width: 200px; border: 0;margin-left: 20px}
+ </style>
+    <body>
+      <jsp:include page="../include/header2.jsp"></jsp:include>
+        <div id="resdiv01">
+            <div id="resdiv02">
+            <h2 style="font-size: 100%;margin-top: 40px;color: black;text-align: left;"><strong>예약완료</strong></h2>
+            <hr style="width:1000px; height: 3px; background-color: gray;">
+       <div style="width:1000px;height:200px;background-color: yellow;"></div>
+     <h1 style="text-align: center; margin-top: 20px;">${param.u_id}고객님의 예약접수가 완료 되었습니다</h1>
+     <div style="box-shadow:  0 0 2px gray;">
+        <ul>
+            <li style="padding-top: 20px; margin-left: 56px;">예약 상황은 회원의 경우 마이페이지에서 확인하실수있습니다</li>
+            <li style="margin-top: 20px; margin-left: 56px;">비회원 이실경우 예약확인 페이지에서  예약번호와 비밀번호 입력후 확인가능합니다</li>
+            <li style="margin-top: 20px;padding-bottom: 20px; margin-left: 56px;">해당 예약접수 건은 담당자가 확인 후 확정되며 실제 여행이 확정된것은 아닙니다</li>
+        </ul>
+    </div>
+  </div>
+
+  <div class="resDiv01">
+		<h2> 상품 정보 요약</h2> <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::상품 정보 -->
+		<table id="resTab02" style="width:1000px;">
+			<tbody>
+				<tr>
+					<td><div>상품명</div></td>
+					<td id="pd_name"><div>${dto.pd_name }</div></td>
+					<td><div>상품번호</div></td>
+					<td id="pd_seq"><div>${dto.pd_seq }</div></td>
+				</tr>
+				<tr>
+					<td><div>여행기간</div></td>
+					<td colspan="3"><div>${dto.pd_startDate} ~ ${dto.pd_endDate } (${period}박 ${period2}일)</div></td>
+				</tr>
+				<tr>
+					<td><div>출발일</div></td>
+					<td colspan="3"><div>${dto.pd_startDate}</div></td>
+          </tr>
+          <tr>
+					<td><div>도착일</div></td>
+					<td colspan="3">
+            <div>${dto.pd_endDate }</div>
+					</td>
+				</tr>
+			</tbody>		
+		</table>
+	</div>
+
+  <div class="repay" style="width: 1000px;height: 160px;margin-left: 25%;margin-top:20px;margin-bottom:50px;">
+    <h2>여행비용 안내</h2>
+    <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" style="width: 15%;">구분</th>
+      <th scope="col"  style="width: 25%;">기본여행경비</th>
+      <th scope="col"  style="width: 25%;">유류비</th>
+      <th scope="col"  style="width: 25%;">총운임</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">성인</th>
+      <td>${}원</td>
+      <td>0</td>
+      <td>${}원</td>
+    </tr>
+    <tr>
+      <th scope="row">미성년</th>
+      <td>${}원</td>
+      <td>0</td>
+      <td>${}원</td>
+    </tr>
+    <tr>
+      <th scope="row">반려동물</th>
+      <td>${}원</td>
+      <td>0</td>
+      <td>${}원</td>
+    </tr>
+  </tbody>
+</table>
+ </div>
+<div class="resDiv01">
+		<h2> 여행자 정보 확인</h2> <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::예약자 정보 -->
+		<table id="resTab03" style="width: 1000px;"> 
+			<tr>
+				<td><div><span class="essential_write"></span>성 함</div></td>
+				<td><div><p>${member.u_name}</p></div></td>
+			</tr>
+			<tr>
+				<td><div><span class="essential_write"></span>생년월일</div></td>
+				<td><div><p>${USERRESERVATION.RES_BIRTH}</p></div></td>
+			</tr>
+			<tr>
+				<td><div><span class="essential_write"></span>이메일</div></td>
+				<td><div><p>${member.u_email}</p> </div>
+				</td>
+			</tr>
+			<tr>
+				<td><div><span class="essential_write"></span>휴대폰번호</div></td>
+				<td><div><p style="width: 65%">$USERRESERVATION.RES_tel}</p></div>
+			</tr>
+		</table>
+    <h2>요청사항</h2>
+  <!--요청사항 입력 res_comment  -->
+				<div><textarea style="width: 1000px;height: 200px; font-size: 130%; box-shadow: 0 0 1px gray;" readonly>${USERRESERVATION.RES_comment}</textarea></div>
+	</div>
+<div >
+  <p style="font-size: 200%; text-align: center; margin-top: 20px;"><strong>총액</strong><span  class="payli" style="color: red;margin-left: 20PX; margin-top: 10px;">#total_price원</span></p>
+</div>
+<div style="width: 1000px; margin-left: 25%;">
+<button class="RSV_check">예약 확인하기</button><button class="search_back">목록으로 가기</button>
+</div>
+	 <jsp:include page="../include/footer.jsp"></jsp:include>
+  </div>
+  <script type="text/javascript">
+ 
+	$(document).ready(function() {
+			$("#RSV_check").click(function() {
+				location.href = "../user/reserveCheck.do";
+
+			});//RSV_check 클릭 함수 끝
+
+			$("#search_back").click(function() {
+
+				location.href = "./search.do";
+			});//search_back 클릭 함수 끝
+		});//document 끝
+  </script>
+    </body>
+    </html>

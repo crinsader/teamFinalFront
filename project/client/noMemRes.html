@@ -1,0 +1,330 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta hloginp-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <script src="https://cdn.bootpay.co.kr/js/bootpay-3.2.3.min.js" type="application/javascript"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    *{margin: 0;padding: 0; text-decoration: none;}
+    body{
+      position: relative;
+    }
+    #resdiv01{
+        width: 100%;
+        height: 95vh;
+    }
+    #resdiv02{
+     margin-top:0;
+     margin-left:25%;
+   
+    }
+    .p01{
+margin-left:30px;
+text-align: left;
+font-size: 80%;
+}
+.li01{
+    margin-left: 50px;
+    margin-top: 5px;
+    text-align: left;
+    font-size: 80%;
+}
+
+.resDiv01{margin-top:30px;margin-left: 25%;}
+.resDiv01>h2{margin-bottom:10px; margin-left:15px;}
+#resTab01 p{margin:10px;}
+#resTab01 td, #resTab02 td, #resTab03 td{height: 30px;}
+.resDiv01 button{height: 40px; width:332px; background-color: black; color: white; border:0;border-right: 2px solid white; border-radius: 5px; font-size: 110%;}
+.resDiv01 button:hover{color: red; cursor: pointer;	}
+#resTab02 td:nth-child(1), #resTab02 td:nth-child(3){width: 15%; height: 40px; background-color:#ededed}
+#resTab02 td:nth-child(2), #resTab02 td:nth-child(4){width: 35%; height: 40px;}
+#resTab02 div{margin-left:15px;}
+#resTab02 td{border-bottom:1px solid #dedede; width:100%;}
+#resTab02 tr:nth-child(1) td{border-top:2px solid black;}
+#resTab02 tr:nth-child(5){ width: 1000px;}
+#resTab03 td:nth-child(1){width:15%; background-color: #ededed; height: 40px;}
+#resTab03 td:nth-child(2){width: 70%;  height: 40px;}
+#resTab03 td:nth-child(3){width: 50%;  height: 40px;}
+#resTab03 div{margin-left:15px;}
+#resTab03 input[type=text]{height: 40px; width: 90%; border:0}
+#resTab03 td{border-bottom:1px solid #dedede;}
+#resTab03 tr:nth-child(1) td{border-top:2px solid black;}
+#resTab03 td:nth-child(2):hover{background-color: #f8f8fa;}
+#resTab03 input:hover{background-color:#f8f8fa;}
+.repay th:nth-child(1){ background-color: #ededed; text-align: center;width: 15%;}
+.repay td{border: solid #ededed 0.5px;}
+.repay th:nth-child(1){background-color: #ededed;}
+.payul{ margin-left: 100px; list-style: none; font-size: 120%;}
+.payli{margin-top: 20px;}
+#item_pay_success{background-color:#ffc107;height: 40px;width: 200px; border: 0;margin-left: 290px;margin-top: 100px; margin-bottom:200px;}
+.repaybtn{ height: 40px;width: 200px; border: 0;margin-left: 20px}
+ </style>
+    <body>
+      <jsp:include page="../include/header2.jsp"></jsp:include>
+        <div id="resdiv01">
+            <div id="resdiv02">
+            <h2 style="font-size: 100%;margin-top: 40px;color: black;text-align: left;"><strong>예약하기</strong></h2>
+            <hr style="width:1000px; height: 3px; background-color: gray;">
+       <div style="width:1000px;height:200px;background-color: yellow;"></div>
+      <div style="width:1000px;height:200px;">
+        <br><br>
+        <p class="p01"><img src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" style="width:16px;height: 16px;margin-right:10px;"><strong>선택하신 상품정보를 확인하신 후 정보를 입력하여 예약을 진행해 주세요.</strong></p>
+        <table>
+        <tr>
+            <td>
+            <ul style="margin-left: 40px;">
+                <li> 해당 예약은 담당자가 확인 후 확정되며, 최종 예약 확정이 완료되면 예약금 결제 부탁 드립니다.</li>
+                <li> 예약금은 일정표를 참고해주시거나, 담당자에게 안내 받으실 수 있습니다.</li>
+                <li> 최종 예약 확정 후 담당자와 약속한 시간 내에 예약금을 입금하지 않을 경우 임의 취소될 수 있습니다.</li>
+            </ul>
+            </td>
+            </tr>
+    </table>
+    
+  </div>
+  </div>
+  <div class="resDiv01">
+		<h2> 필수 약관 동의</h2> <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::약관 동의 -->
+		<jsp:include page="agree.jsp"></jsp:include>
+	</div>
+  <div class="resDiv01">
+		<h2> 상품 정보 요약</h2> <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::상품 정보 -->
+		<table id="resTab02" style="width:1000px;">
+			<tbody>
+				<tr>
+					<td><div>상품명</div></td>
+					<td id="pd_name"><div>${dto.pd_name }</div></td>
+					<td><div>상품번호</div></td>
+					<td id="pd_seq"><div>${dto.pd_seq }</div></td>
+				</tr>
+				<tr>
+					<td><div>여행기간</div></td>
+					<td colspan="3"><div>${dto.pd_startDate} ~ ${dto.pd_endDate } (${period}박 ${period2}일)</div></td>
+				</tr>
+				<tr>
+					<td><div>출발일</div></td>
+					<td colspan="3"><div>${dto.pd_startDate}</div></td>
+          </tr>
+          <tr>
+					<td><div>도착일</div></td>
+					<td colspan="3">
+            <div>${dto.pd_endDate }</div>
+					</td>
+				</tr>
+			</tbody>		
+		</table>
+	</div>
+
+  <div class="repay" style="width: 1000px;height: 160px;margin-left: 25%;margin-top:20px;margin-bottom:50px;">
+    <h2>여행비용 안내</h2>
+    <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col" style="width: 15%;">구분</th>
+      <th scope="col"  style="width: 25%;">기본여행경비</th>
+      <th scope="col"  style="width: 25%;">유류비</th>
+      <th scope="col"  style="width: 25%;">총운임</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">성인</th>
+      <td>${}원</td>
+      <td>0</td>
+      <td>${}원</td>
+    </tr>
+    <tr>
+      <th scope="row">미성년</th>
+      <td>${}원</td>
+      <td>0</td>
+      <td>${}원</td>
+    </tr>
+    <tr>
+      <th scope="row">반려동물</th>
+      <td>${}원</td>
+      <td>0</td>
+      <td>${}원</td>
+    </tr>
+  </tbody>
+</table>
+ </div>
+<div class="resDiv01">
+		<h2> 여행자 정보 입력</h2> <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::예약자 정보 -->
+		<table id="resTab03" style="width: 1000px;"> 
+			<tr>
+				<td><div><span class="essential_write">** </span>성 함</div></td>
+				<td><div><input type="text" placeholder="여행자 명을 작성 해주세요"/></div></td>
+			</tr>
+			<tr>
+				<td><div><span class="essential_write">** </span>생년월일</div></td>
+				<td><div><input type="text" placeholder="생년월일을 작성 해주세요 예) 20210912"/></div></td>
+			</tr>
+			<tr>
+				<td><div><span class="essential_write">** </span>이메일</div></td>
+				<td><div><input style="width: 40%" type="text" id="emailId" placeholder="이메일을 작성 해주세요">@ <input style="width: 40%" type="text" id="textEmail" placeholder="이메일을 선택하세요."> 
+					<select id="select" style="height: 40px; border-color: #ededed">
+							<option value="" disabled selected>email선택</option>
+							<option value="naver.com" id="naver.com">naver.com</option>
+							<option value="hanmail.net" id="hanmail.net">hanmail.net</option>
+							<option value="gmail.com" id="gmail.com">gmail.com</option>
+							<option value="nate.com" id="nate.com">nate.com</option>
+							<option value="directly" id="textEmail">직접입력하기</option>
+					</select></div>
+				</td>
+			</tr>
+			<tr>
+				<td><div><span class="essential_write">** </span>휴대폰번호</div></td>
+				<td><div><input style="width: 65%"type="text" placeholder="'-' 제외 숫자만 입력 해주세요"/></div>
+			</tr>
+            <tr>
+				<td><div><span class="essential_write">** </span>예약확인 비밀번호</div></td>
+				<td><div><input style="width: 65%; height:40px; border:0"type="password" placeholder="비회원 확인을 위한 비밀번호를 입력해주세요"/></div>
+			</tr>
+		</table>
+    <h2>요청사항</h2>
+  <!--요청사항 입력 res_comment  -->
+				<div><textarea style="width: 1000px;height: 200px; font-size: 130%; box-shadow: 0 0 1px gray;"placeholder="요청사항을 입력해주세요"></textarea></div>
+	</div>
+  <div class="paysucdiv01" style="margin-left:25%;float: left;height: 170px; width: 600px;margin-top: 20px;margin-bottom: 20px;">
+    <ul class="payul"> <strong>상품 금액</strong>
+      <li class="payli">성인 <span style="margin-left: 70px;">${성인가격}원 * ${param.sel_adault}명</span></li>
+      <li class="payli">미성년<span style="margin-left: 56px;">${미성년가격}원 * ${param.sel_young}명</span></li>
+      <li class="payli">반려동물<span  style="margin-left: 40px;">${반려동물가격}원 * ${param.sel_pet}명</span></li>
+    </ul>
+  </div>
+<div class="paysucdiv02" style="float: left;width: 400px;height: 170px; margin-top: 20px;margin-bottom: 20px;">
+  <ul class="payul"> <strong>총액</strong>
+    <li  class="payli" style="color: red;font-size: 200%;margin-top: 10px;">#total_price원</li>
+  </ul>
+</div>
+<div style="width: 1000px; margin-left: 25%;">
+<button id="item_pay_success">예약하기</button><button class="repaybtn">취소하기</button>
+</div>
+	 <jsp:include page="../include/footer.jsp"></jsp:include>
+  </div>
+  <script type="text/javascript">
+  
+$("#item_pay_success").click(function(){
+	location.href="./success.do?pd_seq=" + pd_seq+"&u_id="+u_id;	
+}); //item_pay_success 함수(끝)
+
+$(function() { //이메일 입력
+    $('#select').change(function() {
+        if ($('#select').val() == 'directly') {
+            $('#textEmail').attr("disabled", false);
+            $('#textEmail').val("");
+            $('#textEmail').focus();
+        } else {
+            $('#textEmail').val($('#select').val());
+        }
+    })
+});
+
+	// : : : : : :  BootPay 결제를 위한 변수 선언 : : : : : : : : :
+	const total_price=$("#total_price").val(); //총 금액 가져오기
+	const pd_name=$("#pd_name").text(); //상품이름
+	const pd_seq=$("#pd_seq").text();
+	const u_id=$("#u_id").text();
+	console.log(pd_name);
+
+$(document).ready(function(){
+	$("#item_pay").click(function(){//===========================================결제하기 버튼 눌렀을 때 이벤트!			
+		
+		if($("#agree_01").is(":checked") == false || $("#agree_02").is(":checked") == false || $("#agree_03").is(":checked") == false){ //약관 동의를 하지 않았을 경우
+			alert('모든약관에 동의하셔야 결제 가능합니다.');
+			$('#agree_01').focus(); //동의하는 곳으로 포커스
+			return;
+		}else { //약관 체크가 되어있을 경우 BootPay 실행!
+
+		
+		
+        BootPay.request({
+        	 price: total_price, // 결제할 금액
+             application_id: '613ecc0f7b5ba4002352b1a7',
+             name: pd_name, // 아이템 이름,
+             phone: '(구매자 전화번호 ex) 01000000000)',
+             order_id: pd_seq,
+             pg: 'kcp',
+             method: 'card',
+             show_agree_window: 1, // 결제 동의창 띄우기 여부 1 - 띄움, 0 - 띄우지 않음
+             items: [ // 결제하려는 모든 아이템 정보 ( 통계 데이터로 쓰이므로 입력해주시면 좋습니다. 입력하지 않아도 결제는 가능합니다.)
+                 {
+                     item_name: pd_name,
+                     qty: 1, // 판매한 아이템의 수량
+                     unique: pd_seq, 
+                     price: total_price // 아이템 하나의 단가
+                 }
+             ],
+             user_info: { // 구매한 고객정보 ( 통계 혹은 PG사에서 요구하는 고객 정보 )
+                 email: '(이메일)',
+                 phone: '(고객의 휴대폰 정보)',                        
+                 username: '구매자성함',
+                 addr: '(고객의 거주지역)'
+             }
+         }).error(function (data) { 
+             // 결제가 실패했을 때 호출되는 함수입니다.
+             var msg = "결제 에러입니다. ";
+             alert(msg);
+             console.log(data);
+         }).cancel(function (data) {
+             // 결제창에서 결제 진행을 하다가 취소버튼을 눌렀을때 호출되는 함수입니다.
+             var msg = "결제를 취소하셨습니다. ";
+             alert(msg);
+             console.log(data);
+         }).confirm(function (data) {
+             // 결제가 진행되고 나서 승인 이전에 호출되는 함수입니다.
+             // 일부 결제는 이 함수가 호출되지 않을 수 있습니다. ex) 가상계좌 및 카드 수기결제는 호출되지 않습니다.        
+             // 만약 이 함수를 정의하지 않으면 바로 결제 승인이 일어납니다.
+             if (confirm('결제를 정말 승인할까요?')) {
+                 console.log("do confirm data: " + JSON.stringify(data));
+                 // 이 함수를 반드시 실행해야 결제가 완전히 끝납니다.
+                 // 부트페이로 서버로 결제를 승인함을 보내는 함수입니다.
+                 this.transactionConfirm(data);
+             } else {
+                 var msg = "결제가 승인거절되었습니다.";
+                 alert(msg);
+                 console.log(data);
+             }
+         }).done(function (data) {
+             // 결제가 모두 완료되었을 때 호출되는 함수입니다.
+             alert("결제가 완료되었습니다.");
+             console.log(data);
+         }).ready(function (data) {
+             // 가상계좌 번호가 체번(발급) 되었을 때 호출되는 함수입니다.
+             console.log(data);
+        }); //결제 AIP 끝
+         
+         
+         
+		}//else 끝
+         
+         
+    });//item_pay 클릭 함수 끝
+
+    const agreeChkAll = document.querySelector('input[name=agree_all]');
+
+    	agreeChkAll.addEventListener('change', (e) => { //agreeChkAll누르면 이벤트 발생
+    		let agreeChk = document.querySelectorAll('input[name=agree]');  //agree이름 체크박스 전체 체크 변수
+    	
+    			for(let i = 0; i < agreeChk.length; i++){ //전체 체크박스만큼
+    			  agreeChk[i].checked = e.target.checked; //체크됨
+    			}
+    		
+    	}); //agreeChkAll 이벤트 함수 (끝)
+});//document 끝
+  </script>
+    </body>
+    </html>

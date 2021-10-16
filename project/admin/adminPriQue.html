@@ -50,6 +50,18 @@
             border-bottom: 1px solid #ededed;
             padding-left: 20px;
         }
+
+        table {
+            table-layout: fixed;
+            word-break: break-all;
+
+        }
+
+        td {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
     </style>
 </head>
 
@@ -100,15 +112,16 @@
                         <tbody>
                             <!-- forEach 문 시작--------------------------------------------------------------------------------------------------------------------------------------->
                             <tr style="cursor: pointer;">
-                                <th data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">1</th>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">@mdo</td>
-                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">유/무</td>
+                                <th onclick="">1</th>
+                                <td onclick="">@mdo</td>
+                                <td onclick="">@mdo</td>
+                                <td onclick="">@mdo</td>
+                                <td onclick="">@masdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffo
+                                </td>
+                                <td onclick="">@mdo</td>
+                                <td onclick="">@mdo</td>
+                                <td onclick="">@mdo</td>
+                                <td onclick="">유/무</td>
                                 <td>
                                     <a class="btn btn-secondary btn001" href="#" role="button"
                                         style="padding: 5px;">수정</a>
@@ -165,92 +178,7 @@
             </div>
         </div>
     </div>
-    <!--Modal----------------------------------------------------------------------------------------------------------------->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">1대1문의 상세 보기</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
-                    <tr>
-                        <th>순번</th>
-                        <td>1 [db에서 가져오는것이 아닌 뷰페이지에서 자동으로 순번 설정되게]</td>
-                    </tr>
-                    <tr>
-                        <th>CL_SEQ</th>
-                        <td>CL_SEQ</td>
-                    </tr>
-                    <tr>
-                        <th>U_ID</th>
-                        <td>U_ID</td>
-                    </tr>
-                    <tr>
-                        <th>U_NICKNAME</th>
-                        <td>U_NICKNAME</td>
-                    </tr>
-                    <tr>
-                        <th>CL_TITLE</th>
-                        <td>CL_TITLE</td>
-                    </tr>
-                    <tr>
-                        <th>CL_DATE</th>
-                        <td>CL_DATE</td>
-                    </tr>
-                    <tr>
-                        <th>CL_TYPE </th>
-                        <td>CL_TYPE </td>
-                    </tr>
-                    <tr style="height: 100px;">
-                        <th>CL_CONTENT</th>
-                        <td>CL_CONTENT</td>
-                    </tr>
-                </table>
-                <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px;">수정</a>
-                    <a class="btn btn-secondary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px;">삭제</a>
-                    <a class="btn btn-primary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">답변등록</a>
-                </div>
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">답변</h5>
-                </div>
-                <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
-                    <tr>
-                        <th>ANS_SEQ</th>
-                        <td>ANS_SEQ</td>
-                    </tr>
-                    <tr>
-                        <th>AD_ID</th>
-                        <td>AD_ID</td>
-                    </tr>
-                    <tr>
-                        <th>CL_SEQ</th>
-                        <td>CL_SEQ</td>
-                    </tr>
-                    <tr>
-                        <th>ANS_DATE</th>
-                        <td>ANS_DATE</td>
-                    </tr>
-                    <tr style="height: 100px;">
-                        <th>ANS_CONTENT</th>
-                        <td>ANS_CONTENT</td>
-                    </tr>
-                </table>
-                <div style="text-align: right;">
-                    <a class="btn btn-primary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px;">답변수정</a>
-                    <a class="btn btn-primary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">답변삭제</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Modal 끝----------------------------------------------------------------------------------------------------------------->
+
 </body>
 
 </html>
