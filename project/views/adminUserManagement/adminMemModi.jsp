@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1대1문의 수정 페이지</title>
+    <title>회원정보 수정 페이지</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -83,53 +86,33 @@
             <div
                 style="margin-top: 40px; margin-bottom: 40px; width: 1000px; height: auto; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
                 <div class="adminMainDiv1">
-                    <p>1대1문의 수정</p>
+                    <p>회원 수정</p>
                 </div>
+                <form action="userModify" method="post">
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
-                    <tr>
-                        <th>CL_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="CL_SEQ"></td>
+                    <tr>	
+                        <th>U_ID</th>
+                        <td><input type="text" class="form-control" value="${user.u_id }" name="u_id"></td>
                     </tr>
                     <tr>
-                        <th>U_ID</th>
-                        <td><input type="text" class="form-control" placeholder="U_ID"></td>
+                        <th>U_PWD</th>
+                        <td><input type="password" class="form-control" value="${user.u_pwd }" name="u_pwd"></td>
                     </tr>
                     <tr>
                         <th>U_NICKNAME</th>
-                        <td><input type="text" class="form-control" placeholder="U_NICKNAME"></td>
+                        <td><input type="text" class="form-control" value="${user.u_nickName }" name="u_nickName"></td>
                     </tr>
                     <tr>
-                        <th>CL_TITLE</th>
-                        <td><input type="text" class="form-control" placeholder="CL_TITLE"></td>
-                    </tr>
-                    <tr>
-                        <th>CL_DATE</th>
-                        <td><input type="text" class="form-control" placeholder="CL_DATE"></td>
-                    </tr>
-                    <tr>
-                        <th>CL_TYPE</th>
-                        <td>
-                            <select class="form-select" id="inputGroupSelect01" style="border:0;">
-                                <option selected>국내여행</option>
-                                <option value="1">테마여행</option>
-                                <option value="2">자유여행</option>
-                                <option value="3">예약조회</option>
-                                <option value="3">기타</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>CL_CONTENT</th>
-                        <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="CL_CONTENT"
-                                style="border:0; resize: none; background-color: white;"></textarea></td>
+                        <th>U_EMAIL</th>
+                        <td><input type="text" class="form-control" value="${user.u_email }" name="u_email"></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary" href="userList" role="button"
                         style="margin-top:10px; margin-bottom: 10px;">취소</a>
-                    <input class="btn btn-secondary" type="button" value="저장" style="margin-right: 10px;">
+                    <input class="btn btn-secondary" type="submit" value="저장" style="margin-right: 10px;">
                 </div>
+				</form>
             </div>
         </div>
     </div>

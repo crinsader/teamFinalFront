@@ -5,27 +5,24 @@
 
         <head>
             <meta charset="UTF-8">
-            <title>1대1문의 등록</title>
+            <title>1대1문의 등록 페이지</title>
             <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-                crossorigin="anonymous">
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
                 crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+                integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
                 crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+                integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
                 crossorigin="anonymous"></script>
-                <script src="//code.jquery.com/jquery.min.js"></script>
-			<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 			<!-- ============================================================================@@ 1:1 고객 [문의] 입력 10/12 한보영 -->  
             <style>
                 #priQueTab1 tr {
-                    height: 70px;
+                    height: 45px;
                 }
 
                 #priQueTab1 th {
@@ -40,9 +37,7 @@
         </head>
 
         <body>
-            <script type="text/javascript">
 
-            </script>
             <c:if test="${sessionScope.u_id != null }">
                 <jsp:include page="../include/header2.jsp"></jsp:include>
             </c:if>
@@ -54,24 +49,27 @@
                 <%}%>
 
                     <div style="margin:auto; width:1100px; height:800px;">
-                        <div class="list-group" style="float:left;width:180px; height:600px; margin-top: 40px;">
+                        <!--  왼쪽 메뉴 ---------------------------------------------------------------------------------------------->
+                        <div class="list-group" id="leftSlide01"
+                            style="float:left;width:180px; height:600px; margin-top: 15px; position: relative;">
                             <a href="#" class="list-group-item list-group-item-action"
-                                style="background-color: #343a40; color: white;">마이페이지</a>
+                                style="background-color: #ededed; color: #343a40; font-weight: bold;">마이페이지</a>
                             <a href="#" class="list-group-item list-group-item-action">개인정보</a>
                             <a href="#" class="list-group-item list-group-item-action">1대1문의</a>
                             <a href="#" class="list-group-item list-group-item-action">찜 내역</a>
                             <a href="#" class="list-group-item list-group-item-action">예약내역</a>
-                            <a href="#" class="list-group-item list-group-item-action">Contact Us</a>
                         </div>
+                        <!--  왼쪽 메뉴 끝---------------------------------------------------------------------------------------------->
                         <div style="float:right;width:915px;">
-                            <div>
-                                <nav class="navbar-dark bg-dark"
-                                    style="margin-top:40px; height: 50px; line-height: 40px;">
-                                    <a class="navbar-brand" style="font-size: 100%; margin-left: 20px;"
-                                        href="#">1대1문의</a><span class="navbar-brand" style="font-size: 100%;">/</span><a
-                                        class="navbar-brand" style="font-size: 100%;" href="#">문의등록</a>
+                                <!--  div상단 바---------------------------------------------------------------------------------------------->
+                                <nav style="margin-top:15px; height: 45px; line-height: 45px; background-color: #ededed; ">
+                                    <a class="navbar-brand"
+                                        style="font-size: 100%; margin-left: 20px; color: #343a40; font-weight: bold;"
+                                        href="#">1대1문의</a>/<a class="navbar-brand"
+                                        style="font-size: 100%; margin-left: 20px; color: #343a40; font-weight: bold;"
+                                        href="#">문의등록</a>
                                 </nav>
-                            </div>
+                                <!--  div상단 바 끝---------------------------------------------------------------------------------------------->                                
        <!--@@ input form @@ 한보영 12/12 06:01   ------------------------------------------------------------------------------------>                     
                          <form action="input.do" method="post"  id="form">   
                             <table id="priQueTab1"
@@ -90,7 +88,7 @@
                                     <td>
                                    	  <input type="hidden"  name="cl_type" id="cl_type">
                                         <select class="form-control" id="exampleFormControlSelect1"
-                                            style="border: 0; height: 60px;">
+                                            style="border: 0; height: 40px;">
                                             <option value="미선택">문의유형을 선택하세요</option>
                                             <option value="국내여행">국내여행</option>
                                             <option value="테마여행">테마여행</option>
@@ -104,7 +102,7 @@
                                     <th>제목</th>
                                     <td>
                                         <input type="text" class="form-control" placeholder="제목을 입력하세요"
-                                            style="border: 0; height: 60px;" name="cl_title" id="cl_title">
+                                            style="border: 0; height: 40px;" name="cl_title" id="cl_title">
                                     </td>
                                 </tr>
                                 <tr>
@@ -117,9 +115,9 @@
                             </table>
                             <div style="text-align: right;">
                                 <a class="btn btn-secondary" href="#" role="button" onclick="location.href='http://localhost:8088/trip/myPage/list.do' "
-                                    style="margin-top:10px; height: 40px;">취소</a>
+                                    style="margin-top:10px; ">취소</a>
                                 <input class="btn btn-secondary" type="button" value="등록완료"
-                                    style="margin-top:10px; height: 40px;" id="submitbtn">
+                                    style="margin-top:10px; " id="submitbtn">
                             </div>  
                         </form>
           <!--@@ input form _ 끝 @@------------------------------------------------------------------------------------>      

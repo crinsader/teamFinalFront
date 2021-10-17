@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1대1문의 답변수정 페이지</title>
+    <title>자주하는질문 수정 페이지</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -52,10 +55,6 @@
         .form-control {
             border: 0;
         }
-
-        .adminMemtable2 td {
-            padding-left: 10px;
-        }
     </style>
 </head>
 
@@ -87,81 +86,48 @@
             <div
                 style="margin-top: 40px; margin-bottom: 40px; width: 1000px; height: auto; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
                 <div class="adminMainDiv1">
-                    <p>1대1문의 답변수정</p>
+                    <p>자주하는질문 수정</p>
                 </div>
-                <table id="adminMemtable1" class="adminMemtable2" style="width: 100%; border-top: 2px solid #343a40;">
-                    <tr>
-                        <th colspan="2">1대1문의 내용</th>
-                    </tr>
-                    <tr>
-                        <th>순번</th>
-                        <td>1 [db에서 가져오는것이 아닌 뷰페이지에서 자동으로 순번 설정되게]</td>
-                    </tr>
-                    <tr>
-                        <th>CL_SEQ</th>
-                        <td>CL_SEQ</td>
-                    </tr>
-                    <tr>
-                        <th>U_ID</th>
-                        <td>U_ID</td>
-                    </tr>
-                    <tr>
-                        <th>U_NICKNAME</th>
-                        <td>U_NICKNAME</td>
-                    </tr>
-                    <tr>
-                        <th>CL_TITLE</th>
-                        <td>CL_TITLE</td>
-                    </tr>
-                    <tr>
-                        <th>CL_DATE</th>
-                        <td>CL_DATE</td>
-                    </tr>
-                    <tr>
-                        <th>CL_TYPE </th>
-                        <td>CL_TYPE </td>
-                    </tr>
-                    <tr style="height: 100px;">
-                        <th>CL_CONTENT</th>
-                        <td>CL_CONTENT</td>
-                    </tr>
-                </table>
+          <form action="modify.do" method="post" id="form" >                            
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th colspan="2">답변수정</th>
+                        <th>순번</th>
+                        <td><input type="hidden" value="${dto.of_seq  }" name="of_seq" id="of_seq">
+                        	${dto.of_seq  }
+                        </td>
                     </tr>
                     <tr>
-                        <th>ANS_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="ANS_SEQ"></td>
+                        <th>제목</th>
+                        <td><input type="text" class="form-control"  name="of_title" value="${dto.of_title  }" ></td>
                     </tr>
                     <tr>
-                        <th>AD_ID</th>
-                        <td><input type="text" class="form-control" placeholder="AD_ID"></td>
-                    </tr>
-                    <tr>
-                        <th>CL_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="CL_SEQ"></td>
-                    </tr>
-                    <tr>
-                        <th>ANS_DATE</th>
-                        <td><input type="text" class="form-control" placeholder="ANS_DATE"></td>
-                    </tr>
-                    <tr>
-                        <th>ANS_CONTENT</th>
-                        <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="ANS_CONTENT"
-                                style="border:0; resize: none; background-color: white;"></textarea></td>
+                        <th>내용</th>
+                        <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="20"
+                                name="of_content"
+                                style="border:0; resize: none; background-color: white;">${dto.of_content  }</textarea></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px;">취소</a>
-                    <input class="btn btn-primary" type="button" value="수정완료" style="margin-right: 10px;">
+                    <a class="btn btn-secondary"  role="button"
+                        style="margin-top:10px; margin-bottom: 10px;"  href="javascript:history.back()">취소</a>
+                    <input class="btn btn-secondary" type="button" value="저장"  id="modi_submitbtn" style="margin-right: 10px;">
                 </div>
-
+         </form>     
             </div>
         </div>
     </div>
 </body>
+<script type="text/javascript">
 
+	var of_seq =$('#of_seq').val();
+	document.getElementById('modi_submitbtn').onclick = function() {  //수정버튼을 누르면     
+		   	 if($('#exampleFormControlTextarea1').val() == ''){   
+		  		 alert('문의 내용을 입력해주세요')
+		  	 }else{
+		  		 document.getElementById('form').submit(); //수정완료   			  		 
+		  	 }
+	};//==========================================================================
+
+
+</script>
 </html>

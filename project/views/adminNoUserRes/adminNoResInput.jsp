@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1대1문의 답변등록 페이지</title>
+    <title>비회원 예약 입력 페이지</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -52,10 +54,6 @@
         .form-control {
             border: 0;
         }
-
-        .adminMemtable2 td {
-            padding-left: 10px;
-        }
     </style>
 </head>
 
@@ -83,80 +81,98 @@
                 </ul>
             </div>
         </div>
+        		 	
         <div style="float:right; width: 1500px;height: auto;">
+            
             <div
                 style="margin-top: 40px; margin-bottom: 40px; width: 1000px; height: auto; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
+                
                 <div class="adminMainDiv1">
-                    <p>1대1문의 답변등록</p>
+                    <p>비회원 예약 입력</p>
                 </div>
-                <table id="adminMemtable1" class="adminMemtable2" style="width: 100%; border-top: 2px solid #343a40;">
-                    <tr>
-                        <th colspan="2">1대1문의 내용</th>
-                    </tr>
-                    <tr>
-                        <th>순번</th>
-                        <td>1 [db에서 가져오는것이 아닌 뷰페이지에서 자동으로 순번 설정되게]</td>
-                    </tr>
-                    <tr>
-                        <th>CL_SEQ</th>
-                        <td>CL_SEQ</td>
-                    </tr>
-                    <tr>
-                        <th>U_ID</th>
-                        <td>U_ID</td>
-                    </tr>
-                    <tr>
-                        <th>U_NICKNAME</th>
-                        <td>U_NICKNAME</td>
-                    </tr>
-                    <tr>
-                        <th>CL_TITLE</th>
-                        <td>CL_TITLE</td>
-                    </tr>
-                    <tr>
-                        <th>CL_DATE</th>
-                        <td>CL_DATE</td>
-                    </tr>
-                    <tr>
-                        <th>CL_TYPE </th>
-                        <td>CL_TYPE </td>
-                    </tr>
-                    <tr style="height: 100px;">
-                        <th>CL_CONTENT</th>
-                        <td>CL_CONTENT</td>
-                    </tr>
-                </table>
+				<form action="insert.do" method="post" id="form">  
+				
+                    
                 <table id="adminMemtable1" style="width: 100%; border-top: 2px solid #343a40;">
                     <tr>
-                        <th colspan="2">답변등록</th>
+                        <th>PD_SEQ</th>
+                        <td><input type="text" class="form-control" name="pd_seq" value = 3></td>
                     </tr>
                     <tr>
-                        <th>ANS_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="ANS_SEQ"></td>
+                        <th>PD_NAME</th>
+                        <td><input type="text" class="form-control" name="pd_name" value = "ddd" ></td>
                     </tr>
                     <tr>
-                        <th>AD_ID</th>
-                        <td><input type="text" class="form-control" placeholder="AD_ID"></td>
+                        <th>PD_STARTDATE</th>
+                        <td><input type="text" class="form-control" name="pd_startDate" value = "2021-01-01" ></td>
                     </tr>
                     <tr>
-                        <th>CL_SEQ</th>
-                        <td><input type="text" class="form-control" placeholder="CL_SEQ"></td>
+                        <th>PD_ENDDATE</th>
+                        <td><input type="text" class="form-control" name="pd_endDate" value = "2021-01-05"></td>
                     </tr>
                     <tr>
-                        <th>ANS_DATE</th>
-                        <td><input type="text" class="form-control" placeholder="ANS_DATE"></td>
+                        <th>ADULT_NUM</th>
+                        <td><input type="text" class="form-control" name="adult_num" value = 0></td>
                     </tr>
                     <tr>
-                        <th>ANS_CONTENT</th>
-                        <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                placeholder="ANS_CONTENT"
-                                style="border:0; resize: none; background-color: white;"></textarea></td>
+                        <th>TEENAGER_NUM</th>
+                        <td><input type="text" class="form-control" name="teenager_num" value = 0></td>
+                    </tr>
+                    <tr>
+                        <th>PET_NUM</th>
+                        <td><input type="text" class="form-control" name="pet_num" value = 0></td>
+                    </tr>
+                    <tr>
+                        <th>ADULT_PRICE</th>
+                        <td><input type="text" class="form-control" name="adult_price" value = 0></td>
+                    </tr>
+                    <tr>
+                        <th>TEENAGER_PRICE</th>
+                        <td><input type="text" class="form-control" name="teenager_price" value = 0></td>
+                    </tr>
+                    <tr>
+                        <th>PET_PRICE</th>
+                        <td><input type="text" class="form-control" name="pet_price" value = 0></td>
+                    </tr>
+                    <tr>
+                        <th>RES_PRICE</th>
+                        <td><input type="text" class="form-control" name="res_price" value = 0></td>
+                    </tr>
+                    <tr>
+                        <th>RES_PEOPLE</th>
+                        <td><input type="text" class="form-control" name="res_people" value = 0></td>
+                    </tr>
+                    <tr>
+                        <th>RES_NAME</th>
+                        <td><input type="text" class="form-control" name="res_name" value = "예약자명"></td>
+                    </tr>
+                                        <tr>
+                        <th>RES_PWD</th>
+                        <td><input type="text" class="form-control" name="pd_seq" value = "1234"></td>
+                    </tr>
+                    <tr>
+                        <th>RES_BIRTH</th>
+                        <td><input type="text" class="form-control" name="res_birth" value = "19951212"></td>
+                    </tr>
+                    <tr>
+                        <th>RES_EMAIL</th>
+                        <td><input type="text" class="form-control" name="res_email" value = "DDD@naver.com"></td>
+                    </tr>
+                    <tr>
+                        <th>RES_COMMENT</th>
+                        <td><textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                                name="res_comment" style="border:0; resize: none;">dddddd</textarea></td>
+                    </tr>
+                    <tr>
+                        <th>RES_PHONE</th>
+                        <td><input type="text" class="form-control" name="res_phone" value = "010-1234-5644"></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
-                        style="margin-top:10px; margin-bottom: 10px;">취소</a>
-                    <input class="btn btn-primary" type="button" value="답변저장" style="margin-right: 10px;">
+                    <a class="btn btn-secondary" onclick="location.href='http://localhost:8088/trip/adminNoUserRes/list.do'" role="button" style="margin-top:10px; margin-bottom: 10px;">취소</a>
+                <input class="btn btn-secondary" style="margin-right: 10px;" type="submit" value="등록">
+                </form>
+                    <!-- <input class="btn btn-secondary" type="button" value="저장" style="margin-right: 10px;"> -->
                 </div>
 
             </div>
