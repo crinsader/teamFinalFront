@@ -19,7 +19,7 @@
 	           <hr />
       </c:forEach> 
       
-                  <a href="<%=request.getContextPath() %>/noUserRes/check.do">비회원으로 예약조회하기</a>
+                  <a href="<%=request.getContextPath() %>/noUserRes/login.do">비회원으로 예약조회하기</a>
       
    </div>
 </body>

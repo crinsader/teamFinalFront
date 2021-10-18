@@ -96,7 +96,7 @@
                 <div style="float: right;">
                     <!--검색 -------------------------------------------------------------------------------->
                     <div class="input-group mb-3" style="width: 300px; float: left; margin-right: 10px;">
-                        <input type="text" class="form-control" placeholder="검색할 단어를 입력하세요"
+                        <input type="text" class="form-control keyword" placeholder="검색할 단어를 입력하세요"
                             aria-label="Recipient's username" aria-describedby="button-addon2"
                             style="border:1px solid #ededed;">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2"
@@ -138,6 +138,14 @@
                 }
             })
             // 왼쪽 메뉴 스크롤 끝----------------------------------------------------------------------
+
+            //검색1 ---------------------------------------------------
+            $(".keyword").keyup(function () {
+                $(".card").hide();
+                $(".card:contains(" + $(this).val() + ")").show();
+            });
+            // 검색1 끝---------------------------------------------------
+
             //검색2 ---------------------------------------------------
             $(".keyword").keyup(function () {
                 $(".tr01").css("border-left", "")

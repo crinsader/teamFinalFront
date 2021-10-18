@@ -151,18 +151,40 @@
                 </tr>
               </table>
               <div style="text-align: right;">
-                <a class="btn btn-secondary" href="http://localhost:8088/trip/userRes/list.do" role="button"
+                <a class="btn btn-secondary" href="http://localhost:8088/trip/userRes/list.do?u_id=${userResDetail.u_id}" role="button"
                   style="margin-top:10px; height: 40px; margin-bottom: 10px;">돌아가기</a>
                   <a class="btn btn-secondary" href="http://localhost:8088/trip/reply/list.do" role="button"
                   style="margin-top:10px; height: 40px; margin-bottom: 10px;">댓글 전체보기</a>
-                  <a class="btn btn-secondary" href="http://localhost:8088/trip/reply/detail.do" role="button"
+                  <a class="btn btn-secondary" href="http://localhost:8088/trip/reply/insert.do?u_id=${userResDetail.u_id}&pd_seq=${userResDetail.pd_seq}" role="button"
                   style="margin-top:10px; height: 40px; margin-bottom: 10px;">댓글 쓰기</a>
+                  <a class="btn btn-secondary"  role="button" onClick = "userResDelete(${userResDetail.ures_seq})" style="margin-top:10px; height: 40px; margin-bottom: 10px;">예약 취소하기</a>
               </div>
             </div>
           </div>
           <script>
-            $(document).ready(function () {
-            })
+        	function userResDelete(ures_seq){
+          		var res_confirm = confirm('예약을 취소하시겠습니까?');
+          		if(!res_confirm){
+          			return false;
+          		}else{
+          			var uresData = {"ures_seq" : ures_seq}
+          			console.log(uresData)
+          			$.ajax({
+				        url:"http://localhost:8088/trip/userRes/delete.do",
+				        type:'POST',
+				        data: uresData,
+				        success:function(data){
+				            alert("취소되었습니다!");
+				            location.href = "http://localhost:8088/trip/userRes/list.do";						            	            
+				        },
+				        error:function(){
+				            alert("에러 발생");
+				        }
+				    });
+          		}
+          	}
+          
+          
           </script>
           <jsp:include page="../include/footer.jsp"></jsp:include>
     </body>

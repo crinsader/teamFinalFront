@@ -69,7 +69,7 @@
               <a href="#" class="list-group-item list-group-item-action"
                 style="background-color: #343a40; color: white;">마이페이지</a>
               <a href="#" class="list-group-item list-group-item-action">개인정보</a>
-              <a href="#" class="list-group-item list-group-item-action">1대1문의</a>
+              <a href="<%=request.getContextPath() %>/myPage/list.do" class="list-group-item list-group-item-action">1대1문의</a>  
               <a href="#" class="list-group-item list-group-item-action">찜 내역</a>
               <a href="#" class="list-group-item list-group-item-action">예약내역</a>
               <a href="#" class="list-group-item list-group-item-action">Contact Us</a>
@@ -95,6 +95,7 @@
                 <c:forEach var="board" items="${userResList }">
                 <tr class="risListTr1"
                   style="height:70px; border-bottom:1px solid #ededed; text-align: center; cursor: pointer;" >
+                  
                   <td>${board.ures_seq }</td>
                   <td>${board.pd_startDate } ~ ${board.pd_endDate }</td>
                   <td onclick="location.href='<%=request.getContextPath() %>/userRes/resDetail.do?ures_seq=${board.ures_seq}' ">${board.pd_name }</td>

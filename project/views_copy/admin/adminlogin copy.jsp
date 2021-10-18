@@ -87,12 +87,6 @@
 					</tr>
 				</table>
 			</div>
-			<script>
-				$(function () {
-					$("#adminLoginForm").submit();
-					alert("관리자님 안녕하세요.");
-				})
-			</script>
 		</body>
 
 		</html>

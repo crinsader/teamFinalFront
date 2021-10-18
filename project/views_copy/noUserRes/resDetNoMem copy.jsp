@@ -6,19 +6,18 @@
     <head>
       <meta charset="UTF-8">
       <title>비회원 예약 상세내역</title>
-      <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+          crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+          integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+          crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+          integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+          crossorigin="anonymous"></script>
       <style>
         * {
           margin: 0;
@@ -26,7 +25,7 @@
         }
 
         .resDetailTab1 th {
-          height: 70px;
+          height: 45px;
           background-color: #ededed;
           border-bottom: 1px solid white;
           text-align: center;
@@ -58,14 +57,14 @@
 
           <div style="margin: auto;width:915px;">
             <div>
-              <nav class="navbar-dark bg-dark" style="margin-top:40px; height: 50px; line-height: 40px;">
-                <a class="navbar-brand" style="font-size: 100%; margin-left: 20px;" href="#">비회원 예약상세내역</a>
+              <nav class="navbar-dark bg-dark" style="margin-top:10px; height: 45px; line-height: 45px;">
+                <a class="navbar-brand" style="font-size: 100%; margin-left: 20px;" href="#">비회원 예약 상세내역</a>
               </nav>
             </div>
             <table class="resDetailTab1" style="width: 100%; margin-top: 40px;">
               <tr>
                 <td colspan="4" style="text-align: left;">
-                  <h5 style="margin-left: 10px;">여행상품정보 </h5>
+                  <h5 style="margin-left: 10px; font-weight: bold;">여행상품정보 </h5>
 
                 </td>
               </tr>
@@ -106,7 +105,7 @@
             <table class="resDetailTab1" style="width: 100%; margin-top: 40px;">
               <tr>
                 <td colspan="2" style="text-align: left;">
-                  <h5 style="margin-left: 10px;">여행자정보</h5>
+                  <h5 style="margin-left: 10px; font-weight: bold;">여행자정보</h5>
                 </td>
               </tr>
               <tr style="border-top: 2px solid #343a40;">
@@ -130,32 +129,32 @@
               <a class="btn btn-secondary" href="http://localhost:8088/trip" role="button"
                 style="margin-top:10px; height: 40px; margin-bottom: 10px;">HOME</a>
               <a class="btn btn-secondary"  role="button" onClick = "noUserResDelete(${noUserSelectId.res_seq})"
-                style="margin-top:10px; height: 40px; margin-bottom: 10px;">예약 취소</a>
+                style="margin-top:10px; height: 40px; margin-bottom: 10px;">예약취소</a>
             </div>
           </div>
           <script>
-      	function noUserResDelete(res_seq){
-      		var res_confirm = confirm('예약을 취소하시겠습니까?');
-      		if(!res_confirm){
-      			return false;
-      		}else{
-      			var noResData = {"res_seq" : res_seq}
-      			console.log(noResData)
-      			$.ajax({
-			        url:"http://localhost:8088/trip/noUserRes/delete.do",
-			        type:'POST',
-			        data: noResData,
-			        success:function(data){
-			            alert("취소되었습니다!");
-			            location.href = "http://localhost:8088/trip/";						            	            
-			        },
-			        error:function(){
-			            alert("에러 발생");
-			        }
-			    });
-      		}
-      	}
-          </script>
+            function noUserResDelete(res_seq){
+              var res_confirm = confirm('예약을 취소하시겠습니까?');
+              if(!res_confirm){
+                return false;
+              }else{
+                var noResData = {"res_seq" : res_seq}
+                console.log(noResData)
+                $.ajax({
+                  url:"http://localhost:8088/trip/noUserRes/delete.do",
+                  type:'POST',
+                  data: noResData,
+                  success:function(data){
+                      alert("취소되었습니다!");
+                      location.href = "http://localhost:8088/trip/";						            	            
+                  },
+                  error:function(){
+                      alert("에러 발생");
+                  }
+              });
+              }
+            }
+              </script>
           <jsp:include page="../include/footer.jsp"></jsp:include>
     </body>
 

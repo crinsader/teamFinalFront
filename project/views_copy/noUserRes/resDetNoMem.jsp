@@ -129,11 +129,32 @@
             <div style="text-align: right;">
               <a class="btn btn-secondary" href="http://localhost:8088/trip" role="button"
                 style="margin-top:10px; height: 40px; margin-bottom: 10px;">HOME</a>
+              <a class="btn btn-secondary"  role="button" onClick = "noUserResDelete(${noUserSelectId.res_seq})"
+                style="margin-top:10px; height: 40px; margin-bottom: 10px;">예약 취소</a>
             </div>
           </div>
           <script>
-            $(document).ready(function () {
-            })
+      	function noUserResDelete(res_seq){
+      		var res_confirm = confirm('예약을 취소하시겠습니까?');
+      		if(!res_confirm){
+      			return false;
+      		}else{
+      			var noResData = {"res_seq" : res_seq}
+      			console.log(noResData)
+      			$.ajax({
+			        url:"http://localhost:8088/trip/noUserRes/delete.do",
+			        type:'POST',
+			        data: noResData,
+			        success:function(data){
+			            alert("취소되었습니다!");
+			            location.href = "http://localhost:8088/trip/";						            	            
+			        },
+			        error:function(){
+			            alert("에러 발생");
+			        }
+			    });
+      		}
+      	}
           </script>
           <jsp:include page="../include/footer.jsp"></jsp:include>
     </body>

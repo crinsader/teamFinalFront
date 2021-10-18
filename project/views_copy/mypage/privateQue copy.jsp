@@ -41,7 +41,7 @@
         </head>
 
         <body>
-
+            
             <c:if test="${sessionScope.u_id != null }">
                 <jsp:include page="../include/header2.jsp"></jsp:include>
             </c:if>
