@@ -44,7 +44,7 @@
 <body>
 
     <div class="adminMainDiv1">
-        <table class="table">
+        <table class="table"onclick="link_5()" style="cursor: pointer;">
             <thead>
                 <tr>
                     <th scope="col">댓글번호</th>
@@ -66,5 +66,9 @@
     </div>
 
 </body>
-
+<script type="text/javascript">
+function link_5(){ //리뷰
+	window.parent.location.href = "http://localhost:8088/trip/adminReply/list.do"
+}	
+</script>
 </html>

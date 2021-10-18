@@ -1,169 +1,252 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<!DOCTYPE html>
+	<html lang="en">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.1/underscore-min.js"></script>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>OneTrillion</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+			integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+			integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+			crossorigin="anonymous"></script>
+	</head>
+	<style>
+		.navbar a {
+			font-size: 130%;
+		}
 
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+		.dropdown-menu select {
+			cursor: pointer;
+		}
 
-<style>
-* {
-	margin: 0px;
-	padding: 0px;
-	text-decoration: none;
-}
+		.input-group-text {
+			padding: 5px;
+		}
 
-#div001 {
-	position: fixed;
-	z-index: 5;
-	width: 100%;
-}
+		.input-group,
+		.dropdown-menu select,
+		.dropdown-menu input {
+			height: 45px;
+			;
 
-#div001_in01_in01>a {
-	color: white;
-}
+		}
+	</style>
 
-#div001_in01_in01>a:hover {
-	color: red; cursor: pointer;
-}
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+			style="height:auto; min-height: 70px; box-shadow: 0 0 20px gray;">
+			<div class="container-fluid" style=" padding-right: 0; width: 1300px; ">
+				<a class="navbar-brand" href="<%=request.getContextPath() %>/"
+					style="font-weight: bold;">OneTrillion</a>
+				<% String u_id=(String) session.getAttribute("u_id"); if(u_id==null){%>
+					<div class=" navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="<%=request.getContextPath()%>/user/login.do">Login</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link"
+									href="<%=request.getContextPath() %>/user/myPageInfo.do?u_id=${member.u_id}">Member</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="<%=request.getContextPath()%>/user/cs.do">Customer</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link"
+									href="<%=request.getContextPath()%>/userRes/list.do?u_id=${member.u_id}">Reservation</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link"
+									href="<%=request.getContextPath()%>/wishlist/list.do?u_id=${member.u_id }">Wishlist</a>
+							</li>
+						</ul>
+					</div>
+					<%}else{%>
+						<div class=" navbar-collapse" id="navbarNav">
+							<ul class="navbar-nav">
+								<li class="nav-item">
+									<a class="nav-link" id="btnLogout" href="#">Logout</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link"
+										href="<%=request.getContextPath() %>/user/myPageInfo.do?u_id=${member.u_id}">Member</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="<%=request.getContextPath()%>/user/cs.do">Customer</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link"
+										href="<%=request.getContextPath()%>/userRes/list.do?u_id=${member.u_id}">Reservation</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link"
+										href="<%=request.getContextPath()%>/wishlist/list.do?u_id=${member.u_id }">Wishlist</a>
+								</li>
+							</ul>
+						</div>
+						<%}%>
+							<div>
+								<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+									<% u_id=(String) session.getAttribute("u_id"); if(u_id==null){%>
 
-#div001 {
-	background-color: black;
-	box-shadow: 0px 0px 10px;
-}
+										<%}else{%>
+											<li class="nav-item">
+												<a class="nav-link"
+													style="border:1px solid gray; border-radius: 10px;">${member.u_nickName}</a>
+											</li>
+											<%}%>
+												<li class="nav-item dropdown">
+													<a class="nav-link dropdown-toggle" href="#"
+														id="navbarDropdownMenuLink" role="button"
+														data-bs-toggle="dropdown" aria-expanded="false">
+														Search
+													</a>
+													<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+														style="width: 230px; padding: 10px;">
+														<li>
+															<h5 style="margin-top: 10px; margin-left: 10px;">여행지</h5>
+															<hr style="margin-bottom: 10px;">
+														</li>
+														<li>
+															<select name="" class="nation form-select"
+																aria-label="Default select example"
+																style="margin-bottom: 10px;">
+																<option value="korea">국내</option>
+																<option value="abroad">해외</option>
+															</select>
+														</li>
+														<li>
+															<select name="" class="location form-select"
+																aria-label="Default select example"
+																style="margin-bottom: 20px;">
+																<option value="seoul">서울</option>
+																<option value="kyeongki">경기</option>
+																<option value="incheon">인천</option>
+																<option value="kangwon">강원</option>
+																<option value="chungnam">충남</option>
+																<option value="chungbuk">충북</option>
+																<option value="jeonbuk">전북</option>
+																<option value="jeonnam">전남</option>
+																<option value="kyungbuk">경북</option>
+																<option value="kyungnam">경남</option>
+																<option value="jeju">제주</option>
 
-#div001_in01 {
-	margin: auto;
-	width: 1082px;
-	height: 60px;
-	line-height: 60px;
-}
+															</select>
+														</li>
+														<li>
+															<h5 style="margin-left: 10px;">기간</h5>
+															<hr style="margin-bottom: 10px;">
+														</li>
+														<li>
+															<div class="input-group" style="margin-bottom: 10px;">
+																<span class="input-group-text"
+																	id="basic-addon1">출발</span>
+																<input type="date" class="form-control startDate"
+																	value="2021-01-01" aria-label="Username"
+																	aria-describedby="basic-addon1">
+															</div>
+														</li>
+														<li>
+															<div class="input-group" style="margin-bottom: 20px;">
+																<span class="input-group-text"
+																	id="basic-addon1">도착</span>
+																<input type="date" class="form-control endDate"
+																	value="2021-01-15" aria-label="Username"
+																	aria-describedby="basic-addon1">
+															</div>
+														</li>
+														<li>
+															<h5 style="margin-left: 10px;">가격</h5>
+															<hr style="margin-bottom: 10px;">
+														</li>
+														<li>
+															<div class="input-group " style="margin-bottom: 10px;">
+																<span class="input-group-text"
+																	id="basic-addon1">최소</span>
+																<input type="text" class="form-control startDate"
+																	value="10000" aria-label="Username"
+																	aria-describedby="basic-addon1">
+															</div>
+														</li>
+														<li>
+															<div class="input-group " style="margin-bottom: 20px;">
+																<span class="input-group-text"
+																	id="basic-addon1">최대</span>
+																<input type="text" class="form-control startDate"
+																	value="1000000" aria-label="Username"
+																	aria-describedby="basic-addon1">
+															</div>
+														</li>
+														<li>
+															<input class="btn btn-secondary" id="hearderInput001"
+																type="button" value="검색" style="width: 100%;"
+																onclick="search()">
+														</li>
 
-#div001_in01_in01 {
-	float: left;
-}
-
-#div001_in01_in02 {
-	float: right;
-}
-
-#div001_in01_in02_in01 {
-	text-align: right;
-	width: 230px;
-	height: 40px;
-	background-color: black;
-	border-bottom: 2px solid white;
-}
-
-#div001_in01_in02_in01>img {
-	width: 20px;
-}
-
-#div001_in01_in02_in01:hover {
-	cursor: pointer;
-	border-bottom-color: red;
-}
-
-#div001_in01_in02_in02 {
-	width: 230px;
-	background-color: white;
-	box-shadow: 0px 0px 5px;
-	display: none;
-	position: absolute;
-	z-index: 2;
-}
-
-#div001_in01_in02_in02>div {
-	height: 40px;
-	line-height: 40px;
-}
-
-.div001_in01_in02_in02_in01 {
-	border-bottom: 3px solid gray;
-	width: 210px;
-	font-weight: bold;
-	margin: 10px;
-}
-
-#div001_in01_in02_in02>div>input {
-	border: none;
-	height: 35px;
-	width: 160px;
-	background-color: #f2f2f2;
-	text-align: center;
-}
-
-#div001_in01_in02_in02>div>select {
-	border: none;
-	height: 35px;
-	width: 210px;
-	background-color: #f2f2f2;
-	text-align-last: center;
-}
-
-#hearderInput001 {
-	margin: 10px;
-	border: none;
-	color: white;
-}
-
-#hearderInput001:hover {
-	cursor: pointer;
-	color: red;
-}
-</style>
-
-<body>
+													</ul>
+												</li>
+								</ul>
+							</div>
+			</div>
+		</nav>
+	</body>
 	<script>
-	function logout() {
-		if(confirm("정말 로그아웃 하시겠습니까?")){
-			location.href = "<%=request.getContextPath() %>/user/logout.do";
-			alert("로그아웃되었습니다");
-	}
-	}
-	
 
-	var searchTemp = `
+
+		$("#div001_in01_in02").on("click", function () {
+			location.href = "<%=request.getContextPath() %>/board/search.do";
+		})
+
+		$("#btnLogout").on("click", function () {
+			if (confirm("정말 로그아웃 하시겠습니까?")) {
+				location.href = "<%=request.getContextPath() %>/user/logout.do";
+				alert("로그아웃되었습니다");
+			}
+		});
+
+		$(".dropdown-toggle").on("click", function () {
+			$(".dropdown-menu").slideToggle("fast");
+		})
+
+		function logout() {
+			if (confirm("정말 로그아웃 하시겠습니까?")) {
+				location.href = "<%=request.getContextPath() %>/user/logout.do";
+				alert("로그아웃되었습니다");
+			}
+		}
+
+
+		var searchTemp = `
 
 		{{ for(var i=0; i<searchList.length; i++){  var search=searchList[i]; }}
          <figure>
-            <div onclick="searchImgModalClick()" onmouseover="searchImgModalOver()" onmouseout="searchImgModalOut()" class="searchImgModal" id="div111">찜</div>
+            <div onclick="searchImgModalClick()" onmouseover="searchImgModalOver()" onmouseout="searchImgModalOut()" class="searchImgModal">찜</div>
             <img onmouseover="searchImg01Over()" onmouseout="searchImg01Out()" class="searchImg01" src="{{=search['pd_image'] }} " onclick="location.href='http://localhost:8088/trip/board/detail.do?pd_seq={{=search['pd_seq'] }} ' ">
             <div onmouseover="searchImgModal2Over()" onmouseout="searchImgModal2Out()" class="searchImgModal2">예약하기</div>
              <figcaption>
-				<p class="pd_name001">{{=search['pd_name'] }}</p>
-	            <p><span class="pd_startDate001">{{=search['pd_startDate'] }}</span> ~ <span class="pd_endDate001">{{=search['pd_endDate'] }}</span></p>
+				<p>{{=search['pd_name'] }}</p>
+	            <p>{{=search['pd_startDate'] }} ~ {{=search['pd_endDate'] }}</p>
 	            <p># {{=search['pd_theme'] }} # {{=search['pd_theme'] }} # {{=search['pd_theme'] }}</p>
-             	<p style="display:none" class="pd_seq001">{{=search['pd_seq'] }}</p>
-	            <p style="display:none" class="pd_price001">{{=search['pd_price'] }}</p>
-	            <p style="display:none" class="u_id001">${member.u_id}</p>
              </figcaption>
          </figure>     
-         
 		 {{ } }}
 	
 	`
 
-		$(document).ready(function() {
-			$("#div001_in01_in02_in01").click(function() {
+		$(document).ready(function () {
+			$("#div001_in01_in02_in01").click(function () {
 				$("#div001_in01_in02_in02").slideToggle("fast");
 			})
-			
-			
-			
-			
 		});
 
 		function search() {
@@ -172,182 +255,44 @@
 			var endDate = $('.endDate').val();
 
 			$.ajax({
-				type : 'POST',
+				type: 'POST',
 				/* data : JSON.stringify(param), */
-				data : {
-					location : $('.location').val(),
+				data: {
+					location: $('.location').val(),
 					//keyword : $('.land').val(),
-					startDate : $('.startDate').val(),
-					endDate : $('.endDate').val(),
+					startDate: $('.startDate').val(),
+					endDate: $('.endDate').val(),
 				},
-				
-				url : "http://localhost:8088/trip/board/search.do",
-				
-				success : function(data) {
+
+				url: "http://localhost:8088/trip/board/search.do",
+
+				success: function (data) {
 					//alert("송신완료");
-					
+
 					var searchList = JSON.parse(data).searchList;
 
-					if(searchList===""){
+					if (searchList === "") {
 						alert('출발 날짜와 도착날짜를 확인해주세요!')
-						
-					}else if(searchList==="contentMiss"){
+
+					} else if (searchList === "contentMiss") {
 						alert('검색할 정보가 없습니다!')
 
-					}else{
-					var compiled = _.template(searchTemp,null, {
-					   interpolate :  /\{\{\=(.+?)\}\}/g,
-					   evaluate: /\{\{(.+?)\}\}/g
-					});
-					//console.log(searchList);
-					var html = compiled({"searchList": searchList});
-					//html.trigger("create")
-					$('#searchDiv001').html(html);
+					} else {
+						var compiled = _.template(searchTemp, null, {
+							interpolate: /\{\{\=(.+?)\}\}/g,
+							evaluate: /\{\{(.+?)\}\}/g
+						});
+						//console.log(searchList);
+						var html = compiled({ "searchList": searchList });
+						//html.trigger("create")
+						$('#searchDiv001').html(html);
+					}
 				}
-				}
-				
-				
-				
 
 			});
 		}
-		
-		//user logout
-<%-- 		$("#btnLogout").on("click", function(){
-			if(confirm("정말 로그아웃 하시겠습니까?")){
-			location.href = "<%=request.getContextPath() %>/user/logout.do";
-			alert("로그아웃되었습니다");
-			}
-		}); --%>
 
-		
+
 	</script>
 
-
-
-	<div id="div001">
-		<div id="div001_in01">
-			<div id="div001_in01_in01">
-				<a href="<%=request.getContextPath()%>/">&nbsp;
-					홈 &nbsp;</a> 
-					<%
-		            String u_id = (String) session.getAttribute("u_id");
-		            // 미로그인 시,
-		            if(u_id == null) { %>
-		            <a href="<%=request.getContextPath()%>/user/login.do">로그인 &nbsp;</a>
-		            <a href="<%=request.getContextPath()%>/user/myPageInfo.do?u_id=${member.u_id}">회원정보 &nbsp;</a>
-					<a href="<%=request.getContextPath()%>/user/cs.do">고객센터&nbsp;</a> 
-					<a href="<%=request.getContextPath()%>/wishlist/list.do?u_id=${member.u_id }">찜&nbsp;</a> 
-					<a href="<%=request.getContextPath()%>/userRes/list.do">예약조회&nbsp;</a> 
-					<a href="<%=request.getContextPath()%>/board/search.do">리스트 &nbsp;</a>
-		            <%}
-		            // 로그인 성공 시,
-		            else{%> 
-		              <a onclick="logout()">&nbsp;로그아웃 &nbsp;</a>
-		            <a href="<%=request.getContextPath() %>/user/myPageInfo.do?u_id=${member.u_id}">회원정보 &nbsp;</a>
-					<a href="<%=request.getContextPath()%>/user/cs.do">고객센터&nbsp;</a> 
-					<a href="<%=request.getContextPath()%>/wishlist/list.do?u_id=${member.u_id }">찜&nbsp;</a> 
-					<a href="<%=request.getContextPath()%>/userRes/list.do">예약조회&nbsp;</a> 
-					<a href="<%=request.getContextPath()%>/board/search.do">리스트 &nbsp;</a>
-           		    <a style="color: green;"> " ${member.u_id} 님 환영합니다. "</a>
-         	   <%}%>
-					
-					
-			</div>
-			<div id="div001_in01_in02">
-				<div id="div001_in01_in02_in01">
-					<img src="http://jjcom0214.cafe24.com/web/OneTrillion/search3.png"
-						alt="">
-				</div>
-				<div id="div001_in01_in02_in02">
-					<div style="height: 10px;"></div>
-					<div class="div001_in01_in02_in02_in01">&nbsp;여행지</div>
-					<div>
-						<select name="" class="nation"
-							style="margin: 10px; margin-top: 0;">
-							<option value="korea">국내</option>
-							<option value="abroad">해외</option>
-						</select>
-					</div>
-					<div>
-						<select name="" class="location" style="margin: 10px; margin-top: 0;">
-							
-							<option value="seoul">서울</option>
-							<option value="kyeongki">경기</option>
-							<option value="incheon">인천</option>
-							<option value="kangwon">강원</option>
-							<option value="chungnam">충남</option>
-							<option value="chungbuk">충북</option>
-							<option value="jeonbuk">전북</option>
-							<option value="jeonnam">전남</option>
-							<option value="kyungbuk">경북</option>
-							<option value="kyungnam">경남</option>
-							<option value="jeju">제주</option>
-
-						</select>
-					</div>
-<!-- 					<div>
-						<select name="" class="land" style="margin: 10px; margin-top: 0;">
-							<option value="hanok">전주한옥마을</option>
-							<option value="karosu">가로수길</option>
-							<option value="sungsan">성산일출봉</option>
-						</select>
-					</div> -->
-					<div style="height: 10px;"></div>
-					<div class="div001_in01_in02_in02_in01">&nbsp;여행 예정일</div>
-					<div style="margin: 10px; height: 30px;">
-						출발 : <input class="startDate" type="date" value="2021-01-01">
-					</div>
-					<div style="margin: 10px; height: 30px;">
-						도착 : <input class="endDate" type="date"  value="2021-01-30">
-					</div>
-<!-- 					<div style="height: 10px;"></div>
-					<div class="div001_in01_in02_in02_in01">&nbsp;인원</div>
-					<div style="margin: 10px; height: 30px;">
-						성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인 : <select
-							style="width: 127px; float: right;" name="" id="">
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
-						</select>
-					</div>
-					<div style="margin: 10px; height: 30px;">
-						18세이하 : <select style="width: 127px; float: right;" name="" id="">
-							<option value="">0</option>
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
-						</select>
-					</div>
-					<div style="margin: 10px; height: 30px;">
-						반려동물 : <select style="width: 127px; float: right;" name="" id="">
-							<option value="">0</option>
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
-						</select>
-					</div> -->
-					<div style="height: 10px;"></div>
-					<div class="div001_in01_in02_in02_in01">&nbsp;가격</div>
-					<div style="margin: 10px; height: 30px;">
-						최소 : <input type="text" value="10000">
-					</div>
-					<div style="margin: 10px; height: 30px;">
-						최대 : <input type="text" value="1000000">
-					</div>
-					<div style="height: 10px;"></div>
-					<div style="height: 60px;">
-						<input id="hearderInput001" type="button" value="검색"
-							onclick="search()"
-							style="width: 210px; margin: 10px; border: none; background-color: black;">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-</body>
-</html>
+	</html>

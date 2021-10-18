@@ -1,29 +1,84 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>하단 개정정보처리방침</title>
-</head>
-<style>
-*{margin: 0; padding: 0;}
-.tbl_vertical, .tbl_basic{width: 100%;}
-.tbl_vertical th{height: 50px; background-color:#ededed; border-top: 2px solid black;}
-.tbl_vertical td{height: 50px; border-bottom: 1px solid #ededed;}
-.tbl_basic th{height: 50px; background-color: #ededed;}
-.tbl_basic td{height: 50px; border-bottom: 1px solid #ededed;}
-.tbl_basic tr:nth-child(1) th, .tbl_basic tr:nth-child(1) td{border-top: 2px solid black; border-bottom: 1px solid #ededed;}
-.list_circle, .list_number{list-style:none;}
-.list_circle ul{list-style:none;}
-.list_circle li, .list_number li{margin-left: 40px; text-indent: -20px;}
-.list_circle span{font-size: 130%;}
-.tit_main_txt{font-size: 110%; margin-top: 30px;}
-.tit_sub{font-size: 100%; margin-top: 30px;}
-.txt_center{text-align: center;}
-</style>
-<body>
-	<jsp:include page="../include/header2.jsp"></jsp:include>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>하단 개정정보처리방침</title>
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.tbl_vertical,
+		.tbl_basic {
+			width: 100%;
+		}
+
+		.tbl_vertical th {
+			height: 50px;
+			background-color: #ededed;
+			border-top: 2px solid black;
+		}
+
+		.tbl_vertical td {
+			height: 50px;
+			border-bottom: 1px solid #ededed;
+		}
+
+		.tbl_basic th {
+			height: 50px;
+			background-color: #ededed;
+		}
+
+		.tbl_basic td {
+			height: 50px;
+			border-bottom: 1px solid #ededed;
+		}
+
+		.tbl_basic tr:nth-child(1) th,
+		.tbl_basic tr:nth-child(1) td {
+			border-top: 2px solid black;
+			border-bottom: 1px solid #ededed;
+		}
+
+		.list_circle,
+		.list_number {
+			list-style: none;
+		}
+
+		.list_circle ul {
+			list-style: none;
+		}
+
+		.list_circle li,
+		.list_number li {
+			margin-left: 40px;
+			text-indent: -20px;
+		}
+
+		.list_circle span {
+			font-size: 130%;
+		}
+
+		.tit_main_txt {
+			font-size: 110%;
+			margin-top: 30px;
+		}
+
+		.tit_sub {
+			font-size: 100%;
+			margin-top: 30px;
+		}
+
+		.txt_center {
+			text-align: center;
+		}
+	</style>
+
+	<body>
 		<div class="wrap_agree" style="width: 1100px; margin: auto;">
 			<h5 class="tit_main_txt">1. 총칙</h5>
 			<ol class="list_circle">
@@ -45,7 +100,7 @@
 
 			<h6 class="tit_sub">1. [회원가입 시]</h6>
 			<table class="tbl_vertical">
-                <colgroup>
+				<colgroup>
 					<col style="width: 16%">
 					<col style="width: 40%">
 					<col style="width: 24%">
@@ -93,7 +148,7 @@
 
 			<h6 class="tit_sub">2. [여행상품 예약 시]</h6>
 			<table class="tbl_vertical">
-                <colgroup>
+				<colgroup>
 					<col style="width: 16%">
 					<col style="width: 40%">
 					<col style="width: 24%">
@@ -168,7 +223,7 @@
 			</table>
 			<h6 class="tit_sub">3. [쇼핑 서비스 이용 시]</h6>
 			<table class="tbl_vertical">
-                <colgroup>
+				<colgroup>
 					<col style="width: 16%">
 					<col style="width: 40%">
 					<col style="width: 24%">
@@ -183,19 +238,19 @@
 					</tr>
 				</thead>
 				<tbdoy>
-				<tr>
-					<td class="txt_center">필수</td>
-					<td>성명, 아이디, 전화번호, 휴대폰번호, 이메일, 주소, 개인통관고유부호(입력 시), 영문성명 및
-						영문주소(입력 시), ※ 구매자와 수취인이 다를 경우에는 수취인의 정보(아이디, 이메일 제외)가 제공될 수 있습니다.</td>
-					<td>청약의사의 확인, 거래이행, 배송, 고객상담, AS등 불만 처리, 해외 직배송 상품 통관업무처리</td>
-					<td>이용 목적 달성 시 까지 또는 법정 의무 보유기간</td>
-				</tr>
+					<tr>
+						<td class="txt_center">필수</td>
+						<td>성명, 아이디, 전화번호, 휴대폰번호, 이메일, 주소, 개인통관고유부호(입력 시), 영문성명 및
+							영문주소(입력 시), ※ 구매자와 수취인이 다를 경우에는 수취인의 정보(아이디, 이메일 제외)가 제공될 수 있습니다.</td>
+						<td>청약의사의 확인, 거래이행, 배송, 고객상담, AS등 불만 처리, 해외 직배송 상품 통관업무처리</td>
+						<td>이용 목적 달성 시 까지 또는 법정 의무 보유기간</td>
+					</tr>
 				</tbdoy>
 			</table>
 
 			<h6 class="tit_sub">4. [기타 서비스 및 서비스 처리 과정에서 생성/수집되는 정보]</h6>
 			<table class="tbl_vertical">
-                <colgroup>
+				<colgroup>
 					<col style="width: 16%">
 					<col style="width: 40%">
 					<col style="width: 24%">
@@ -271,7 +326,7 @@
 			</ol>
 			<br>
 			<table class="tbl_vertical">
-                <colgroup>
+				<colgroup>
 					<col style="width: 16%">
 					<col>
 					<col>
@@ -357,14 +412,16 @@
 								<li>가. 컴퓨터통신, 인터넷 로그기록자료, 접속지 추적자료 : 3개월</li>
 							</ul>
 						</li>
-					</ol></li>
+					</ol>
+				</li>
 				<li><span>②</span> 다음의 예외적인 사유에 해당하는 경우 해당 사유 종료 시까지 개인정보를
 					보유합니다.
 					<ol class="list_number">
 						<li>관계 법령 위반에 따른 수사•조사 등이 진행 중인 경우 : 해당 수사•조사 종료 시까지</li>
 						<li>서비스 이용에 따른 채권•채무관계 잔존할 경우 : 해당 채권•채무관계 정산 완료 시까지</li>
 						<li>재화 또는 서비스 제공의 경우: 재화•서비스 공급 완료 및 요금 결제•정산 완료 시까지</li>
-					</ol></li>
+					</ol>
+				</li>
 				<li><span>③</span> 개인정보를 파기하지 않고 보존하는 경우에는, 다른 개인정보 및 개인정보파일과
 					분리하여 보관하고 해당 목적을 달성하기 위한 목적으로만 이용합니다.</li>
 				<li><span>④</span> 회사는 개인정보보호법 제39조의6에 따라 12개월간 이용내역 (로그인, 주문,
@@ -383,7 +440,7 @@
 					다음과 같습니다</li>
 			</ol>
 			<table class="tbl_vertical">
-                <colgroup>
+				<colgroup>
 					<col style="width: 24%">
 					<col>
 					<col style="width: 32%">
@@ -408,23 +465,23 @@
 					</tr>
 					<tr>
 						<td><span class="txt_align type_btn">항공사
-						</span></td>
+							</span></td>
 					</tr>
 					<tr>
 						<td><span class="txt_align type_btn">크루즈 업체
-						</span></td>
+							</span></td>
 						<td>크루즈 예약 진행 및 관리</td>
 						<td>성명(국문/영문), 생년월일, 여권정보(여권번호, 여권만료일), 휴대전화번호</td>
 					</tr>
 					<tr>
 						<td><span class="txt_align type_btn">호텔 및 숙박시설
-						</span></td>
+							</span></td>
 						<td>국내 외 호텔 및 리조트, 숙박업체 예약</td>
 						<td>성명(국문/영문), 생년월일, 여권정보(여권번호, 여권만료일), 예약자 휴대전화번호</td>
 					</tr>
 					<tr>
 						<td><span class="txt_align type_btn">랜드사
-						</span></td>
+							</span></td>
 						<td>국내/외 행사 진행 및 고객 관리</td>
 						<td>필수 :성명(국문/영문), 성별, 생년월일, 여권정보(여권번호, 여권만료일) <br> 선택 :
 							생년월일, 주소, 이메일 주소, 메신저 ID(카카오톡 등)
@@ -432,13 +489,13 @@
 					</tr>
 					<tr>
 						<td><span class="txt_align type_btn">비자 발급 대행사
-						</span></td>
+							</span></td>
 						<td>비자 발급 및 확인</td>
 						<td>성명(국문/영문), 생년월일, 성별, 여권정보(여권번호, 여권만료일), 휴대전화번호,이메일주소</td>
 					</tr>
 					<tr>
 						<td><span class="txt_align type_btn">렌터카 업체
-						</span></td>
+							</span></td>
 						<td>국내외 렌터카 예약</td>
 						<td>[국내] 성명(국문), 핸드폰번호, 전화번호, 생년월일, 이메일 주소<br> [국외]
 							성명(영문), 핸드폰번호, 전화번호, 생년월일, 이메일 주소
@@ -476,7 +533,7 @@
 					</tr>
 					<tr>
 						<td><span class="txt_align type_btn">쇼핑 물품 공급사
-						</span></td>
+							</span></td>
 						<td>쇼핑에서 상품 구매 시 청약의사의 확인, 거래 이행, 배송, 고객상담, AS등 불만 처리</td>
 						<td>성명, 아이디, 전화번호, 휴대폰번호, 이메일, 개인통관고유부호(입력 시), 영문성명 및 영문주소(입력
 							시), ※ 구매자와 수취인이 다를 경우에는 수취인의 정보(아이디, 이메일 제외)가 제공될 수 있습니다.</td>
@@ -497,7 +554,7 @@
 					업무를 외부업체에 위탁하고 있습니다. 회사는 개인정보 처리 업무 위탁 시 관계 법령에 따라 개인정보가 안전하게 관리될 수
 					있도록 외부업체와의 계약에 필요한 사항을 규정하고 있으며, 위탁 처리하는 정보는 필요한 최소한의 정보만을 제공합니다.
 					<table class="tbl_vertical">
-                        <colgroup>
+						<colgroup>
 							<col style="width: 33.3%">
 							<col style="width: 33.3%">
 							<col>
@@ -512,7 +569,7 @@
 						<tbody>
 							<tr>
 								<td><span class="txt_align type_btn">대리점
-								</span></td>
+									</span></td>
 								<td>여행상품 예약, 상담, 결제 안내</td>
 								<td rowspan="8">위탁 목적이 달성 될 때까지</td>
 							</tr>
@@ -550,10 +607,11 @@
 								<td>상품 예약, 상담, 결제</td>
 							</tr>
 						</tbody>
-					</table></li>
+					</table>
+				</li>
 				<li><span>②</span> 개인정보 처리위탁 중 국외법인에서 처리하는 위탁업무는 아래와 같습니다.
 					<table class="tbl_basic">
-                        <colgroup>
+						<colgroup>
 							<col style="width: 33.3%">
 							<col style="width: 33.3%">
 							<col>
@@ -598,7 +656,8 @@
 								<td>회원 탈퇴 시 또는 위탁 계약 종료 시까지</td>
 							</tr>
 						</tbody>
-					</table></li>
+					</table>
+				</li>
 				<li><span>③</span> 회사는 위탁계약 체결시 개인정보의 안전한 관리를 위해 수탁자가 준수하여야 할
 					사항을 계약서 등 문서에 명시하고, 수탁자가 개인정보를 안전하게 처리하는지를 감독하고 있습니다.</li>
 				<li><span>④</span> 위탁업무의 내용이나 수탁자가 변경될 경우에는 지체없이 본 개인정보 처리방침을
@@ -630,7 +689,8 @@
 									소각하여 파기합니다.</li>
 							</ul>
 						</li>
-					</ol></li>
+					</ol>
+				</li>
 				<li><span>⑤</span> 수집목적 또는 제공받은 목적이 달성된 경우에도 전자상거래법 등 법령의 규정에
 					의하여 보존할 필요성이 있는 경우에는 회원의 개인정보를 보유할 수 있습니다.</li>
 			</ol>
@@ -652,7 +712,8 @@
 									있습니다.</li>
 							</ul>
 						</li>
-					</ol></li>
+					</ol>
+				</li>
 				<li><span>②</span> 관리적 대책
 					<ol class="list_number">
 						<li>회사는 개인정보 취급자를 최소한의 인원으로 제한하며, 개인정보를 처리하는 직원을 대상으로 새로운 보안
@@ -663,7 +724,8 @@
 							바람직합니다.</li>
 						<li>그 외 내부 관리자의 실수나 기술관리 상의 사고로 인해 개인정보의 상실, 유출, 위조•변조, 훼손이
 							유발될 경우 회사는 즉각 이용자에게 사실을 알리고 적절한 대책과 보상을 강구할 것입니다.</li>
-					</ol></li>
+					</ol>
+				</li>
 				<li><span>③</span> 기타 ‘개인정보보호법’, ‘정보통신망 이용 촉진 및 정보보호에 관한 법률’에
 					의한 기술적, 관리적 대책을 준수합니다.</li>
 			</ol>
@@ -685,7 +747,8 @@
 							서비스를 제공하는 데 이용합니다.</li>
 						<li>회사가 진행하는 각종 이벤트에서 이용자의 참여 정도 및 방문 횟수를 파악하여 차별적인 응모 기회를
 							부여하고 개인의 관심 분야에 따라 차별화된 정보를 제공하기 위한 자료로 이용됩니다.</li>
-					</ol></li>
+					</ol>
+				</li>
 				<li><span>③</span> IP주소 및 접속기기 정보
 					<ol class="list_number">
 						<li>IP 주소는 인터넷 망 사업자가 인터넷에 접속하는 이용자의 PC 등 기기에 부여하는 온라인 주소정보
@@ -693,7 +756,8 @@
 						<li>기기정보는 기기의 구동을 위해 사용되는 S/W를 통해 확인 가능한 정보를 일컫습니다.
 							OS(Windows, MAC 등) 접속한 브라우저 종류 등을 수집하며 모바일앱 접속의 경우 모바일 플랫폼 관련정보
 							등을 의미합니다.</li>
-					</ol></li>
+					</ol>
+				</li>
 			</ol>
 			<h5 class="tit_main_txt">10. 정보주체의 권리 및 그 행사방법에 관한 사항</h5>
 			<ol class="list_circle">
@@ -703,7 +767,8 @@
 						<li>오류 등이 있을 경우 정정 요구</li>
 						<li>삭제요구</li>
 						<li>처리정지 요구</li>
-					</ol></li>
+					</ol>
+				</li>
 				<li><span>②</span> 제1항에 따른 권리 행사는 회사에 대해 서면, 전화, 전자우편,
 					모사전송(FAX) 등을 통하여 하실 수 있으며 회사는 이에 대해 지체 없이 조치하겠습니다.</li>
 				<li><span>③</span> 정보주체가 개인정보 오류 등에 대한 정정 또는 삭제를 요구한 경우에는 회사는
@@ -724,25 +789,26 @@
 						<li>- 직위 : 인턴</li>
 						<li>- 연락처 : 010-8494-6992</li>
 						<li>- 메일 : <a href="mailto:crinsader@naver.com">crinsader@naver.com</a></li>
-					</ul></li>
+					</ul>
+				</li>
 				<li><span>②</span> 기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기
 					바랍니다.
 					<ol class="list_number">
-						<li>개인정보분쟁조정위원회(<a href="http://www.kopico.go.kr"
-							target="_blank">www.kopico.go.kr</a> /국번없이 118)
+						<li>개인정보분쟁조정위원회(<a href="http://www.kopico.go.kr" target="_blank">www.kopico.go.kr</a> /국번없이
+							118)
 						</li>
 						<li>개인정보보호위원회(<a href="http://www.pipc.go.kr" target="_blank">www.pipc.go.kr</a>
 							/국번없이 118)
 						</li>
-						<li>대검찰청 사이버범죄수사단(<a href="http://www.spo.go.kr"
-							target="_blank">www.spo.go.kr</a> /국번없이 1301)
+						<li>대검찰청 사이버범죄수사단(<a href="http://www.spo.go.kr" target="_blank">www.spo.go.kr</a> /국번없이 1301)
 						</li>
 						<li>경찰청 사이버안전국(<a href="http://cyberbureau.police.go.kr"
-							target="_blank">cyberbureau.police.go.kr</a> /국번없이 182)
+								target="_blank">cyberbureau.police.go.kr</a> /국번없이 182)
 						</li>
-					</ol></li>
+					</ol>
+				</li>
 			</ol>
 		</div>
-<jsp:include page="../include/footer.jsp"></jsp:include>
-</body>
-</html>
+	</body>
+
+	</html>

@@ -22,7 +22,7 @@
              <tr>
                  <th>상품번호</th>
                  <td>
-                	  <input name = "pd_seq" value = "${replyInsertDto.pd_seq}"/>
+                	  <input name = "pd_seq"  value = "${replyInsertDto.pd_seq}"/>
                  </td>
              </tr>
              <tr>

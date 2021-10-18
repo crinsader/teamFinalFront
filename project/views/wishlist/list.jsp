@@ -7,16 +7,19 @@
       <title>회원 찜 내역</title>
       <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+          crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+          integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+          crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+          integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+          crossorigin="anonymous"></script>
       <style>
+  
         * {
           margin: 0;
           padding: 0;
@@ -34,47 +37,95 @@
         <script> alert('로그인이 필요합니다.'); window.location.href = "http://localhost:8088/trip/user/login.do";</script>
         <%}%>
           <div style="margin:auto; width:1100px; height:100%; min-height: 800px;">
-            <div class="list-group" id="asdf"
-              style="float:left;width:180px; height:600px; margin-top: 15px; position: relative;">
-              <a href="#" class="list-group-item list-group-item-action"
+        <!--  왼쪽 메뉴 ---------------------------------------------------------------------------------------------->
+        <div class="list-group" id="leftSlide01"
+            style="float:left;width:180px; height:600px; margin-top: 15px; position: relative;">
+            <a href="#" class="list-group-item list-group-item-action"
                 style="background-color: #ededed; color: #343a40; font-weight: bold;">마이페이지</a>
-              <a href="#" class="list-group-item list-group-item-action">개인정보</a>
-              <a href="#" class="list-group-item list-group-item-action">1대1문의</a>
-              <a href="#" class="list-group-item list-group-item-action">찜 내역</a>
-              <a href="#" class="list-group-item list-group-item-action">예약내역</a>
-              <a href="#" class="list-group-item list-group-item-action">Contact Us</a>
-            </div>
-            <div style="float:right;width:915px;">
-              <div>
-                <nav style="margin-top:15px; height: 50px; line-height: 40px; background-color: #ededed; ">
-                  <a class="navbar-brand" style="font-size: 100%; margin-left: 20px; color: #343a40; font-weight: bold;"
-                    href="#">찜 내역</a>
+            <a href="#" class="list-group-item list-group-item-action">개인정보</a>
+            <a href="#" class="list-group-item list-group-item-action">1대1문의</a>
+            <a href="#" class="list-group-item list-group-item-action">찜 내역</a>
+            <a href="#" class="list-group-item list-group-item-action">예약내역</a>
+        </div>
+        <!--  왼쪽 메뉴 끝---------------------------------------------------------------------------------------------->
+        <div style="float:right; width:915px; height: auto;">
+            <!--  div상단 바---------------------------------------------------------------------------------------------->
+                <nav style="margin-top:15px; height: 45px; line-height: 45px; background-color: #ededed; ">
+                    <a class="navbar-brand"
+                        style="font-size: 100%; margin-left: 20px; color: #343a40; font-weight: bold;"
+                        href="#">1대1문의</a>
                 </nav>
+            <!--  div상단 바 끝---------------------------------------------------------------------------------------------->
+            <div style="margin-top: 10px; margin-bottom: 10px;">
+              <!--검색 -------------------------------------------------------------------------------->
+              <div style="float: left;">
+                <div class="input-group mb-3" style="width: 300px; float: left; margin-right: 10px;">
+                    <input type="text" class="form-control keyword" placeholder="검색할 단어를 입력하세요"
+                        aria-label="Recipient's username" aria-describedby="button-addon2"
+                        style="border:1px solid #ededed;">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                        style="border:1px solid #ededed">검색</button>
+                </div>
               </div>
-              <div style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
-               <!--  <a href="#" class="btn btn-secondary" id="selectAll">전체선택</a> -->
-                <a href="#" class="btn btn-secondary" onclick="DeleteClick()">선택상품삭제</a>
+              <!--검색 -------------------------------------------------------------------------------->
+              <div style="float: right;">
+                <input type="button" id="check_all" class="btn btn-secondary check_Choice" value="전체선택">
+                <a href="#" class="btn btn-secondary" onclick="DeleteClick()">선택삭제</a>
               </div>
-              <div style="column-width: 100;">
+
+            </div>
+              <div style="column-width: 100; clear: both;">
                 <!---------forEach 시작-------------------------------------------------------------------------------------------------------------------------->
                 <c:forEach var="board" items="${wishList }">
-                <div class="card" style="width: 18rem;margin-bottom: 15px; display: inline-block; margin-left:10px; ">
-                  <img class="card-img-top" src="${board.pd_image }" alt="Card image cap">
-                  <div style="padding: 10px;">
-                    <h5 style="margin: 0;" id="pd_name">${board.pd_name }</h5>
-                    <h5 style="margin: 0;" class="w_seq">${board.w_seq }</h5>
-                    <p style="margin: 0;">${board.pd_startDate } ~ ${board.pd_endDate }</p>
-                    <p style="margin: 0; margin-bottom: 10px;">금액 : ${board.pd_price }</p>
-                    <input id="test" type="checkbox" name="checkbox_check" class="ckbox" 
-                      style="position:absolute; top:10px; left:10px; width: 25px; height: 25px; cursor: pointer; opacity: 0.5;" value="${board.w_seq}">
-                    <a href="<%=request.getContextPath()%>/board/detail.do?pd_seq=${board.pd_seq }" class="btn btn-secondary">Detail</a>
-                    <a href="#" onclick="delBtn(${board.w_seq })" class="btn btn-secondary">삭제</a>
-                    <p style="display: none"><span id="u_id">${member.u_id}</span> </p>
+                  <div class="card" style="width: 18rem;margin-bottom: 15px; display: inline-block; margin-left:10px; ">
+                    <img class="card-img-top" src="${board.pd_image }" alt="Card image cap"  style="height:220px; object-fit:cover">
+                    <div style="padding: 10px;">
+                      <h5 style="margin: 0; font-weight: bold;" id="pd_name">${board.pd_name }</h5>
+                      <h5 style="display: none; margin: 0;" class="w_seq">${board.w_seq }</h5>
+                      <p style="margin: 0;">${board.pd_startDate } ~ ${board.pd_endDate }</p>
+                      <p style="margin: 0; margin-bottom: 10px;">금액 : ${board.pd_price }</p>
+                      <input id="test" type="checkbox" name="checkbox_check" class="ckbox" 
+                        style="position:absolute; top:10px; left:10px; width: 25px; height: 25px; cursor: pointer; opacity: 0.5;" value="${board.w_seq}">
+                      <a href="<%=request.getContextPath()%>/board/detail.do?pd_seq=${board.pd_seq }" class="btn btn-secondary">상세보기</a>
+                      <a href="#" onclick="delBtn(${board.w_seq })" class="btn btn-secondary">삭제</a>
+                      <p style="display: none"><span id="u_id">${member.u_id}</span> </p>
+                    </div>
                   </div>
-                </div>
-                      </c:forEach> 
+                </c:forEach> 
                 <!---------forEach 끝-------------------------------------------------------------------------------------------------------------------------->
               </div>
+                <!--페이징 tag 시작----------------------------------------------------------------------------------------------------------------------------------------->
+                              
+                <div style="margin:auto; width:220px;margin-bottom:40px">
+                  <ul class="pagination">
+                      <li class="page-item">
+                          <a class="page-link" href="#" aria-label="Previous"
+                              style="color: gray; border:1px solid #ededed">
+                              <span aria-hidden="true">&laquo;</span>
+                              <!-- <span class="sr-only">Previous</span> -->
+                          </a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#"
+                              style="color: gray;border:1px solid #ededed">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#"
+                              style="color: gray;border:1px solid #ededed">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#"
+                              style="color: gray;border:1px solid #ededed">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#"
+                              style="color: gray;border:1px solid #ededed">4</a></li>
+                      <li class="page-item"><a class="page-link" href="#"
+                              style="color: gray;border:1px solid #ededed">5</a></li>
+                      <li class="page-item">
+                          <a class="page-link" href="#" aria-label="Next"
+                              style="color: gray;border:1px solid #ededed">
+                              <span aria-hidden="true">&raquo;</span>
+                              <!-- <span class="sr-only">Next</span> -->
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+ 
+              <!--페이징 tag 끝----------------------------------------------------------------------------------------------------------------------------------------->
             </div>
           </div>
           <script>
@@ -93,21 +144,35 @@
       	        type:'POST',
       	        data: seqdata,
       	        success:function(data){
-      	            alert("해당 상품이 삭제되었습니다.");
+      	            alert("정상적으로 삭제되었습니다.");
       	          location.href = "http://localhost:8088/trip/wishlist/list.do?u_id="+u_id;  							            	            
       	        }
       	    });	//ajax 종료
           	} //if문 종료					    	
           }; //delBtn 함수 종료
-          
-          /* 전체 선택 버튼 구현중... 시간이 남으면 구현해보자ㅜ
-          $(document).on('click',"#selectAll",function(){
-          	if($("#selectAll").is("checked")){
-          		$("input:checkbox[name='checkbox_check']").prop("checked", true);
-          	}else{
-          		$("input:checkbox[name='checkbox_check']").prop("checked", false);
-          	}
-          });  */
+
+        //-- 전체선택 & 해제 (체크박스)---------------------------------------------------------------------------------------
+          $(".check_Choice").click(function() {
+            if($("#check_all").prop("id") == "check_all"){
+              $("input[name=checkbox_check]:checkbox").prop("checked", true);
+              $("#check_all").prop("id", "unCheck_all")
+              $("#unCheck_all").val("선택해제")
+            }else if($("#unCheck_all").prop("id") == "unCheck_all"){
+              $("input[name=checkbox_check]:checkbox").prop("checked", false);
+              $("#unCheck_all").prop("id", "check_all")
+              $("#check_all").val("전체선택")
+            }else{
+              console.log("오류 발생. 확인 바랍니다.")
+            }
+          });
+          //-- 전체선택 & 해제 (체크박스) 끝------------------------------------------------------------------------------------
+
+          //검색2 ---------------------------------------------------
+          $(".keyword").keyup(function () {
+              $(".card").hide();
+              $(".card:contains(" + $(this).val() + ")").show();
+          });
+          // 검색2 끝---------------------------------------------------
 
           // 10/14 12:00 이희연 체크박스 선택 삭제 구현 완료(10/16)
           function DeleteClick(){

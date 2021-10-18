@@ -55,52 +55,10 @@
 </head>
 
 <body>
-	<script type="text/javascript">
-		function userResList(){ //회원예약
-			location.href = "http://localhost:8088/trip/adminUserRes/list.do"
-		}		
-		function userManagement(){ // 회원관리
-			location.href = "http://localhost:8088/trip/adminUserManagement/userList"
-		}
-		function priQueList(){ //1:1문의
-			location.href = "http://localhost:8088/trip/admin/list.do"
-		}
-		function noticeList(){ //공지사항
-			location.href = "http://localhost:8088/trip/adminNotice/list.do"
-		}
-		function oftenList(){ //자주묻는질문
-			location.href = "http://localhost:8088/trip/adminOften/list.do"
-		}
-
-	</script>
-
         <div style="width: 1800px; height: 100vh;">
-        <div
-            style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed; background-color: white;">
-            <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
-                    src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-            <div>            		
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onClick="userResList()">회원예약리스트</li>
-                    <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="priQueList()">문의</li>
-                    <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="userManagement()">회원</li>
-                    <li class="list-group-item" onclick="">상품</li>
-                    <li class="list-group-item" onclick="">관리자</li>
-                    <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="noticeList()">공지사항</li>
-                    <li class="list-group-item" onclick="oftenList()">자주질문</li>
-                    <li class="list-group-item" onclick="">로그기록</li>
-                    <li class="list-group-item" onclick="">메모장</li>
 
-                </ul>
-            </div>
-            <c:if test="${sessionScope.AD_ID != null }">
-				<a id="adminLogout" style="cursor: pointer; color: purple; padding: 30px;">${AD_ID } 로그아웃</a>
-			</c:if>
-        </div>
+		<jsp:include page="../include/adminInclude.jsp"></jsp:include>
+
         <div style="float:right; width: 1500px;height: 100%;">
             <div style="width: 1500px; column-count: 3;">
                 <div class="adminMainDiv1">
@@ -148,73 +106,80 @@
                 <div class="adminMainDiv1">
                     <p>공지사항</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminNoticeMini.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/adminNotice/listMini.do" frameborder="0"
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>
                 <div class="adminMainDiv1">
                     <p>자주하는질문</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminOftenMIni.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/adminOften/listMini.do" frameborder="0"
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>
-                <div class="adminMainDiv1">
+                <div class="adminMainDiv1" onclick="link_6()">
                     <p>1대1문의</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminPriQueMini.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/admin/listMini.do" frameborder="0" 
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
 
                 </div>
-                <div class="adminMainDiv1">
+                <div class="adminMainDiv1" onclick="link_7()">
                     <p>회원찜내역</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <iframe src="adminWishMini.html" frameborder="0"
+                    <iframe src="http://localhost:8088/trip/adminWishlist/mini.do" frameborder="0"
                         style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
                 </div>
 
                 <div class="adminMainDiv1" style="height: 640px; margin-bottom: 40px;">
                     <p>메모장</p>
                     <!--요기에 클릭시 해당페이지 넘어가게 설정-->
-                    <textarea class="form-control text11" id="exampleFormControlTextarea1" rows="10"
-                        placeholder="메모를 입력하세요" style="background-color: #f8f9fa; border: 0; resize: none; "></textarea>
-                    <div style="text-align: right;"><button type="button" class="btn btn-secondary"
-                            style="margin-top: 10px; ">메모등록</button></div>
+                    <!-- 메모장 form*********************************************************************************************** -->
+               	<form action="input.do" method="post"  id="form">   
+                     <input type="hidden" name="ad_id" value="${AD_ID }">
+                    
+				 <div class="mb-3">
+		            <input type="hidden" name="ad_to" id="ad_to_in">
+		            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="exampleFormControlSelect1" >
+					  <option selected>받는사람을 선택해주세요</option>					  
+					  <option value="모두에게" >모두에게</option>
+					  <c:forEach var="adminid" items="${adminList }"> 					  
+					  <option value="${adminid.AD_ID}">${adminid.AD_ID}</option>						  
+					  </c:forEach>	 	
+					  <option value="없음">없음</option>
+					</select>
+		          </div>
+		          <div class="mb-3">
+		             <input type="hidden" name="memo_type" id="memo_type_in">
+		            <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="exampleFormControlSelect2">
+					  <option selected>분야을 선택해주세요</option>
+					  <option value="회원예약">회원예약</option>
+					  <option value="비회원예약">비회원예약</option>
+					  <option value="회원정보관리">회원정보관리</option>
+					  <option value="여행리뷰">여행리뷰</option>
+					  <option value="1대1문의">1대1문의</option>
+					  <option value="회원찜내역">회원찜내역</option>
+					  <option value="상품정보">상품정보</option>
+					  <option value="관리자정보">관리자정보</option>
+					  <option value="공지사항">공지사항</option>
+					  <option value="자주하는질문">자주하는질문</option>
+					  <option value="로그기록">로그기록</option>
+					  <option value="메모장">메모장</option>
+					  <option value="기타">기타</option>					  
+					</select>
+		          </div>		          
+		          <div class="mb-3">
+		            <textarea class="form-control" id="message-text" rows="5" name="memo_content" ></textarea>
+		          </div>
+                    <div style="text-align: right;">
+                    	<input type="button" class="btn btn-secondary" style="margin-top: 10px;" value='메모등록' id="submitbtn">
+                    </div>                            
+                  </form>         
                     <p style="background-color: white;">메모 List</p>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">관리자 ID</th>
-                                <th scope="col">내용</th>
-                                <th scope="col">등록날짜</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--메모장 forEach 문 시작 최신 날짜기준으로 4개만 노출 시켜야 함 ------->
-                            <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Otto</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Otto</td>
-                                <td>Thornton</td>
-                            </tr>
-                            <tr>
-                                <td>Larry</td>
-                                <td>Otto</td>
-                                <td>the Bird</td>
-                            </tr>
-                            <tr>
-                                <td>Larry</td>
-                                <td>Otto</td>
-                                <td>the Bird</td>
-                            </tr>
-                            <!--메모장 forEach 문 끝--------------------------------------------->
-                        </tbody>
-                    </table>
+                   <iframe src="http://localhost:8088/trip/adminMemo/listMini.do" frameborder="0"
+                        style="width: 100%; height: 255px; border-radius: 0 0 20px 20px;" scrolling="no"></iframe>
                 </div>
+                <!-- 메모장 끝*********************************************************************************************** -->
             </div>
         </div>
     </div>
@@ -222,14 +187,31 @@
 
 
 <script type="text/javascript">
-$("#adminLogout").on("click", function(){
-    if(confirm("관리자 로그아웃 하시겠습니까?")){
-    location.href = "<%=request.getContextPath()%>/adminLogin/logout.do";
-    alert("로그아웃되었습니다.");
-    }
- });
+
+
+function link_6(){ //1:1문의
+	location.href = "http://localhost:8088/trip/admin/list.do"
+}
+function link_7(){ //찜목록
+	location.href = "http://localhost:8088/trip/adminWishlist/list.do"
+}
 
 
 
+//===============================================================메모장 등록
+	document.getElementById('submitbtn').onclick = function() {      
+		   	 if($('#message-text').val() == ''){   
+		  		 alert('내용을 입력해주세요')
+		  	 }else{
+		  		 document.getElementById('form').submit(); //수정완료   			  		 
+		  	 }
+	};//[submitbtn]
+
+	 $('#exampleFormControlSelect1').change(function() { //select box 받는사람
+		 $('#ad_to_in').val($('#exampleFormControlSelect1').val());                        		 
+	 })
+	 $('#exampleFormControlSelect2').change(function() { //select box 메모유형
+		 $('#memo_type_in').val($('#exampleFormControlSelect2').val());                        		 
+	 })
 </script>
 </html>

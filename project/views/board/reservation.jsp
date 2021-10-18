@@ -200,11 +200,10 @@ $(function() { //이메일 입력
 				res_birth : $("#bookerBirth").val(),
 				res_email : bookerEmail,
 				res_comment : $("#bookerComment").val(),
-				res_phone : $("#bookerPhone").val(),
 				u_id : "${param.u_id}",
+				res_phone : $("#bookerPhone").val(),
 				
 		}
-		
 		$.ajax({
 			type : 'POST',
 			data : bookerData,

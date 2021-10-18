@@ -43,12 +43,15 @@
               </table>
               <script type="text/javascript">
               	function replyDelete(reply_seq){
+
               		var reply_confirm = confirm('댓글을 삭제하시겠습니까?');
+              		
               		if(!reply_confirm){
+              			
               			return false;
               		}else{
               			var replyData = {"reply_seq" : reply_seq}
-              			console.log(reply_seq)
+
               			$.ajax({
 					        url:"delete.do",
 					        type:'POST',

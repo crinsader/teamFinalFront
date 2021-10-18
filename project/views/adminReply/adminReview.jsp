@@ -55,15 +55,16 @@
         }
     </style>
 </head>
-
+			
 <body>
 	<script type="text/javascript">
-		function deleteReply(reply_seq){
+		function deleteReply(reply_seq, per_title){
       		var res_confirm = confirm('댓글을 삭제하시겠습니까?');
       		if(!res_confirm){
       			return false;
       		}else{
-      			var replyData = {"reply_seq" : reply_seq}
+      			var replyData = {"reply_seq" : reply_seq,
+      							"per_title" : per_title}
       			//console.log(uresData)
       			$.ajax({
 			        url:"http://localhost:8088/trip/adminReply/delete.do",
@@ -84,28 +85,8 @@
 	
 
     <div style="width: 1800px; height: 100vh;">
-        <div style="float: left; width: 250px; height: 100%; box-shadow: 0 0 20px #ededed; position: fixed;">
-            <div style="margin:auto; width: 80%;"><img style="width: 100%; margin-top: 40px; margin-bottom: 40px;"
-                    src="http://jjcom0214.cafe24.com/web/OneTrillion/logo02.png" alt="logo01"></div>
-            <div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" onclick="">메인</li>
-                    <li class="list-group-item" onclick="">회원예약</li>
-                    <li class="list-group-item" onclick="">비회원예약</li>
-                    <li class="list-group-item" onclick="">문의</li>
-                    <li class="list-group-item" onclick="">리뷰</li>
-                    <li class="list-group-item" onclick="">회원</li>
-                    <li class="list-group-item" onclick="">상품</li>
-                    <li class="list-group-item" onclick="">관리자</li>
-                    <li class="list-group-item" onclick="">찜</li>
-                    <li class="list-group-item" onclick="">공지사항</li>
-                    <li class="list-group-item" onclick="">자주질문</li>
-                    <li class="list-group-item" onclick="">로그기록</li>
-                    <li class="list-group-item" onclick="">메모장</li>
+       		<jsp:include page="../include/adminInclude.jsp"></jsp:include>
 
-                </ul>
-            </div>
-        </div>
         <div style="float:right; width: 1500px;height: 100%;">
             <div
                 style="margin-top: 40px; width: 1500px; height: 90%; border-radius: 20px; box-shadow: 0 0 20px #ededed;">
@@ -127,20 +108,18 @@
                         <tbody>
                         	<c:forEach var="board" items="${replyList }">
 	                            <!-- forEach 문 시작--------------------------------------------------------------------------------------------------------------------------------------->
-	                            <tr style="cursor: pointer;">
-	                                <th data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_seq }</th>
-	                                <th data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.u_id }</th>
-	                                <th data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.pd_seq }</th>
-	                                <th data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_title }</th>
-	                                <th data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_date }</th>
-	                                <th data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_content }</th>
-	                                <th data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_rate }</th>
+	                            <tr style="cursor: pointer;" onclick = "" class = "replyDetail">
+	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_seq }</td>
+	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.u_id }</td>
+	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.pd_seq }</td>
+	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_title}</td>
+	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_date }</td>
+	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_content }</td>
+	                                <td data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" onclick="">${board.reply_rate }</td>
 
-								<td><a class="btn btn-secondary btn001"
-										onclick="location.href='http://localhost:8088/trip/adminReply/modify.do?reply_seq=${board.reply_seq }'"
-										role="button" style="padding: 5px;">수정</a> <a
-										class="btn btn-secondary btn001" onclick="deleteReply(${board.reply_seq })" role="button"
-										style="padding: 5px;">삭제</a></td>
+									<td><a class="btn btn-secondary btn001" onclick="location.href='http://localhost:8088/trip/adminReply/modify.do?reply_seq=${board.reply_seq }'"
+										role="button" style="padding: 5px;">수정</a> 
+										<a class="btn btn-secondary btn001" onclick="deleteReply(${board.reply_seq }, '${board.reply_title}' )" role="button" style="padding: 5px;">삭제</a></td>
 	                            </tr>
                             </c:forEach>
                             <!-- forEach 문 끝--------------------------------------------------------------------------------------------------------------------------------------->
@@ -207,43 +186,101 @@
                     </tr>
                     <tr>
                         <th>REPLY_SEQ</th>
-                        <td>REPLY_SEQ</td>
+                        <td id = "reply_seq"></td>
                     </tr>
                     <tr>
                         <th>U_ID</th>
-                        <td>U_ID</td>
+                        <td id = "u_id"></td>
                     </tr>
                     <tr>
                         <th>PD_SEQ</th>
-                        <td>PD_SEQ</td>
+                        <td id = "pd_seq"></td>
                     </tr>
                     <tr>
                         <th>REPLY_TITLE</th>
-                        <td>REPLY_TITLE</td>
+                        <td id = "reply_title"></td>
                     </tr>
                     <tr>
                         <th>REPLY_DATE</th>
-                        <td>REPLY_DATE</td>
+                        <td id = "reply_date"></td>
                     </tr>
                     <tr style="height: 300px;">
-                        <th>NO_CONTENT</th>
-                        <td>NO_CONTENT</td>
+                        <th>REPLY_CONTENT</th>
+                        <td id = "reply_content"></td>
                     </tr>
                     <tr>
                         <th>REPLY_RATE </th>
-                        <td>REPLY_RATE </td>
+                        <td id = "reply_rate"></td>
                     </tr>
                 </table>
                 <div style="text-align: right;">
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary" href="#" role="button" onclick = "replyModalDelete()"
                         style="margin-top:10px; margin-bottom: 10px;">삭제</a>
-                    <a class="btn btn-secondary" href="#" role="button"
+                    <a class="btn btn-secondary" href="#" role="button" onclick = "replyModalModfiy()"
                         style="margin-top:10px; margin-bottom: 10px; margin-right: 10px;">수정</a>
                 </div>
             </div>
         </div>
     </div>
     <!--Modal 끝----------------------------------------------------------------------------------------------------------------->
+    	<script type="text/javascript">
+
+function replyModalDelete(){ 
+	var reply_seq= $('#reply_seq').text();
+ 	var deleteconfirm = confirm(reply_seq+'번 질문을 삭제하시겠습니까?');						    	
+	if(!deleteconfirm){
+		return false;
+	}else{
+	var seqData ={"reply_seq":reply_seq};
+	
+    $.ajax({
+        url:"delete.do",
+        type:'POST',
+        data: seqData,
+        success:function(data){
+            alert("삭제되었습니다.");
+            location.href = "./list.do";							            	            
+        },
+        error:function(){
+            alert("에러");
+        }
+    });	
+	}		 
+	
+};
+
+function replyModalModfiy(){  
+ 	var reply_seq= $('#reply_seq').text();	    	
+	location.href = "./modify.do?reply_seq="+reply_seq;	 
+};
+
+
+$(document).ready(function(){       
+	
+    $(".replyDetail").on("click", function(){
+    	 var reply_seq = $(this).children("td:nth-child(1)").text();  
+    	 var u_id = $(this).children("td:nth-child(2)").text();
+    	 var pd_seq = $(this).children("td:nth-child(3)").text();
+    	 var reply_title = $(this).children("td:nth-child(4)").text();
+    	 var reply_date = $(this).children("td:nth-child(5)").text();
+    	 var reply_content = $(this).children("td:nth-child(6)").text();
+    	 var reply_rate = $(this).children("td:nth-child(7)").text(); 
+
+    	   	 
+     	 $('#reply_seq').text(reply_seq);
+     	 $('#u_id').text(u_id);
+     	 $('#pd_seq').text(pd_seq);
+     	 $('#reply_title').text(reply_title);
+     	 $('#reply_date').text(reply_date);
+     	 $('#reply_content').text(reply_content);
+     	 $('#reply_rate').text(reply_rate);
+
+
+    })
+            
+})
+
+</script>
 </body>
 
 </html>
