@@ -1,6 +1,5 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> -->
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> -->
 <!DOCTYPE html>
 <html>
 
@@ -96,8 +95,7 @@
 		;
 	}
 
-	/* <!-- 카톡/페이스북/트위터 공유하기 10-11 한보영--> */
-	.link-icon {
+	< !-- 카톡/페이스북/트위터 공유하기 10-11 한보영-->.link-icon {
 		position: relative;
 		display: inline-block;
 		width: auto;
@@ -369,7 +367,8 @@
 	<!-- swiper 부분끝-->
 
 	<div id="map" style="margin: auto; margin-top: 10px; width: 1100px; height: 500px; background-color: #F7F7F7">
-		여기는지도에요</div>
+		여기는지도에요
+	</div>
 	<!-- 지  도 -->
 
 	<!-- 컨텐츠 -------------------------------------------------------------------------------------------------------------------------------------->
@@ -506,87 +505,6 @@
 				</td>
 			</tr>
 		</table>
-
-		<table id="resListTab1" style="width: 100%; margin-top: 40px; border-top:2px solid #343a40">
-			<tr style="height: 45px; background-color: #ededed; text-align: center;">
-				<th>예약번호</th>
-				<th>예약날짜</th>
-				<th>상품명</th>
-				<th>총 가격</th>
-				<th>총 인원</th>
-				<th>출발일</th>
-				<th>리뷰</th>
-			</tr>
-			<!---------forEach 시작-------------------------------------------------------------------------------------------------------------------------->
-			<!--아래 onclick 회원 예약 상세 보기 페이지로 설정 해주세요-->
-			<c:forEach var="board" items="${userResList }">
-				<tr class="risListTr1"
-					style="height:45px; border-bottom:1px solid #ededed; text-align: center; cursor: pointer;">
-
-					<td>${board.ures_seq }</td>
-					<td>${board.sysDate}</td>
-					<td
-						onclick="location.href='<%=request.getContextPath() %>/userRes/resDetail.do?ures_seq=${board.ures_seq}' ">
-						${board.pd_name }</td>
-					<td>${board.res_price }</td>
-					<td>${board.res_people }</td>
-					<td>${board.pd_startDate }</td>
-					<td style="border-right: 0; width: 150px;">
-						<a href="#" class="btn btn-secondary" data-bs-toggle="modal"
-							data-bs-target="#exampleModalCenter">리뷰작성</a>
-					</td>
-				</tr>
-			</c:forEach>
-			<!---------forEach 끝-------------------------------------------------------------------------------------------------------------------------->
-			<tr>
-				<td colspan="7" style="height: 10px; background-color: #ededed;"></td>
-			</tr>
-		</table>
-		<!-- 하단 페이징/검색----------------------------------------------------------------------------------------------------------------------->
-		<div style="width: 100%; margin-top: 10px; margin-bottom: 40px;">
-			<!--페이징 tag 시작----------------------------------------------------------------------------------------------------------------------------------------->
-			<div style="float: left;">
-				<ul class="pagination">
-					<li class="page-item">
-						<c:if test="${pageMaker.prev}">
-							<a class="page-link" href="listPage.do${pageMaker.makeQuery(pageMaker.startPage - 1)}"
-								aria-label="Previous" style="color: gray; border:1px solid #ededed">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</c:if>
-					</li>
-
-					<li class="page-item">
-						<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-							<a class="page-link" href="listPage.do${pageMaker.makeQuery(idx)}"
-								style="color: gray;border:1px solid #ededed">${idx}</a>
-						</c:forEach>
-					</li>
-
-					<li class="page-item">
-						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-							<a class="page-link" href="listPage.do${pageMaker.makeQuery(pageMaker.endPage + 1)}"
-								aria-label="Next" style="color: gray;border:1px solid #ededed">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
-						</c:if>
-					</li>
-				</ul>
-			</div>
-			<!--페이징 tag 끝----------------------------------------------------------------------------------------------------------------------------------------->
-			<!--검색 -------------------------------------------------------------------------------->
-			<div style="float: right;">
-				<div class="input-group mb-3" style="width: 300px; float: left;">
-					<input type="text" class="form-control keyword" placeholder="검색할 단어를 입력하세요"
-						aria-label="Recipient's username" aria-describedby="button-addon2"
-						style="border:1px solid #ededed;">
-					<button class="btn btn-outline-secondary" type="button" id="button-addon2"
-						style="border:1px solid #ededed">검색</button>
-				</div>
-			</div>
-			<!--검색 -------------------------------------------------------------------------------->
-		</div>
-		<!-- 하단 페이징/검색 끝----------------------------------------------------------------------------------------------------------------------->
 	</div>
 
 
@@ -999,14 +917,6 @@
 			});
 		}
 
-
-
-
-
-
-
-	</script>
-	<script>
 		/* --------------------------다음 지도 api-------------------------------------------------------------- */
 		var infowindow = new kakao.maps.InfoWindow({
 			zIndex: 1

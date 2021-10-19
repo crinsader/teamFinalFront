@@ -752,13 +752,15 @@
     	const pd_seq = $("#pd_seq").val().trim();
     	const pd_name = $("#pd_name").val().trim();
     	var u_id=$("#u_id").val();
-    	//console.log(u_id);
-    	    	
+    	console.log(u_id);
+    	console.log("${userDTO.u_id}")
+    	
     	if(u_id == "" ){ 
     		alert("로그인이 필요합니다.");
     		location.href = "./../user/login.do";
     	    		
     	}else if (u_id == "${userDTO.u_id}"){
+    		
     		alert('이미 예약한 상품입니다!');
     		location.href = "http://localhost:8088/trip/userRes/list.do?u_id="+u_id;
     	}

@@ -46,12 +46,12 @@
 
     .star {
       cursor: pointer;
-      font-size: 300%;
+      font-size: 200%;
       vertical-align: 30%
     }
 
     .starDot {
-      font-size: 150%;
+      font-size: 120%;
       font-weight: bold;
     }
   </style>
@@ -196,7 +196,7 @@
                     class="star star05" data-rate="5">★</span>
                 </div>
               </td>
-              <td style="width:20%; border-left:1px solid #ededed">
+              <td style="width:20%; border-left:1px solid #ededed; height: 70px;">
                 <span class="starScore starDot"></span><span class="starDot">점</span>
               </td>
             </tr>
@@ -215,7 +215,7 @@
   <script>
     $(document).ready(function () {
 
-      //---별점----------------------------------------------------------------------------
+      //---별점------------------------------------------------------------------------------------------------------------
       $(".star").on("mouseover", function () {
         $(this).css("color", "red")
         $(this).prev().css("color", "red")
@@ -256,8 +256,7 @@
         $(this).prev().prev().prev().css("color", "red")
         $(this).prev().prev().prev().prev().css("color", "red")
       })
-
-      //---별점-끝---------------------------------------------------------------------------
+      //---별점-끝-------------------------------------------------------------------------------------------------------
 
       // 왼쪽 메뉴 스크롤----------------------------------------------------------------------
       $(window).scroll(function () {

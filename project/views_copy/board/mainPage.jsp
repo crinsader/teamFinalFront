@@ -462,20 +462,9 @@ li.slider>imgs {
 	</div>
 	<div style="height: 30px; background-color: rgb(250, 250, 250);"></div>
 
-	<c:if test="${sessionScope.AD_ID != null }">
-		<button id="adminLogout">관리자로그아웃</button>
-	</c:if>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 <script>
-$("#adminLogout").on("click", function(){
-    if(confirm("정말 로그아웃 하시겠습니까?")){
-    location.href = "<%=request.getContextPath()%>/admin/adminlogout.do";
-    alert("로그아웃되었습니다");
-    }
- });
-
-
 	var coverflowSetting = {
 		slideShadows : false, // 슬라이더 그림자 : 3D 효과를 강조하기 위한 회전시 흐릿한 효과
 		rotate : 20, // 슬라이더 회전 각 : 클수록 슬라이딩시 회전이 커짐
